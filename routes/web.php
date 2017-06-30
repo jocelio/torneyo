@@ -11,11 +11,18 @@
 |
 */
 
-
-$app->get('/', function ()  {
-    return view('home', ['name' => 'teste']);
-});
+$app->routeMiddleware([
+    'auth' => App\Http\Middleware\AuthTokenBearer::class,
+]);
 
 $app->get('/login', function ()  {
     return view('login');
 });
+
+$app->post('/login', 'UserController@login');
+
+$app->get('/',['middleware' => 'auth', function ()  {
+    return view('home', ['name' => 'teste']);
+}]);
+
+
