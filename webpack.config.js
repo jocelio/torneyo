@@ -1,9 +1,9 @@
 const path = require('path');
 module.exports = {
-    entry: './resources/assets/',
+    entry: {bundle: './resources/app/', 'bundle-login':'./resources/login/'},
     output: {
         path: path.resolve(__dirname, './public'),
-        filename: 'bundle.js'
+        filename: "[name].js"
     },
     devServer: {
         inline: true,

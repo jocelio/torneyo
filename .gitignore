@@ -1,3 +1,5 @@
 node_modules/
 .idea/*
 vendor/
+public/bundle.js
+public/bundle-login.js

@@ -15,3 +15,7 @@
 $app->get('/', function ()  {
     return view('home', ['name' => 'teste']);
 });
+
+$app->get('/login', function ()  {
+    return view('login');
+});
