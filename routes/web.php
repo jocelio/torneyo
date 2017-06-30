@@ -13,5 +13,5 @@
 
 
 $app->get('/', function ()  {
-    return view('home', ['name' => 'Jocelio']);
+    return view('home', ['name' => 'teste']);
 });
