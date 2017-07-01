@@ -6,7 +6,7 @@ Laravel Lumen and React
 
 ## Runing Mysql in Docker
 
-docker run --name torneyo-mysql -v ~/dev/mysql-store/:/var/lib/mysql --env MYSQL_ROOT_PASSWORD=password -d mysql
+docker run -d -t --name mysqldb  -p 3306:3306 -v ~/dev/mysql-store/:/var/lib/mysql -e MYSQL_ROOT_PASSWORD='s3cr3t' mysql
 
 ## License
 
