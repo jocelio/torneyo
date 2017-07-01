@@ -11,18 +11,26 @@
 |
 */
 
-$app->routeMiddleware([
-    'auth' => App\Http\Middleware\AuthTokenBearer::class,
-]);
 
-$app->get('/login', function ()  {
-    return view('login');
+
+//$app->get('/', function ()  {
+//    return view('login');
+//});
+
+$app->get('/', function ()  {
+    return view('home', ['name' => 'teste']);
 });
 
-$app->post('/login', 'UserController@login');
+//$app->post('/login', 'UserController@login');
 
-$app->get('/',['middleware' => 'auth', function ()  {
-    return view('home', ['name' => 'teste']);
-}]);
+//----------------
 
 
+/**
+ * Routes for resource equipe
+ */
+$app->get('equipe', 'EquipesController@all');
+$app->get('equipe/{id}', 'EquipesController@get');
+$app->post('equipe', 'EquipesController@add');
+$app->put('equipe/{id}', 'EquipesController@put');
+$app->delete('equipe/{id}', 'EquipesController@remove');

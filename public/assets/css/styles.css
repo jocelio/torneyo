@@ -213,3 +213,7 @@ _:-ms-input-placeholder, :root .demo-graph {
       -ms-flex-align: center;
           align-items: center;
 }
+.mdl-navigation__link--active {
+    background-color: rgba(0, 188, 212, 0.65);
+    color: #37474F;
+}

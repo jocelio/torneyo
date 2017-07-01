@@ -1,16 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
-import './/css/index.css';
-import Menu from "./components/Menu";
-
+import {Router, hashHistory} from 'react-router';
+import routes from './routes';
 
 ReactDOM.render(
-    <Menu/>,
-    document.getElementById('menu')
+    <Router history={hashHistory} routes={routes} />,
+    document.getElementById('app')
 );
 
-ReactDOM.render(
-    <App/>,
-  document.getElementById('root')
-);

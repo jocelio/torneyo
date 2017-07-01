@@ -17,3 +17,12 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'email' => $faker->email,
     ];
 });
+
+/**
+ * Factory definition for model App\Equipe.
+ */
+$factory->define(App\Equipe::class, function ($faker) {
+    return [
+        'project_id' => $faker->key,
+    ];
+});
