@@ -10,7 +10,7 @@ docker run \
     -d -t \
     --name mysqldb \
     -p 3306:3306 \
-    -v ~/dev/mysql-store/:/var/lib/mysql \
+    -v ~/dev/mysql-storage/:/var/lib/mysql \
     -e MYSQL_USER=root \
     -e MYSQL_ROOT_PASSWORD=s3cr3t \
     -e MYSQL_DATABASE=torneyo \
