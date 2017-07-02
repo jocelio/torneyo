@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchEquipe } from '../actions/index';
+import { bindActionCreators } from 'redux';
 import Crud from '../containers/crud/Crud';
 
 class Equipe extends Component {
@@ -21,7 +24,10 @@ class Equipe extends Component {
     }
 
     search(){
-        return (<table className="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+        return (
+            <div>
+            {this.props.equipes}
+            <table className="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
             <thead>
             <tr>
                 <th className="mdl-data-table__cell--non-numeric">Material</th>
@@ -46,7 +52,8 @@ class Equipe extends Component {
                 <td>$2.35</td>
             </tr>
             </tbody>
-        </table>)
+        </table>
+            </div>)
     }
 
     update(){
@@ -66,5 +73,18 @@ class Equipe extends Component {
         )
     }
 
+    componentDidMount(){
+        this.props.fetchEquipe();
+    }
+
 }
-export default Equipe;
+
+function mapDispatchToProps(dispatch){
+    return bindActionCreators({ fetchEquipe }, dispatch);
+}
+
+function mapStateToProps({ equipes }){
+    return { equipes };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Equipe);
