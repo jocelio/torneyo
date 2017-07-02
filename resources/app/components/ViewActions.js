@@ -12,13 +12,9 @@ class CrudAction extends Component {
                     onClick={this.props.onClick} >
                 <i className="material-icons">share</i>
             </button>
-
         </div>);
     }
 
-    teste(){
-        console.log('ha')
-    }
 
 }
 

@@ -3,6 +3,7 @@ import axios from 'axios';
 const ROOT_URL = `http://localhost:8001`;
 
 export const FETCH_EQUIPES = 'FETCH_EQUIPES';
+export const CLEAR_EQUIPES = 'CLEAR_EQUIPES';
 
 export function fetchEquipe(equipe){
 
@@ -14,3 +15,14 @@ export function fetchEquipe(equipe){
         payload: request
     };
 }
+
+export function clearEquipe(){
+    return {
+        type: CLEAR_EQUIPES,
+        payload: []
+    };
+
+}
+
+
+
