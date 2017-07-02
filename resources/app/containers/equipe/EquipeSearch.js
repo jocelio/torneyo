@@ -27,6 +27,7 @@ class EquipeSearch extends Component {
     }
 
     search(){
+        const eq = this.props.equipes || [];
         return (
             <div>
             <table className="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
@@ -39,7 +40,7 @@ class EquipeSearch extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {this.props.equipes.map(d => d.map(this.renderEquipes))}
+                    {eq.map(d => d.map(this.renderEquipes))}
                 </tbody>
             </table>
             </div>)

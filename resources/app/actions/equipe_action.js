@@ -16,6 +16,18 @@ export function fetchEquipe(equipe){
     };
 }
 
+export function createEquipe(equipe){
+    
+    const url = `${ROOT_URL}/equipe`;
+    const request = axios.post(url, {'name':equipe.name,'description':equipe.description});
+
+    return {
+        type: FETCH_EQUIPES,
+        payload: request
+    };
+}
+
+
 export function clearEquipe(){
     return {
         type: CLEAR_EQUIPES,

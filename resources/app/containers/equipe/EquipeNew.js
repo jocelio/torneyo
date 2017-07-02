@@ -1,34 +1,52 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchEquipe } from '../../actions/equipe_action';
+import { createEquipe } from '../../actions/equipe_action';
 import { bindActionCreators } from 'redux';
 import CrudActions from '../../components/ViewActions';
-import MenuItem from '../../components/MenuItem';
+import NavigationItem from '../../components/NavigationItem';
 
 
-class Equipe extends Component {
+class EquipeMew extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {name: '', description:''};
+
+    }
+
+    handleInputChange(event) {
+        const target = event.target;
+        const name = target.name;
+        this.setState({
+            [name]: target.value
+        });
+    }
+
+    onFormSubmit(event){
+        event.preventDefault();
+        this.props.createEquipe({"name":this.state.name, "description":this.state.description});
+        this.setState({name: '', description:''});
     }
 
     render(){
         return (
-            <form action="#">
+            <form action="#" onSubmit={(e) => this.onFormSubmit(e)}>
 
                 <div className="mdl-card mdl-shadow--2dp large">
                     <div className="mdl-card__title">
                         <h2 className="mdl-card__title-text">{this.props.title}</h2>
                     </div>
                     <div className="mdl-card__supporting-text">
-                        <MenuItem name="Voltar" href="equipe/" icon="book"/> <br/>
+                        <NavigationItem name="Voltar" href="/#/equipe/" icon="book"/> <br/>
                         <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input className="mdl-textfield__input" type="text" id="name"/>
+                            <input className="mdl-textfield__input" type="text" id="name" name="name"
+                            value={this.state.name} onChange={(event) => this.handleInputChange(event)} />
                             <label className="mdl-textfield__label" htmlFor="sample3">Equipe Name...</label>
                         </div>
 
                         <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input className="mdl-textfield__input" type="text" id="description"/>
+                            <input className="mdl-textfield__input" type="text" id="description" name="description"
+                            value={this.state.description} onChange={(event) => this.handleInputChange(event)}/>
                             <label className="mdl-textfield__label" htmlFor="sample3">Equipe Description...</label>
                         </div>
                     </div>
@@ -42,17 +60,21 @@ class Equipe extends Component {
     }
 
     componentDidMount(){
-        componentHandler.upgradeAllRegistered();
+        try{
+            componentHandler.upgradeAllRegistered();
+        }catch (e){
+
+        }
     }
 
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({ fetchEquipe }, dispatch);
+    return bindActionCreators({ createEquipe }, dispatch);
 }
 
 function mapStateToProps({ equipes }){
     return { equipes };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Equipe);
+export default connect(mapStateToProps, mapDispatchToProps)(EquipeMew);
