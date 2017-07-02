@@ -4,7 +4,7 @@
 
 Laravel Lumen and React
 
-## Runing Mysql in Docker
+## Running Mysql with Docker
 ```
 docker run \
     -d -t \
