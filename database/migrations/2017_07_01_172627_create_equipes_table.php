@@ -15,6 +15,8 @@ class CreateEquipesTable extends Migration
             $table->date('due');
             $table->timestamps();
         });
+
+
     }
 
     public function down()

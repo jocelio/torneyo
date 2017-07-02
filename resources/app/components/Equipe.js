@@ -26,33 +26,20 @@ class Equipe extends Component {
     search(){
         return (
             <div>
-            {this.props.equipes}
-            <table className="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
-            <thead>
-            <tr>
-                <th className="mdl-data-table__cell--non-numeric">Material</th>
-                <th>Quantity</th>
-                <th>Unit price</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td className="mdl-data-table__cell--non-numeric">Acrylic (Transparent)</td>
-                <td>25</td>
-                <td>$2.90</td>
-            </tr>
-            <tr>
-                <td className="mdl-data-table__cell--non-numeric">Plywood (Birch)</td>
-                <td>50</td>
-                <td>$1.25</td>
-            </tr>
-            <tr>
-                <td className="mdl-data-table__cell--non-numeric">Laminate (Gold on Blue)</td>
-                <td>10</td>
-                <td>$2.35</td>
-            </tr>
-            </tbody>
-        </table>
+
+            <table className="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                <thead>
+                    <tr>
+                        <th>Equipe Name</th>
+                        <th>Equipe Description</th>
+                        <th>Created At</th>
+                        <th>Updated At</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {this.props.equipes.map(d => d.map(this.renderEquipes))}
+                </tbody>
+            </table>
             </div>)
     }
 
@@ -60,16 +47,26 @@ class Equipe extends Component {
         return (
             <form action="#">
                 <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input className="mdl-textfield__input" type="text" id="sample3"/>
-                    <label className="mdl-textfield__label" htmlFor="sample3">Text...</label>
+                    <input className="mdl-textfield__input" type="text" id="name"/>
+                    <label className="mdl-textfield__label" htmlFor="sample3">Equipe Name...</label>
                 </div>
             
                 <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input className="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample4"/>
-                    <label className="mdl-textfield__label" htmlFor="sample4">Number...</label>
-                    <span className="mdl-textfield__error">Input is not a number!</span>
+                    <input className="mdl-textfield__input" type="text" id="description"/>
+                    <label className="mdl-textfield__label" htmlFor="sample3">Equipe Description...</label>
                 </div>
             </form>
+        )
+    }
+
+    renderEquipes(equipe){
+        return(
+            <tr key={equipe.id} className="">
+                <td>{equipe.name}</td>
+                <td>{equipe.description}</td>
+                <td>{equipe.created_at}</td>
+                <td>{equipe.updated_at}</td>
+            </tr>
         )
     }
 
