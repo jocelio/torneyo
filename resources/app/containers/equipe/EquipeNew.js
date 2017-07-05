@@ -4,6 +4,7 @@ import { createEquipe } from '../../actions/equipe_action';
 import { bindActionCreators } from 'redux';
 import CrudActions from '../../components/ViewActions';
 import NavigationItem from '../../components/NavigationItem';
+import { browserHistory } from 'react-router';
 
 
 class EquipeMew extends Component {
@@ -11,7 +12,6 @@ class EquipeMew extends Component {
     constructor(props) {
         super(props);
         this.state = {name: '', description:''};
-
     }
 
     handleInputChange(event) {
@@ -24,7 +24,8 @@ class EquipeMew extends Component {
 
     onFormSubmit(event){
         event.preventDefault();
-        this.props.createEquipe({"name":this.state.name, "description":this.state.description});
+        this.props.createEquipe({"name": this.state.name, "description": this.state.description});
+        alert(`Equipe ${this.state.name} saved.`);
         this.setState({name: '', description:''});
     }
 
@@ -63,7 +64,7 @@ class EquipeMew extends Component {
         try{
             componentHandler.upgradeAllRegistered();
         }catch (e){
-
+            console.log(e)
         }
     }
 

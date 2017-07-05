@@ -8,11 +8,10 @@ export const CLEAR_EQUIPES = 'CLEAR_EQUIPES';
 export function fetchEquipe(equipe){
 
     const url = `${ROOT_URL}/equipe`;
-    const request = axios.get(url);
 
     return {
         type: FETCH_EQUIPES,
-        payload: request
+        payload: axios.get(url)
     };
 }
 
@@ -27,6 +26,15 @@ export function createEquipe(equipe){
     };
 }
 
+export function deleteEquipe(equipe){
+
+    const url = `${ROOT_URL}/equipe/${equipe.id}`;
+
+    return {
+        type: FETCH_EQUIPES,
+        payload: axios.delete(url)
+    };
+}
 
 export function clearEquipe(){
     return {

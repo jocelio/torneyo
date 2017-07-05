@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchEquipe } from '../../actions/equipe_action';
 import { bindActionCreators } from 'redux';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class Equipe extends Component {
 
     render(){
         return (<div>
-                    {this.props.children}
+                    <MuiThemeProvider>
+                        {this.props.children}
+                    </MuiThemeProvider>
                 </div>)
     }
 

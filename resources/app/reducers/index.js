@@ -3,7 +3,7 @@ import FetchEquipeReducer from './reducer_equipe';
 
 const rootReducer = combineReducers({
     state: (state = {}) => state,
-    equipes: FetchEquipeReducer
+    equipesState: FetchEquipeReducer
 });
 
 export default rootReducer;

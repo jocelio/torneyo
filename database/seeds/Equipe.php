@@ -11,15 +11,43 @@ class Equipe extends Seeder
      */
     public function run()
     {
-        DB::table('equipes')->drop();
 
-        \App\Equipe::create(array(
+        \App\Equipe::truncate();
+        \App\Equipe::insert(array(
                 'name' => 'Valencia',
-                'description' => 'Valencia Club de Fútbol'
-            ),
-            array(
-                'name' => 'Borussia',
-                'description' => 'Borussia Dortmund'
+                'description' => 'Valencia Club de Fútbol',
+                'created_at' =>  new DateTime('02/31/2011'),
+                'updated_at' =>  new DateTime('02/31/2011'),
+                'due' =>  new DateTime('02/31/2011')
             ));
+        \App\Equipe::insert(array(
+                'name' => 'Borussia',
+                'description' => 'Borussia Dortmund',
+                'created_at' =>  new DateTime('02/31/2011'),
+                'updated_at' =>  new DateTime('02/31/2011'),
+                'due' =>  new DateTime('02/31/2011')
+        ));
+            \App\Equipe::insert(array(
+                'name' => 'Monaco',
+                'description' => 'Association Sportive de Monaco Football Club',
+                'created_at' =>  new DateTime('02/31/2011'),
+                'updated_at' =>  new DateTime('02/31/2011'),
+                'due' =>  new DateTime('02/31/2011')
+            ));
+                \App\Equipe::insert(array(
+                'name' => 'Inter de Milão',
+                'description' => 'Football Club Internazionale Milano',
+                'created_at' =>  new DateTime('02/31/2011'),
+                'updated_at' =>  new DateTime('02/31/2011'),
+                'due' =>  new DateTime('02/31/2011')
+                ));
+         \App\Equipe::insert(array(
+                'name' => 'Bayer 04',
+                'description' => 'Bayer 04 Leverkusen',
+                'created_at' =>  new DateTime('02/31/2011'),
+                'updated_at' =>  new DateTime('02/31/2011'),
+                'due' =>  new DateTime('02/31/2011')
+            ));
+
     }
 }
