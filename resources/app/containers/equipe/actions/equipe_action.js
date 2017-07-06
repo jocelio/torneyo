@@ -4,8 +4,11 @@ const ROOT_URL = `http://localhost:8001`;
 
 export const FETCH_EQUIPES = 'FETCH_EQUIPES';
 export const CLEAR_EQUIPES = 'CLEAR_EQUIPES';
+export const CREATE_EQUIPES = 'CREATE_EQUIPES';
+export const DELETE_EQUIPES = 'DELETE_EQUIPES';
 
-export function fetchEquipe(equipe){
+
+export function fetchEquipes(equipe){
 
     const url = `${ROOT_URL}/equipe`;
 
@@ -18,10 +21,10 @@ export function fetchEquipe(equipe){
 export function createEquipe(equipe){
     
     const url = `${ROOT_URL}/equipe`;
-    const request = axios.post(url, {'name':equipe.name,'description':equipe.description});
+    const request = axios.post(url, equipe);
 
     return {
-        type: FETCH_EQUIPES,
+        type: CREATE_EQUIPES,
         payload: request
     };
 }
@@ -31,7 +34,7 @@ export function deleteEquipe(equipe){
     const url = `${ROOT_URL}/equipe/${equipe.id}`;
 
     return {
-        type: FETCH_EQUIPES,
+        type: DELETE_EQUIPES,
         payload: axios.delete(url)
     };
 }

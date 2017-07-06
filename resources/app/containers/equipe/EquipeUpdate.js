@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { createEquipe } from './actions/equipe_action';
+import { bindActionCreators } from 'redux';
 import Anchor from '../../components/Anchor';
-import { reduxForm } from 'redux-form';
 
-
-class EquipeMew extends Component {
+class EquipeUpdate extends Component {
 
     constructor(props) {
         super(props);
@@ -19,40 +19,37 @@ class EquipeMew extends Component {
         });
     }
 
-    onFormSubmit(props){
-
-        this.props.createEquipe(props);
+    onFormSubmit(event){
+        event.preventDefault();
+        this.props.createEquipe({"name": this.state.name, "description": this.state.description});
         alert(`Equipe ${this.state.name} saved.`);
-
+        this.setState({name: '', description:''});
     }
 
     render(){
-
-        const { fields: {name, description }, handleSubmit } = this.props;
-
         return (
-            <form onSubmit={handleSubmit(() => this.props.createEquipe())}>
+            <form action="#" onSubmit={(e) => this.onFormSubmit(e)}>
 
                 <div className="mdl-card mdl-shadow--2dp large">
                     <div className="mdl-card__title">
                         <h2 className="mdl-card__title-text">{this.props.title}</h2>
                     </div>
                     <div className="mdl-card__supporting-text">
-                        <Anchor name="<< Back to Equipe List" href="equipe"/> <br/>
+                        <Anchor name="Voltar" href="equipe"/> <br/>
                         <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <input className="mdl-textfield__input" type="text" id="name" name="name"
-                            {...name} />
+                            value={this.state.name} onChange={(event) => this.handleInputChange(event)} />
                             <label className="mdl-textfield__label" htmlFor="sample3">Equipe Name...</label>
                         </div>
 
                         <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <input className="mdl-textfield__input" type="text" id="description" name="description"
-                            {...description}/>
+                            value={this.state.description} onChange={(event) => this.handleInputChange(event)}/>
                             <label className="mdl-textfield__label" htmlFor="sample3">Equipe Description...</label>
                         </div>
                     </div>
                     <div className="mdl-card__actions mdl-card--border">
-                        <input type="submit" value="Save" className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"/>
+                        <input type="submit" value="Update" className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"/>
                     </div>
                 </div>
             </form>
@@ -60,6 +57,7 @@ class EquipeMew extends Component {
     }
 
     componentDidMount(){
+        console.log(equipesState);
         try{
             componentHandler.upgradeAllRegistered();
         }catch (e){}
@@ -67,9 +65,12 @@ class EquipeMew extends Component {
 
 }
 
+function mapDispatchToProps(dispatch){
+    return bindActionCreators({ createEquipe }, dispatch);
+}
 
+function mapStateToProps({ equipes }){
+    return { equipes };
+}
 
-export default reduxForm({
-    form:'NewEquipeForm',
-    fields:['name','description']
-}, null, {createEquipe})(EquipeMew);
+export default connect(mapStateToProps, mapDispatchToProps)(EquipeUpdate);

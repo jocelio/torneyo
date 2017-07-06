@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchEquipe, clearEquipe, deleteEquipe } from '../../actions/equipe_action';
-import { bindActionCreators } from 'redux';
-import CrudActions from '../../components/ViewActions';
-import MenuItem from '../../components/MenuItem';
+import { fetchEquipes, clearEquipe, deleteEquipe } from './actions/equipe_action';
+import Anchor from '../../components/Anchor';
+import {Link} from 'react-router';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
 
 
 class EquipeSearch extends Component {
@@ -57,7 +55,11 @@ class EquipeSearch extends Component {
                     <h2 className="mdl-card__title-text">{this.props.title}</h2>
                 </div>
                 <div className="mdl-card__supporting-text">
-                    <MenuItem name="Novo" href="equipe/novo" icon="book"/>
+
+                    <Link to="equipe/new" icon="book">
+                        New Equipe
+                    </Link>
+
                     {this.search()}
 
                     <Dialog
@@ -84,14 +86,12 @@ class EquipeSearch extends Component {
                     </Dialog>
 
                 </div>
-                <CrudActions />
             </div>
         )
     }
 
     search(){
         const eq = this.props.equipesState;
-        console.log(eq);
         return (
             <div>
             <table className="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
@@ -101,8 +101,7 @@ class EquipeSearch extends Component {
                         <th>Equipe Description</th>
                         <th>Created At</th>
                         <th>Updated At</th>
-                        <th>Action</th>
-
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -121,27 +120,25 @@ class EquipeSearch extends Component {
                 <td>{equipe.created_at}</td>
                 <td>{equipe.updated_at}</td>
                 <td>
-                    <RaisedButton label="Remove" onClick={() => this.handleOpenRemoveDialog(equipe)} />
+
+                    <Link to={this.props.href} activeClassName="mdl-navigation__link--active" className="mdl-navigation__link"
+                          onClick={(e) => this.handleOpenRemoveDialog(equipe)}>Delete</Link>
+                    &nbsp;
+                    <Anchor name="Update" href={`equipe/update/${equipe.id}`}/>
                 </td>
             </tr>
         )
     }
 
-    componentDidMount(){
-        this.props.clearEquipe();
-        this.props.fetchEquipe();
+    componentWillMount(){
+        this.props.fetchEquipes();
     }
 
-
-
 }
 
-function mapDispatchToProps(dispatch){
-    return bindActionCreators({ fetchEquipe, clearEquipe, deleteEquipe }, dispatch);
-}
 
 function mapStateToProps({ equipesState }){
     return { equipesState };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EquipeSearch);
+export default connect(mapStateToProps, { fetchEquipes, clearEquipe, deleteEquipe })(EquipeSearch);
