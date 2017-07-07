@@ -34,12 +34,10 @@ class EquipeNew extends Component {
                         <Anchor name="<< Back to Equipe List" href="equipe"/> <br/>
 
                         <Field name="name" type="text"
-                        component={renderField} validate={[required]} label="Equipe Name"
-                        />
+                            component={renderField} validate={[required]} label="Equipe Name"/>
 
                         <Field name="description" type="text"
-                               component={renderField} validate={[required]} label="Equipe Description"
-                        />
+                            component={renderField} validate={[required]} label="Equipe Description"/>
 
                     </div>
                     <div className="mdl-card__actions mdl-card--border">
@@ -96,6 +94,5 @@ EquipeNew = reduxForm({
 function mapStateToProps({ equipesState }){
     return { equipesState };
 }
-
 
 export default connect(mapStateToProps, { createEquipe })(EquipeNew);
