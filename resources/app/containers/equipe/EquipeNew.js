@@ -81,11 +81,11 @@ const renderField = ({
 
                      }) => (
     <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input {...input} type={type} className="mdl-textfield__input" />
-            <label className="mdl-textfield__label" htmlFor="sample3">{label}</label>
-            {touched &&
-            ((error && <span>{error}</span>) ||
-            (warning && <span>{warning}</span>))}
+        <input {...input} type={type} className="mdl-textfield__input" />
+        <label className="mdl-textfield__label" htmlFor="sample3">{label}</label>
+        {touched &&
+        ((error && <span>{error}</span>) ||
+        (warning && <span>{warning}</span>))}
     </div>
 )
 
