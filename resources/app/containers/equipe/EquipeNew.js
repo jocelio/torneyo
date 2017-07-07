@@ -1,37 +1,30 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { createEquipe } from './actions/equipe_action';
 import Anchor from '../../components/Anchor';
-import { reduxForm } from 'redux-form';
+import { reduxForm, Field } from 'redux-form';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
 
-
-class EquipeMew extends Component {
+class EquipeNew extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {name: '', description:''};
+        this.state = {showMessageDialog: false, message:''};
     }
 
-    handleInputChange(event) {
-        const target = event.target;
-        const name = target.name;
-        this.setState({
-            [name]: target.value
-        });
-    }
-
-    onFormSubmit(props){
-
+    formSubmit(props){
         this.props.createEquipe(props);
-        alert(`Equipe ${this.state.name} saved.`);
-
+        this.setState({showMessageDialog: true, message:`Equipe ${props.name} create with success.`});
     }
 
     render(){
 
-        const { fields: {name, description }, handleSubmit } = this.props;
+        const { handleSubmit } = this.props;
 
         return (
-            <form onSubmit={handleSubmit(() => this.props.createEquipe())}>
+            <div>
+            <form onSubmit={handleSubmit((props) => this.formSubmit(props))}>
 
                 <div className="mdl-card mdl-shadow--2dp large">
                     <div className="mdl-card__title">
@@ -39,23 +32,35 @@ class EquipeMew extends Component {
                     </div>
                     <div className="mdl-card__supporting-text">
                         <Anchor name="<< Back to Equipe List" href="equipe"/> <br/>
-                        <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input className="mdl-textfield__input" type="text" id="name" name="name"
-                            {...name} />
-                            <label className="mdl-textfield__label" htmlFor="sample3">Equipe Name...</label>
-                        </div>
 
-                        <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input className="mdl-textfield__input" type="text" id="description" name="description"
-                            {...description}/>
-                            <label className="mdl-textfield__label" htmlFor="sample3">Equipe Description...</label>
-                        </div>
+                        <Field name="name" type="text"
+                        component={renderField} validate={[required]} label="Equipe Name"
+                        />
+
+                        <Field name="description" type="text"
+                               component={renderField} validate={[required]} label="Equipe Description"
+                        />
+
                     </div>
                     <div className="mdl-card__actions mdl-card--border">
                         <input type="submit" value="Save" className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"/>
                     </div>
                 </div>
             </form>
+                <Dialog
+                    title="Message"
+                    actions={<FlatButton
+                        label="Close"
+                        primary={true}
+                        keyboardFocused={false}
+                        onClick={() => this.setState({showMessageDialog: false})}
+                    />}
+                    modal={false}
+                    open={this.state.showMessageDialog}
+                    onRequestClose={() => this.setState({showMessageDialog: false})}>
+                    {this.state.message}
+                </Dialog>
+            </div>
         )
     }
 
@@ -64,12 +69,33 @@ class EquipeMew extends Component {
             componentHandler.upgradeAllRegistered();
         }catch (e){}
     }
+}
 
+const required = value => (value ? undefined : 'Required')
+
+const renderField = ({
+                         input,
+                         label,
+                         type,
+                         meta: { touched, error, warning },
+
+                     }) => (
+    <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input {...input} type={type} className="mdl-textfield__input" />
+            <label className="mdl-textfield__label" htmlFor="sample3">{label}</label>
+            {touched &&
+            ((error && <span>{error}</span>) ||
+            (warning && <span>{warning}</span>))}
+    </div>
+)
+
+EquipeNew = reduxForm({
+    form:'NewEquipeForm',
+})(EquipeNew);
+
+function mapStateToProps({ equipesState }){
+    return { equipesState };
 }
 
 
-
-export default reduxForm({
-    form:'NewEquipeForm',
-    fields:['name','description']
-}, null, {createEquipe})(EquipeMew);
+export default connect(mapStateToProps, { createEquipe })(EquipeNew);

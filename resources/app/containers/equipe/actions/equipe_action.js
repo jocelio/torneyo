@@ -19,7 +19,6 @@ export function fetchEquipes(equipe){
 }
 
 export function createEquipe(equipe){
-    
     const url = `${ROOT_URL}/equipe`;
     const request = axios.post(url, equipe);
 
