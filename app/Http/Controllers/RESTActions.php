@@ -8,22 +8,12 @@ trait RESTActions {
 
     public function all()
     {
-
-        echo getenv('');
-        echo getenv('DB_HOST');
-echo getenv('DB_PORT');
-echo getenv('DB_DATABASE');
-echo getenv('DB_USERNAME');
-echo getenv('DB_PASSWORD');
-return "oi";
-//        $m = self::MODEL;
-//        return $this->respond(Response::HTTP_OK, $m::all());
+        $m = self::MODEL;
+        return $this->respond(Response::HTTP_OK, $m::all());
     }
 
     public function get($id)
     {
-
-
         $m = self::MODEL;
         $model = $m::find($id);
         if(is_null($model)){
