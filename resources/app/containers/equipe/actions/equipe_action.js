@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const ROOT_URL = `http://torneyo.herokuapp.com`;
+const ROOT_URL = `http://localhost:8001`;
 
 export const FETCH_EQUIPES = 'FETCH_EQUIPES';
 export const CLEAR_EQUIPES = 'CLEAR_EQUIPES';

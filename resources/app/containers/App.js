@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import Menu from '../components/Menu';
-
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
 class App extends Component {
 
+  componentDidMount(){
+      injectTapEventPlugin();
+  }
+  
   render() {
 
     return (
+
         <div className="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
             <header className="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
                 <div className="mdl-layout__header-row">
