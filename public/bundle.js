@@ -55107,7 +55107,7 @@ var EquipeSearch = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (EquipeSearch.__proto__ || Object.getPrototypeOf(EquipeSearch)).call(this, props));
 
-        _this.state = { showRemoveDialog: false, showMessageDialog: false, equipe: {}, message: "" };
+        _this.state = { showRemoveDialog: false, showMessageDialog: false, equipe: {}, message: "", view: 'table' };
         _this.props.fetchEquipes();
         return _this;
     }
@@ -55143,9 +55143,9 @@ var EquipeSearch = function (_Component) {
             this.setState({ showMessageDialog: false });
         }
     }, {
-        key: 'change',
-        value: function change() {
-            this.setState({ btn: this.state.btn++ });
+        key: 'changeView',
+        value: function changeView() {
+            if (this.state.view === 'table') this.setState({ view: 'card' });else this.setState({ view: 'table' });
         }
     }, {
         key: 'render',
@@ -55170,6 +55170,21 @@ var EquipeSearch = function (_Component) {
             return _react2.default.createElement(
                 'div',
                 { className: 'mdl-card mdl-shadow--2dp large' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'mdl-card__menu' },
+                    _react2.default.createElement(
+                        'button',
+                        { onClick: function onClick() {
+                                return _this3.changeView();
+                            }, className: 'mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect' },
+                        _react2.default.createElement(
+                            'i',
+                            { className: 'material-icons' },
+                            this.state.view === 'table' ? 'grid_on' : 'dashboard'
+                        )
+                    )
+                ),
                 _react2.default.createElement(
                     'div',
                     { className: 'mdl-card__title' },
@@ -55229,10 +55244,16 @@ var EquipeSearch = function (_Component) {
         value: function search() {
             var _this4 = this;
 
-            return _react2.default.createElement(
-                'div',
-                null,
-                _react2.default.createElement(
+            if (this.state.view === 'table') {
+                return _react2.default.createElement(
+                    'ul',
+                    null,
+                    this.props.equipes.map(function (e) {
+                        return _this4.renderCards(e);
+                    })
+                );
+            } else {
+                return _react2.default.createElement(
                     'table',
                     { className: 'mdl-data-table mdl-js-data-table mdl-shadow--2dp' },
                     _react2.default.createElement(
@@ -55262,16 +55283,58 @@ var EquipeSearch = function (_Component) {
                         'tbody',
                         null,
                         this.props.equipes.map(function (e) {
-                            return _this4.renderEquipes(e);
+                            return _this4.renderTable(e);
                         })
+                    )
+                );
+            }
+        }
+    }, {
+        key: 'renderCards',
+        value: function renderCards(equipe) {
+            var _this5 = this;
+
+            return _react2.default.createElement(
+                'li',
+                { key: equipe.id },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'demo-card-square mdl-card mdl-shadow--2dp' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'mdl-card__title mdl-card--expand' },
+                        _react2.default.createElement(
+                            'h2',
+                            { className: 'mdl-card__title-text' },
+                            equipe.name
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'mdl-card__supporting-text' },
+                        equipe.description
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'mdl-card__actions mdl-card--border' },
+                        _react2.default.createElement(
+                            _reactRouter.Link,
+                            { to: this.props.href, className: 'mdl-button mdl-js-button mdl-js-ripple-effect',
+                                onClick: function onClick(e) {
+                                    return _this5.handleOpenRemoveDialog(equipe);
+                                } },
+                            'Delete'
+                        ),
+                        '\xA0',
+                        _react2.default.createElement(_Anchor2.default, { name: 'Update', href: 'equipe/update/' + equipe.id, className: 'mdl-button mdl-js-button mdl-js-ripple-effect' })
                     )
                 )
             );
         }
     }, {
-        key: 'renderEquipes',
-        value: function renderEquipes(equipe) {
-            var _this5 = this;
+        key: 'renderTable',
+        value: function renderTable(equipe) {
+            var _this6 = this;
 
             return _react2.default.createElement(
                 'tr',
@@ -55293,7 +55356,7 @@ var EquipeSearch = function (_Component) {
                         _reactRouter.Link,
                         { to: this.props.href, className: 'mdl-button mdl-js-button mdl-js-ripple-effect',
                             onClick: function onClick(e) {
-                                return _this5.handleOpenRemoveDialog(equipe);
+                                return _this6.handleOpenRemoveDialog(equipe);
                             } },
                         'Delete'
                     ),

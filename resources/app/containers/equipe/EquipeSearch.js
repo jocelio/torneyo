@@ -11,7 +11,7 @@ class EquipeSearch extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {showRemoveDialog:false, showMessageDialog:false, equipe:{}, message:""};
+        this.state = {showRemoveDialog:false, showMessageDialog:false, equipe:{}, message:"", view:'table'};
         this.props.fetchEquipes();
     }
 
@@ -37,8 +37,11 @@ class EquipeSearch extends Component {
     handleCloseMessageDialog(){
         this.setState({showMessageDialog: false});
     }
-    change(){
-        this.setState({btn: this.state.btn++});
+    changeView(){
+        if(this.state.view ==='table')
+            this.setState({view:'card'});
+        else
+            this.setState({view:'table'});
     }
     render(){
 
@@ -58,6 +61,11 @@ class EquipeSearch extends Component {
 
         return (
             <div className="mdl-card mdl-shadow--2dp large">
+                <div className="mdl-card__menu">
+                    <button onClick={() => this.changeView()} className="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                        <i className="material-icons">{this.state.view ==='table'?'grid_on':'dashboard'}</i>
+                    </button>
+                </div>
                 <div className="mdl-card__title">
                     <h2 className="mdl-card__title-text">{this.props.title}</h2>
                 </div>
@@ -93,32 +101,55 @@ class EquipeSearch extends Component {
                     </Dialog>
 
                 </div>
+
             </div>
         )
     }
 
     search(){
-
-
-        return (
-            <div>
-            <table className="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+        if(this.state.view ==='table'){
+            return (
+                    <ul>
+                        {this.props.equipes.map((e) => this.renderCards(e))}
+                    </ul>
+            )
+        }else{
+            return (<table className="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
                 <thead>
-                    <tr>
-                        <th>Equipe Name</th>
-                        <th>Equipe Description</th>
-                        <th>Actions</th>
-                    </tr>
+                <tr>
+                    <th>Equipe Name</th>
+                    <th>Equipe Description</th>
+                    <th>Actions</th>
+                </tr>
                 </thead>
                 <tbody>
-                    {this.props.equipes.map((e) => this.renderEquipes(e))}
+                {this.props.equipes.map((e) => this.renderTable(e))}
                 </tbody>
-            </table>
-
-            </div>)
+            </table>)
+        }
     }
 
-    renderEquipes(equipe){
+    renderCards(equipe){
+        return (
+            <li key={equipe.id}>
+                <div className="demo-card-square mdl-card mdl-shadow--2dp">
+                <div className="mdl-card__title mdl-card--expand">
+                    <h2 className="mdl-card__title-text">{equipe.name}</h2>
+                </div>
+                <div className="mdl-card__supporting-text">
+                    {equipe.description}
+                </div>
+                <div className="mdl-card__actions mdl-card--border">
+                    <Link to={this.props.href} className="mdl-button mdl-js-button mdl-js-ripple-effect"
+                          onClick={(e) => this.handleOpenRemoveDialog(equipe)}>Delete</Link>
+                    &nbsp;
+                    <Anchor name="Update" href={`equipe/update/${equipe.id}`} className="mdl-button mdl-js-button mdl-js-ripple-effect"/>
+
+                </div>
+                </div>
+            </li>)
+    }
+    renderTable(equipe){
         return(
             <tr key={equipe.id} >
                 <td>{equipe.name}</td>

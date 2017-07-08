@@ -256,3 +256,20 @@ table th{
 .error-message{
     color: #d57974;
 }
+
+.demo-card-square.mdl-card {
+    width: 280px;
+    height: 280px;
+}
+.demo-card-square > .mdl-card__title {
+    color: #fff;
+    background:
+            url('../assets/demos/dog.png') bottom right 15% no-repeat #46B6AC;
+}
+ul{
+    list-style: none;
+}
+ul li {
+    padding: 10px;
+    display: inline-block;
+}
