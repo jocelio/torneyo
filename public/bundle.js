@@ -43130,9 +43130,8 @@ module.exports = function spread(callback) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-// export const ROOT_URL = `http://torneyo.herokuapp.com`;
-var ROOT_URL = exports.ROOT_URL = "http://localhost:8001";
+var ROOT_URL = exports.ROOT_URL = "http://torneyo.herokuapp.com";
+// export const ROOT_URL = `http://localhost:8001`;
 
 /***/ }),
 /* 540 */
@@ -55114,6 +55113,11 @@ var EquipeSearch = function (_Component) {
     }
 
     _createClass(EquipeSearch, [{
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate() {
+            this.props.fetchEquipes();
+        }
+    }, {
         key: 'handleRemoveItem',
         value: function handleRemoveItem() {
             var _this2 = this;
@@ -55137,6 +55141,11 @@ var EquipeSearch = function (_Component) {
         key: 'handleCloseMessageDialog',
         value: function handleCloseMessageDialog() {
             this.setState({ showMessageDialog: false });
+        }
+    }, {
+        key: 'change',
+        value: function change() {
+            this.setState({ btn: this.state.btn++ });
         }
     }, {
         key: 'render',
