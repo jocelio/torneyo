@@ -117,10 +117,11 @@ class EquipeSearch extends Component {
                 <td>{equipe.description}</td>
                 <td>
 
-                    <Link to={this.props.href} activeClassName="mdl-navigation__link--active" className="mdl-navigation__link"
+                    <Link to={this.props.href} className="mdl-button mdl-js-button mdl-js-ripple-effect"
                           onClick={(e) => this.handleOpenRemoveDialog(equipe)}>Delete</Link>
                     &nbsp;
-                    <Anchor name="Update" href={`equipe/update/${equipe.id}`}/>
+                    <Anchor name="Update" href={`equipe/update/${equipe.id}`} className="mdl-button mdl-js-button mdl-js-ripple-effect"/>
+
                 </td>
             </tr>
         )

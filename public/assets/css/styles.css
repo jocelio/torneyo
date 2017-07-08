@@ -225,6 +225,7 @@ main{padding: 10px;}
 .mdl-data-table {
     table-layout:fixed;
     width:100%;
+
 }
 table td, th {
     width: 100%;
@@ -232,4 +233,5 @@ table td, th {
     overflow: hidden;
     text-overflow: ellipsis;
     -o-text-overflow: ellipsis;
+    text-align:left !important;
 }
