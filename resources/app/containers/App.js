@@ -7,7 +7,7 @@ class App extends Component {
   componentDidMount(){
       injectTapEventPlugin();
   }
-  
+
   render() {
 
     return (
