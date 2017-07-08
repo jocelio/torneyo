@@ -1,7 +1,8 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createEquipe } from './actions/equipe_action';
 import { reduxForm, Field } from 'redux-form';
+import PropTypes from 'prop-types';
 import Anchor from '../../components/Anchor';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';

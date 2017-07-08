@@ -12,13 +12,17 @@ class EquipeSearch extends Component {
     constructor(props) {
         super(props);
         this.state = {showRemoveDialog:false, showMessageDialog:false, equipe:{}, message:""};
+        this.props.fetchEquipes()
+            .catch((error) => {
+            console.log(error);
+        });;
     }
 
     handleRemoveItem(){
-        this.props.deleteEquipe(this.state.equipe);
-        this.handleCloseRemoveDialog();
-        this.setState({showMessageDialog: true, message:"Item deleted with success."});
-        this.props.fetchEquipe();
+        this.props.deleteEquipe(this.state.equipe).then(() => {
+            this.handleCloseRemoveDialog();
+            this.setState({showMessageDialog: true, message:"Item deleted with success."});
+        });
     }
 
     handleOpenRemoveDialog(equipe) {
@@ -91,7 +95,8 @@ class EquipeSearch extends Component {
     }
 
     search(){
-        const eq = this.props.equipesState;
+
+
         return (
             <div>
             <table className="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
@@ -103,7 +108,7 @@ class EquipeSearch extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {eq.map(d => d.map((e) => this.renderEquipes(e)))}
+                    {this.props.equipes.map((e) => this.renderEquipes(e))}
                 </tbody>
             </table>
 
@@ -112,7 +117,7 @@ class EquipeSearch extends Component {
 
     renderEquipes(equipe){
         return(
-            <tr key={equipe.id} className="">
+            <tr key={equipe.id} >
                 <td>{equipe.name}</td>
                 <td>{equipe.description}</td>
                 <td className="td-center">
@@ -127,15 +132,11 @@ class EquipeSearch extends Component {
         )
     }
 
-    componentWillMount(){
-        this.props.fetchEquipes();
-    }
-
 }
 
 
-function mapStateToProps({ equipesState }){
-    return { equipesState };
+function mapStateToProps( state ){
+   return {equipes: state.equipesState}
 }
 
 export default connect(mapStateToProps, { fetchEquipes, clearEquipe, deleteEquipe })(EquipeSearch);
