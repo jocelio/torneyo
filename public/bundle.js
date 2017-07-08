@@ -9358,8 +9358,6 @@ var _axios2 = _interopRequireDefault(_axios);
 
 var _config = __webpack_require__(738);
 
-var _config2 = _interopRequireDefault(_config);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var FETCH_EQUIPES = exports.FETCH_EQUIPES = 'FETCH_EQUIPES';
@@ -9369,7 +9367,7 @@ var DELETE_EQUIPES = exports.DELETE_EQUIPES = 'DELETE_EQUIPES';
 
 function fetchEquipes(equipe) {
 
-    var url = _config2.default + '/equipe';
+    var url = _config.ROOT_URL + '/equipe';
 
     return {
         type: FETCH_EQUIPES,
@@ -9378,7 +9376,7 @@ function fetchEquipes(equipe) {
 }
 
 function createEquipe(equipe) {
-    var url = _config2.default + '/equipe';
+    var url = _config.ROOT_URL + '/equipe';
     var request = _axios2.default.post(url, equipe);
 
     return {
@@ -9389,7 +9387,7 @@ function createEquipe(equipe) {
 
 function deleteEquipe(equipe) {
 
-    var url = _config2.default + '/equipe/' + equipe.id;
+    var url = _config.ROOT_URL + '/equipe/' + equipe.id;
 
     return {
         type: DELETE_EQUIPES,
@@ -55841,7 +55839,7 @@ exports.default = function () {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var ROOT_URL = exports.ROOT_URL = "http://torneyo.herokuapp.com/";
+var ROOT_URL = exports.ROOT_URL = "http://torneyo.herokuapp.com";
 
 /***/ })
 /******/ ]);
