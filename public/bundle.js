@@ -9126,7 +9126,7 @@ var _axios2 = _interopRequireDefault(_axios);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ROOT_URL = 'http://localhost:8001';
+var ROOT_URL = 'http://torneyo.herokuapp.com';
 
 var FETCH_EQUIPES = exports.FETCH_EQUIPES = 'FETCH_EQUIPES';
 var CLEAR_EQUIPES = exports.CLEAR_EQUIPES = 'CLEAR_EQUIPES';
