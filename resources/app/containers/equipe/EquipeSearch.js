@@ -99,8 +99,6 @@ class EquipeSearch extends Component {
                     <tr>
                         <th>Equipe Name</th>
                         <th>Equipe Description</th>
-                        <th>Created At</th>
-                        <th>Updated At</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -117,8 +115,6 @@ class EquipeSearch extends Component {
             <tr key={equipe.id} className="">
                 <td>{equipe.name}</td>
                 <td>{equipe.description}</td>
-                <td>{equipe.created_at}</td>
-                <td>{equipe.updated_at}</td>
                 <td>
 
                     <Link to={this.props.href} activeClassName="mdl-navigation__link--active" className="mdl-navigation__link"

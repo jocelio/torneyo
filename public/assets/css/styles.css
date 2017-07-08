@@ -221,3 +221,15 @@ main{padding: 10px;}
 .mdl-card.large{
     width: auto;
 }
+
+.mdl-data-table {
+    table-layout:fixed;
+    width:100%;
+}
+table td, th {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+}
