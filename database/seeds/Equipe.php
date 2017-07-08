@@ -12,6 +12,14 @@ class Equipe extends Seeder
     public function run()
     {
 
+//        CREATE TABLE IF NOT EXISTS equipes (
+//        id INT(5) AUTO_INCREMENT PRIMARY KEY,
+//        name VARCHAR(20),
+//        description VARCHAR(30),
+//        created_at DATE,
+//        updated_at DATE,
+//        due DATE);
+
         \App\Equipe::truncate();
         \App\Equipe::insert(array(
                 'name' => 'Valencia',
