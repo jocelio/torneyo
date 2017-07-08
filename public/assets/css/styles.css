@@ -233,5 +233,14 @@ table td, th {
     overflow: hidden;
     text-overflow: ellipsis;
     -o-text-overflow: ellipsis;
+
+}
+table td{
     text-align:left !important;
+}
+table th{
+    text-align:center !important;
+}
+.td-center{
+    text-align:center !important;
 }

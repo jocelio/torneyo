@@ -115,7 +115,7 @@ class EquipeSearch extends Component {
             <tr key={equipe.id} className="">
                 <td>{equipe.name}</td>
                 <td>{equipe.description}</td>
-                <td>
+                <td className="td-center">
 
                     <Link to={this.props.href} className="mdl-button mdl-js-button mdl-js-ripple-effect"
                           onClick={(e) => this.handleOpenRemoveDialog(equipe)}>Delete</Link>
