@@ -15,7 +15,7 @@ class EquipeNew extends Component {
 
     formSubmit(props){
         this.props.createEquipe(props);
-        this.setState({showMessageDialog: true, message:`Equipe ${props.name} create with success.`});
+        this.setState({showMessageDialog: true, message:`${props.name} created with success.`});
     }
 
     render(){
@@ -78,11 +78,15 @@ const renderField = ({
                          meta: { touched, error, warning },
 
                      }) => (
-    <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input {...input} type={type} className="mdl-textfield__input" />
-        <label className="mdl-textfield__label" htmlFor="sample3">{label}</label>
+    <div className={`mdl-textfield mdl-js-textfield mdl-textfield--floating-label ${(touched && error)?'is-invalid':''}`}>
+
+        <input {...input} type={type}
+        className="mdl-textfield__input" />
+
+        <label className="mdl-textfield__label">{label}</label>
+
         {touched &&
-        ((error && <span>{error}</span>) ||
+        ((error && <span className="mdl-textfield__error">{error}</span>) ||
         (warning && <span>{warning}</span>))}
     </div>
 )
