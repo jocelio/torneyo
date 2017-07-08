@@ -252,3 +252,7 @@ table th{
     visibility: visible;
     display: block;
 }
+
+.error-message{
+    color: #d57974;
+}

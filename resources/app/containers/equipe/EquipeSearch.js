@@ -12,10 +12,7 @@ class EquipeSearch extends Component {
     constructor(props) {
         super(props);
         this.state = {showRemoveDialog:false, showMessageDialog:false, equipe:{}, message:""};
-        this.props.fetchEquipes()
-            .catch((error) => {
-            console.log(error);
-        });;
+        this.props.fetchEquipes();
     }
 
     handleRemoveItem(){
@@ -136,7 +133,9 @@ class EquipeSearch extends Component {
 
 
 function mapStateToProps( state ){
-   return {equipes: state.equipesState}
+    if(state.equipesState.all)
+        return {equipes: state.equipesState.all}
+   return {equipes:[]};
 }
 
 export default connect(mapStateToProps, { fetchEquipes, clearEquipe, deleteEquipe })(EquipeSearch);
