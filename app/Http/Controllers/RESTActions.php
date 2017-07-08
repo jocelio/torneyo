@@ -9,15 +9,13 @@ trait RESTActions {
     public function all()
     {
 
-        $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-
-        $server = $url["host"];
-        $user = $url["user"];
-        $pass = $url["pass"];
-        $db = substr($url["path"], 1);
-
-        $dbh = new PDO("mysql:host=$server;dbname=$db", $user, $pass);
-        return $dbh->query('SELECT * FROM equipes');
+        echo getenv('');
+        echo getenv('DB_HOST');
+echo getenv('DB_PORT');
+echo getenv('DB_DATABASE');
+echo getenv('DB_USERNAME');
+echo getenv('DB_PASSWORD');
+return "oi";
 //        $m = self::MODEL;
 //        return $this->respond(Response::HTTP_OK, $m::all());
     }
