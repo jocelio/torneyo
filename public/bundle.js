@@ -9377,11 +9377,9 @@ function fetchEquipes(equipe) {
 
 function createEquipe(equipe) {
     var url = _config.ROOT_URL + '/equipe';
-    var request = _axios2.default.post(url, equipe);
-
     return {
         type: CREATE_EQUIPES,
-        payload: request
+        payload: _axios2.default.post(url, equipe)
     };
 }
 
@@ -41114,6 +41112,7 @@ var EquipeNew = function (_Component) {
             this.props.createEquipe(props).then(function () {
                 _this2.setState({ showMessageDialog: true, message: props.name + ' created with success.' });
                 _this2.props.reset();
+                // this.context.router.push('/equipe');
             });
         }
     }, {
@@ -41226,6 +41225,10 @@ var renderField = function renderField(_ref) {
             warning
         ))
     );
+};
+
+EquipeNew.contextTypes = {
+    router: _react.PropTypes.object
 };
 
 EquipeNew = (0, _reduxForm.reduxForm)({

@@ -18,6 +18,7 @@ class EquipeNew extends Component {
             .then(() => {
                 this.setState({showMessageDialog: true, message:`${props.name} created with success.`});
                 this.props.reset();
+                // this.context.router.push('/equipe');
             });
     }
 
@@ -93,6 +94,10 @@ const renderField = ({
         (warning && <span>{warning}</span>))}
     </div>
 )
+
+EquipeNew.contextTypes = {
+    router: PropTypes.object
+};
 
 EquipeNew = reduxForm({
     form:'NewEquipeForm',
