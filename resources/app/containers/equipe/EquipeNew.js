@@ -16,11 +16,12 @@ class EquipeNew extends Component {
     formSubmit(props){
         this.props.createEquipe(props);
         this.setState({showMessageDialog: true, message:`${props.name} created with success.`});
+        this.props.reset();
     }
 
     render(){
 
-        const { handleSubmit } = this.props;
+        const { handleSubmit, reset } = this.props;
 
         return (
             <div>
@@ -31,7 +32,6 @@ class EquipeNew extends Component {
                         <h2 className="mdl-card__title-text">{this.props.title}</h2>
                     </div>
                     <div className="mdl-card__supporting-text">
-                        <Anchor name="<< Back to Equipe List" href="equipe"/> <br/>
 
                         <Field name="name" type="text"
                             component={renderField} validate={[required]} label="Equipe Name"/>
@@ -42,6 +42,7 @@ class EquipeNew extends Component {
                     </div>
                     <div className="mdl-card__actions mdl-card--border">
                         <input type="submit" value="Save" className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"/>
+                        <Anchor name="Cancel" href="equipe" className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"/>
                     </div>
                 </div>
             </form>
@@ -75,10 +76,10 @@ const renderField = ({
                          input,
                          label,
                          type,
-                         meta: { touched, error, warning },
+                         meta: { touched, error, warning, invalid },
 
                      }) => (
-    <div className={`mdl-textfield mdl-js-textfield mdl-textfield--floating-label ${(touched && error)?'is-invalid':''}`}>
+    <div className={`mdl-textfield mdl-js-textfield mdl-textfield--floating-label ${(touched && invalid)?'is-invalid':''}`}>
 
         <input {...input} type={type}
         className="mdl-textfield__input" />
