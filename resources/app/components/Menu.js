@@ -8,7 +8,7 @@ class Menu extends Component {
         <div className="demo-navigation mdl-navigation mdl-color--blue-grey-800 ">
             <MenuItem name="Home" href="/home" icon="home"/>
             <MenuItem name="Inbox" href="/inbox" icon="inbox"/>
-            <MenuItem name="Card" href="/equipe" icon="book"/>
+            <MenuItem name="Equipes" href="/equipe" icon="book"/>
         </div>
     );
   }

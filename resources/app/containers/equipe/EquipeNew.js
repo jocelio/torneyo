@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { createEquipe } from './actions/equipe_action';
-import Anchor from '../../components/Anchor';
 import { reduxForm, Field } from 'redux-form';
+import Anchor from '../../components/Anchor';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 
@@ -14,14 +14,16 @@ class EquipeNew extends Component {
     }
 
     formSubmit(props){
-        this.props.createEquipe(props);
-        this.setState({showMessageDialog: true, message:`${props.name} created with success.`});
-        this.props.reset();
+        this.props.createEquipe(props)
+            .then(() => {
+                this.setState({showMessageDialog: true, message:`${props.name} created with success.`});
+                this.props.reset();
+            });
     }
 
     render(){
 
-        const { handleSubmit, reset } = this.props;
+        const { handleSubmit } = this.props;
 
         return (
             <div>

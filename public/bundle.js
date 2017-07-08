@@ -34632,7 +34632,7 @@ var Menu = function (_Component) {
                 { className: "demo-navigation mdl-navigation mdl-color--blue-grey-800 " },
                 _react2.default.createElement(_MenuItem2.default, { name: "Home", href: "/home", icon: "home" }),
                 _react2.default.createElement(_MenuItem2.default, { name: "Inbox", href: "/inbox", icon: "inbox" }),
-                _react2.default.createElement(_MenuItem2.default, { name: "Card", href: "/equipe", icon: "book" })
+                _react2.default.createElement(_MenuItem2.default, { name: "Equipes", href: "/equipe", icon: "book" })
             );
         }
     }]);
@@ -41072,11 +41072,11 @@ var _reactRedux = __webpack_require__(28);
 
 var _equipe_action = __webpack_require__(102);
 
+var _reduxForm = __webpack_require__(262);
+
 var _Anchor = __webpack_require__(170);
 
 var _Anchor2 = _interopRequireDefault(_Anchor);
-
-var _reduxForm = __webpack_require__(262);
 
 var _Dialog = __webpack_require__(291);
 
@@ -41109,18 +41109,19 @@ var EquipeNew = function (_Component) {
     _createClass(EquipeNew, [{
         key: 'formSubmit',
         value: function formSubmit(props) {
-            this.props.createEquipe(props);
-            this.setState({ showMessageDialog: true, message: props.name + ' created with success.' });
-            this.props.reset();
+            var _this2 = this;
+
+            this.props.createEquipe(props).then(function () {
+                _this2.setState({ showMessageDialog: true, message: props.name + ' created with success.' });
+                _this2.props.reset();
+            });
         }
     }, {
         key: 'render',
         value: function render() {
-            var _this2 = this;
+            var _this3 = this;
 
-            var _props = this.props,
-                handleSubmit = _props.handleSubmit,
-                reset = _props.reset;
+            var handleSubmit = this.props.handleSubmit;
 
 
             return _react2.default.createElement(
@@ -41129,7 +41130,7 @@ var EquipeNew = function (_Component) {
                 _react2.default.createElement(
                     'form',
                     { onSubmit: handleSubmit(function (props) {
-                            return _this2.formSubmit(props);
+                            return _this3.formSubmit(props);
                         }) },
                     _react2.default.createElement(
                         'div',
@@ -41168,13 +41169,13 @@ var EquipeNew = function (_Component) {
                             primary: true,
                             keyboardFocused: false,
                             onClick: function onClick() {
-                                return _this2.setState({ showMessageDialog: false });
+                                return _this3.setState({ showMessageDialog: false });
                             }
                         }),
                         modal: false,
                         open: this.state.showMessageDialog,
                         onRequestClose: function onRequestClose() {
-                            return _this2.setState({ showMessageDialog: false });
+                            return _this3.setState({ showMessageDialog: false });
                         } },
                     this.state.message
                 )
@@ -43113,8 +43114,9 @@ module.exports = function spread(callback) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var ROOT_URL = exports.ROOT_URL = "http://torneyo.herokuapp.com";
-// export const ROOT_URL = `http://localhost:8001`;
+
+// export const ROOT_URL = `http://torneyo.herokuapp.com`;
+var ROOT_URL = exports.ROOT_URL = "http://localhost:8001";
 
 /***/ }),
 /* 540 */
