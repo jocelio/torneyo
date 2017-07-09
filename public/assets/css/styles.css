@@ -268,6 +268,7 @@ table th{
 }
 ul{
     list-style: none;
+    padding-left:17px;
 }
 ul li {
     padding: 10px;
