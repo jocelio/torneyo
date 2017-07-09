@@ -55114,11 +55114,6 @@ var EquipeSearch = function (_Component) {
     }
 
     _createClass(EquipeSearch, [{
-        key: 'componentDidUpdate',
-        value: function componentDidUpdate() {
-            this.props.fetchEquipes();
-        }
-    }, {
         key: 'handleRemoveItem',
         value: function handleRemoveItem() {
             var _this2 = this;
@@ -55127,6 +55122,7 @@ var EquipeSearch = function (_Component) {
                 _this2.handleCloseRemoveDialog();
                 _this2.setState({ showMessageDialog: true, message: "Item deleted with success." });
             });
+            this.props.fetchEquipes();
         }
     }, {
         key: 'handleOpenRemoveDialog',

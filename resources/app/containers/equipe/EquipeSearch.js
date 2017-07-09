@@ -15,15 +15,13 @@ class EquipeSearch extends Component {
         this.props.fetchEquipes();
     }
 
-    componentDidUpdate(){
-        this.props.fetchEquipes();
-    }
 
     handleRemoveItem(){
         this.props.deleteEquipe(this.state.equipe).then(() => {
              this.handleCloseRemoveDialog();
              this.setState({showMessageDialog: true, message:"Item deleted with success."});
         });
+        this.props.fetchEquipes();
     }
 
     handleOpenRemoveDialog(equipe) {
