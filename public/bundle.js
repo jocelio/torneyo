@@ -55060,6 +55060,10 @@ var _Anchor = __webpack_require__(189);
 
 var _Anchor2 = _interopRequireDefault(_Anchor);
 
+var _EquipeSearchForm = __webpack_require__(740);
+
+var _EquipeSearchForm2 = _interopRequireDefault(_EquipeSearchForm);
+
 var _reactRouter = __webpack_require__(95);
 
 var _Dialog = __webpack_require__(190);
@@ -55189,18 +55193,7 @@ var EquipeSearch = function (_Component) {
                         { to: 'equipe/new', icon: 'book' },
                         'New Equipe'
                     ),
-                    _react2.default.createElement(
-                        'form',
-                        { onSubmit: handleSubmit(function (props) {
-                                return _this3.formSubmit(props);
-                            }) },
-                        _react2.default.createElement(_reduxForm.Field, { name: 'name', type: 'text',
-                            component: _FieldHelper.renderField, label: 'Equipe Name' }),
-                        _react2.default.createElement(_reduxForm.Field, { name: 'description', type: 'text',
-                            component: _FieldHelper.renderField, label: 'Equipe Description' }),
-                        _react2.default.createElement('br', null),
-                        _react2.default.createElement('input', { type: 'submit', value: 'SEARCH', className: 'mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect' })
-                    ),
+                    _react2.default.createElement(_EquipeSearchForm2.default, null),
                     _react2.default.createElement('hr', null),
                     this.search(),
                     _react2.default.createElement(
@@ -55238,6 +55231,11 @@ var EquipeSearch = function (_Component) {
                     )
                 )
             );
+        }
+    }, {
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate() {
+            console.log(this.props.equipes.length);
         }
     }, {
         key: 'search',
@@ -56063,6 +56061,102 @@ var required = function required(value) {
 
 exports.renderField = renderField;
 exports.required = required;
+
+/***/ }),
+/* 740 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(28);
+
+var _equipe_action = __webpack_require__(102);
+
+var _reduxForm = __webpack_require__(170);
+
+var _propTypes = __webpack_require__(4);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _FieldHelper = __webpack_require__(739);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var EquipeSearchForm = function (_Component) {
+    _inherits(EquipeSearchForm, _Component);
+
+    function EquipeSearchForm(props) {
+        _classCallCheck(this, EquipeSearchForm);
+
+        var _this = _possibleConstructorReturn(this, (EquipeSearchForm.__proto__ || Object.getPrototypeOf(EquipeSearchForm)).call(this, props));
+
+        _this.state = { showMessageDialog: false, message: '' };
+        return _this;
+    }
+
+    _createClass(EquipeSearchForm, [{
+        key: 'formSubmit',
+        value: function formSubmit(props) {
+            this.props.searchEquipe(props);
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            var handleSubmit = this.props.handleSubmit;
+
+
+            return _react2.default.createElement(
+                'form',
+                { onSubmit: handleSubmit(function (props) {
+                        return _this2.formSubmit(props);
+                    }) },
+                _react2.default.createElement(_reduxForm.Field, { name: 'name', type: 'text',
+                    component: _FieldHelper.renderField, label: 'Equipe Name' }),
+                _react2.default.createElement(_reduxForm.Field, { name: 'description', type: 'text',
+                    component: _FieldHelper.renderField, label: 'Equipe Description' }),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement('input', { type: 'submit', value: 'Search', className: 'mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect' })
+            );
+        }
+    }]);
+
+    return EquipeSearchForm;
+}(_react.Component);
+
+EquipeSearchForm.contextTypes = {
+    router: _propTypes2.default.object
+};
+
+EquipeSearchForm = (0, _reduxForm.reduxForm)({
+    form: 'EquipeSearchForm'
+})(EquipeSearchForm);
+
+function mapStateToProps(_ref) {
+    var equipesState = _ref.equipesState;
+
+    return { equipesState: equipesState };
+}
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, { createEquipe: _equipe_action.createEquipe })(EquipeSearchForm);
 
 /***/ })
 /******/ ]);

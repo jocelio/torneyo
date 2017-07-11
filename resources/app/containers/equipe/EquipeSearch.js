@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchEquipes, deleteEquipe, searchEquipes } from './actions/equipe_action';
 import { reduxForm, Field } from 'redux-form';
 import Anchor from '../../components/Anchor';
+import EquipeSearchForm from './EquipeSearchForm';
 import { Link } from 'react-router';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
@@ -46,7 +47,7 @@ class EquipeSearch extends Component {
 
     formSubmit(props){
         // this.props.searchEquipes(props)
-        
+
     }
 
     render(){
@@ -84,18 +85,7 @@ class EquipeSearch extends Component {
                         New Equipe
                     </Link>
 
-                    <form onSubmit={handleSubmit((props) => this.formSubmit(props))}>
-
-                        <Field name="name" type="text"
-                               component={renderField} label="Equipe Name"/>
-
-                        <Field name="description" type="text"
-                               component={renderField} label="Equipe Description"/>
-
-                        <br/>
-                        <input type="submit" value="SEARCH" className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"/>
-
-                    </form>
+                    <EquipeSearchForm />
 
                     <hr/>
                     {this.search()}
@@ -127,6 +117,10 @@ class EquipeSearch extends Component {
 
             </div>
         )
+    }
+
+    componentDidUpdate(){
+        console.log(this.props.equipes.length);
     }
 
     search(){
