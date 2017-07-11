@@ -19,4 +19,6 @@ const renderField = ({
     </div>
 )
 
-export {renderField};
+const required = value => (value ? undefined : 'Required')
+
+export {renderField, required};

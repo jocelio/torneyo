@@ -6,6 +6,7 @@ export const FETCH_EQUIPE  = 'FETCH_EQUIPE';
 export const CREATE_EQUIPE = 'CREATE_EQUIPE';
 export const DELETE_EQUIPE = 'DELETE_EQUIPE';
 export const UPDATE_EQUIPE = 'UPDATE_EQUIPE';
+export const SEARCH_EQUIPES = 'SEARCH_EQUIPES';
 
 
 export function fetchEquipes(equipe){
@@ -13,6 +14,15 @@ export function fetchEquipes(equipe){
     const response = axios.get(url);
     return {
         type: FETCH_EQUIPES,
+        payload: response
+    };
+}
+
+export function searchEquipes(equipe){
+    const url = `${ROOT_URL}/equipe`;
+    const response = axios.get(url);
+    return {
+        type: SEARCH_EQUIPES,
         payload: response
     };
 }

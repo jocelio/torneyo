@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import Anchor from '../../components/Anchor';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-import { renderField } from '../../components/FieldHelper';
+import { renderField, required } from '../../components/FieldHelper';
 
 class EquipeNew extends Component {
 
@@ -74,9 +74,6 @@ class EquipeNew extends Component {
         }catch (e){}
     }
 }
-
-const required = value => (value ? undefined : 'Required')
-
 
 EquipeNew.contextTypes = {
     router: PropTypes.object

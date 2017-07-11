@@ -9346,8 +9346,9 @@ var Symbol = __WEBPACK_IMPORTED_MODULE_0__root_js__["a" /* default */].Symbol;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.UPDATE_EQUIPE = exports.DELETE_EQUIPE = exports.CREATE_EQUIPE = exports.FETCH_EQUIPE = exports.FETCH_EQUIPES = undefined;
+exports.SEARCH_EQUIPES = exports.UPDATE_EQUIPE = exports.DELETE_EQUIPE = exports.CREATE_EQUIPE = exports.FETCH_EQUIPE = exports.FETCH_EQUIPES = undefined;
 exports.fetchEquipes = fetchEquipes;
+exports.searchEquipes = searchEquipes;
 exports.fetchEquipe = fetchEquipe;
 exports.createEquipe = createEquipe;
 exports.deleteEquipe = deleteEquipe;
@@ -9366,12 +9367,22 @@ var FETCH_EQUIPE = exports.FETCH_EQUIPE = 'FETCH_EQUIPE';
 var CREATE_EQUIPE = exports.CREATE_EQUIPE = 'CREATE_EQUIPE';
 var DELETE_EQUIPE = exports.DELETE_EQUIPE = 'DELETE_EQUIPE';
 var UPDATE_EQUIPE = exports.UPDATE_EQUIPE = 'UPDATE_EQUIPE';
+var SEARCH_EQUIPES = exports.SEARCH_EQUIPES = 'SEARCH_EQUIPES';
 
 function fetchEquipes(equipe) {
     var url = _config.ROOT_URL + '/equipe';
     var response = _axios2.default.get(url);
     return {
         type: FETCH_EQUIPES,
+        payload: response
+    };
+}
+
+function searchEquipes(equipe) {
+    var url = _config.ROOT_URL + '/equipe';
+    var response = _axios2.default.get(url);
+    return {
+        type: SEARCH_EQUIPES,
         payload: response
     };
 }
@@ -41160,9 +41171,9 @@ var EquipeNew = function (_Component) {
                             'div',
                             { className: 'mdl-card__supporting-text' },
                             _react2.default.createElement(_reduxForm.Field, { name: 'name', type: 'text',
-                                component: _FieldHelper.renderField, validate: [required], label: 'Equipe Name' }),
+                                component: _FieldHelper.renderField, validate: [_FieldHelper.required], label: 'Equipe Name' }),
                             _react2.default.createElement(_reduxForm.Field, { name: 'description', type: 'text',
-                                component: _FieldHelper.renderField, validate: [required], label: 'Equipe Description' })
+                                component: _FieldHelper.renderField, validate: [_FieldHelper.required], label: 'Equipe Description' })
                         ),
                         _react2.default.createElement(
                             'div',
@@ -41204,10 +41215,6 @@ var EquipeNew = function (_Component) {
 
     return EquipeNew;
 }(_react.Component);
-
-var required = function required(value) {
-    return value ? undefined : 'Required';
-};
 
 EquipeNew.contextTypes = {
     router: _propTypes2.default.object
@@ -55063,6 +55070,8 @@ var _FlatButton = __webpack_require__(192);
 
 var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
+var _FieldHelper = __webpack_require__(739);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -55116,9 +55125,18 @@ var EquipeSearch = function (_Component) {
             if (this.state.view === 'table') this.setState({ view: 'card' });else this.setState({ view: 'table' });
         }
     }, {
+        key: 'formSubmit',
+        value: function formSubmit(props) {
+            // this.props.searchEquipes(props)
+
+        }
+    }, {
         key: 'render',
         value: function render() {
             var _this3 = this;
+
+            var handleSubmit = this.props.handleSubmit;
+
 
             var actions = [_react2.default.createElement(_FlatButton2.default, {
                 label: 'Cancel',
@@ -55138,6 +55156,7 @@ var EquipeSearch = function (_Component) {
             return _react2.default.createElement(
                 'div',
                 { className: 'mdl-card mdl-shadow--2dp large' },
+                this.props.equipes.length,
                 _react2.default.createElement(
                     'div',
                     { className: 'mdl-card__menu' },
@@ -55169,6 +55188,18 @@ var EquipeSearch = function (_Component) {
                         _reactRouter.Link,
                         { to: 'equipe/new', icon: 'book' },
                         'New Equipe'
+                    ),
+                    _react2.default.createElement(
+                        'form',
+                        { onSubmit: handleSubmit(function (props) {
+                                return _this3.formSubmit(props);
+                            }) },
+                        _react2.default.createElement(_reduxForm.Field, { name: 'name', type: 'text',
+                            component: _FieldHelper.renderField, label: 'Equipe Name' }),
+                        _react2.default.createElement(_reduxForm.Field, { name: 'description', type: 'text',
+                            component: _FieldHelper.renderField, label: 'Equipe Description' }),
+                        _react2.default.createElement('br', null),
+                        _react2.default.createElement('input', { type: 'submit', value: 'SEARCH', className: 'mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect' })
                     ),
                     _react2.default.createElement('hr', null),
                     this.search(),
@@ -55348,7 +55379,7 @@ function mapStateToProps(state) {
     return { equipes: [] };
 }
 
-exports.default = (0, _reactRedux.connect)(mapStateToProps, { fetchEquipes: _equipe_action.fetchEquipes, deleteEquipe: _equipe_action.deleteEquipe })(EquipeSearch);
+exports.default = (0, _reactRedux.connect)(mapStateToProps, { fetchEquipes: _equipe_action.fetchEquipes, deleteEquipe: _equipe_action.deleteEquipe, searchEquipes: _equipe_action.searchEquipes })(EquipeSearch);
 
 /***/ }),
 /* 730 */
@@ -55953,8 +55984,6 @@ Object.defineProperty(exports, "__esModule", {
 
 var _equipe_action = __webpack_require__(102);
 
-var INITIAL_STATE = [];
-
 exports.default = function () {
     var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
     var action = arguments[1];
@@ -55965,15 +55994,14 @@ exports.default = function () {
             return { all: action.payload.data };
         case _equipe_action.FETCH_EQUIPE:
             return { equipe: action.payload.data };
-        case _equipe_action.CLEAR_EQUIPES:
-            return INITIAL_STATE;
         case _equipe_action.CREATE_EQUIPE:
             return action.payload;
         case _equipe_action.DELETE_EQUIPE:
             return action.payload.data;
-            break;
+        case _equipe_action.SEARCH_EQUIPES:
+            return action.payload.data;
         default:
-            return INITIAL_STATE;
+            return [];
     }
 };
 
@@ -55988,7 +56016,7 @@ exports.default = function () {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.renderField = undefined;
+exports.required = exports.renderField = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -56029,7 +56057,12 @@ var renderField = function renderField(_ref) {
     );
 };
 
+var required = function required(value) {
+    return value ? undefined : 'Required';
+};
+
 exports.renderField = renderField;
+exports.required = required;
 
 /***/ })
 /******/ ]);

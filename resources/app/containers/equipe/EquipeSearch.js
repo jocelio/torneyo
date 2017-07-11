@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchEquipes, deleteEquipe } from './actions/equipe_action';
+import { fetchEquipes, deleteEquipe, searchEquipes } from './actions/equipe_action';
 import { reduxForm, Field } from 'redux-form';
 import Anchor from '../../components/Anchor';
-import {Link} from 'react-router';
+import { Link } from 'react-router';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
+import { renderField } from '../../components/FieldHelper';
 
 
 class EquipeSearch extends Component {
@@ -35,13 +36,22 @@ class EquipeSearch extends Component {
     handleCloseMessageDialog(){
         this.setState({showMessageDialog: false});
     }
+
     changeView(){
         if(this.state.view ==='table')
             this.setState({view:'card'});
         else
             this.setState({view:'table'});
     }
+
+    formSubmit(props){
+        // this.props.searchEquipes(props)
+        
+    }
+
     render(){
+
+        const { handleSubmit } = this.props;
 
         const actions = [
             <FlatButton
@@ -59,6 +69,7 @@ class EquipeSearch extends Component {
 
         return (
             <div className="mdl-card mdl-shadow--2dp large">
+                {this.props.equipes.length}
                 <div className="mdl-card__menu">
                     <button onClick={() => this.changeView()} className="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
                         <i className="material-icons">{this.state.view ==='table'?'grid_on':'dashboard'}</i>
@@ -72,6 +83,19 @@ class EquipeSearch extends Component {
                     <Link to="equipe/new" icon="book">
                         New Equipe
                     </Link>
+
+                    <form onSubmit={handleSubmit((props) => this.formSubmit(props))}>
+
+                        <Field name="name" type="text"
+                               component={renderField} label="Equipe Name"/>
+
+                        <Field name="description" type="text"
+                               component={renderField} label="Equipe Description"/>
+
+                        <br/>
+                        <input type="submit" value="SEARCH" className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"/>
+
+                    </form>
 
                     <hr/>
                     {this.search()}
@@ -177,4 +201,4 @@ function mapStateToProps( state ){
    return {equipes:[]};
 }
 
-export default connect(mapStateToProps, { fetchEquipes, deleteEquipe })(EquipeSearch);
+export default connect(mapStateToProps, { fetchEquipes, deleteEquipe, searchEquipes })(EquipeSearch);
