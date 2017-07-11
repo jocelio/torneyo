@@ -34534,7 +34534,7 @@ var App = function (_Component) {
                             _react2.default.createElement(
                                 'span',
                                 null,
-                                'jocelio27@example.com'
+                                'jocelio@example.com'
                             ),
                             _react2.default.createElement('div', { className: 'mdl-layout-spacer' }),
                             _react2.default.createElement(
@@ -43130,8 +43130,9 @@ module.exports = function spread(callback) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var ROOT_URL = exports.ROOT_URL = "http://torneyo.herokuapp.com";
-// export const ROOT_URL = `http://localhost:8001`;
+
+// export const ROOT_URL = `http://torneyo.herokuapp.com`;
+var ROOT_URL = exports.ROOT_URL = "http://localhost:8001";
 
 /***/ }),
 /* 540 */

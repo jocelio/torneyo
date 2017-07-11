@@ -40,7 +40,7 @@ class App extends Component {
                 <header className="demo-drawer-header">
                     <img src="assets/images/user.jpg" className="demo-avatar"/>
                     <div className="demo-avatar-dropdown">
-                        <span>jocelio27@example.com</span>
+                        <span>jocelio@example.com</span>
                         <div className="mdl-layout-spacer"></div>
                         <button id="accbtn" className="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
                             <i className="material-icons" role="presentation">arrow_drop_down</i>
