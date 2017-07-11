@@ -41067,8 +41067,6 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(2);
@@ -41096,6 +41094,8 @@ var _Dialog2 = _interopRequireDefault(_Dialog);
 var _FlatButton = __webpack_require__(192);
 
 var _FlatButton2 = _interopRequireDefault(_FlatButton);
+
+var _FieldHelper = __webpack_require__(739);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -41160,9 +41160,9 @@ var EquipeNew = function (_Component) {
                             'div',
                             { className: 'mdl-card__supporting-text' },
                             _react2.default.createElement(_reduxForm.Field, { name: 'name', type: 'text',
-                                component: renderField, validate: [required], label: 'Equipe Name' }),
+                                component: _FieldHelper.renderField, validate: [required], label: 'Equipe Name' }),
                             _react2.default.createElement(_reduxForm.Field, { name: 'description', type: 'text',
-                                component: renderField, validate: [required], label: 'Equipe Description' })
+                                component: _FieldHelper.renderField, validate: [required], label: 'Equipe Description' })
                         ),
                         _react2.default.createElement(
                             'div',
@@ -41209,37 +41209,6 @@ var required = function required(value) {
     return value ? undefined : 'Required';
 };
 
-var renderField = function renderField(_ref) {
-    var input = _ref.input,
-        label = _ref.label,
-        type = _ref.type,
-        _ref$meta = _ref.meta,
-        touched = _ref$meta.touched,
-        error = _ref$meta.error,
-        warning = _ref$meta.warning,
-        invalid = _ref$meta.invalid;
-    return _react2.default.createElement(
-        'div',
-        { className: 'mdl-textfield mdl-js-textfield mdl-textfield--floating-label ' + (touched && invalid ? 'is-invalid' : '') },
-        _react2.default.createElement('input', _extends({}, input, { type: type,
-            className: 'mdl-textfield__input' })),
-        _react2.default.createElement(
-            'label',
-            { className: 'mdl-textfield__label' },
-            label
-        ),
-        touched && (error && _react2.default.createElement(
-            'span',
-            { className: 'mdl-textfield__error' },
-            error
-        ) || warning && _react2.default.createElement(
-            'span',
-            null,
-            warning
-        ))
-    );
-};
-
 EquipeNew.contextTypes = {
     router: _propTypes2.default.object
 };
@@ -41248,8 +41217,8 @@ EquipeNew = (0, _reduxForm.reduxForm)({
     form: 'NewEquipeForm'
 })(EquipeNew);
 
-function mapStateToProps(_ref2) {
-    var equipesState = _ref2.equipesState;
+function mapStateToProps(_ref) {
+    var equipesState = _ref.equipesState;
 
     return { equipesState: equipesState };
 }
@@ -55078,6 +55047,8 @@ var _reactRedux = __webpack_require__(28);
 
 var _equipe_action = __webpack_require__(102);
 
+var _reduxForm = __webpack_require__(170);
+
 var _Anchor = __webpack_require__(189);
 
 var _Anchor2 = _interopRequireDefault(_Anchor);
@@ -55199,6 +55170,7 @@ var EquipeSearch = function (_Component) {
                         { to: 'equipe/new', icon: 'book' },
                         'New Equipe'
                     ),
+                    _react2.default.createElement('hr', null),
                     this.search(),
                     _react2.default.createElement(
                         _Dialog2.default,
@@ -55367,12 +55339,16 @@ var EquipeSearch = function (_Component) {
     return EquipeSearch;
 }(_react.Component);
 
+EquipeSearch = (0, _reduxForm.reduxForm)({
+    form: 'SearchEquipeForm'
+})(EquipeSearch);
+
 function mapStateToProps(state) {
     if (state.equipesState.all) return { equipes: state.equipesState.all };
     return { equipes: [] };
 }
 
-exports.default = (0, _reactRedux.connect)(mapStateToProps, { fetchEquipes: _equipe_action.fetchEquipes, clearEquipe: _equipe_action.clearEquipe, deleteEquipe: _equipe_action.deleteEquipe })(EquipeSearch);
+exports.default = (0, _reactRedux.connect)(mapStateToProps, { fetchEquipes: _equipe_action.fetchEquipes, deleteEquipe: _equipe_action.deleteEquipe })(EquipeSearch);
 
 /***/ }),
 /* 730 */
@@ -56000,6 +55976,60 @@ exports.default = function () {
             return INITIAL_STATE;
     }
 };
+
+/***/ }),
+/* 738 */,
+/* 739 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.renderField = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var renderField = function renderField(_ref) {
+    var input = _ref.input,
+        label = _ref.label,
+        type = _ref.type,
+        _ref$meta = _ref.meta,
+        touched = _ref$meta.touched,
+        error = _ref$meta.error,
+        warning = _ref$meta.warning,
+        invalid = _ref$meta.invalid;
+    return _react2.default.createElement(
+        'div',
+        { className: 'mdl-textfield mdl-js-textfield mdl-textfield--floating-label ' + (touched && invalid ? 'is-invalid' : '') },
+        _react2.default.createElement('input', _extends({}, input, { type: type,
+            className: 'mdl-textfield__input' })),
+        _react2.default.createElement(
+            'label',
+            { className: 'mdl-textfield__label' },
+            label
+        ),
+        touched && (error && _react2.default.createElement(
+            'span',
+            { className: 'mdl-textfield__error' },
+            error
+        ) || warning && _react2.default.createElement(
+            'span',
+            null,
+            warning
+        ))
+    );
+};
+
+exports.renderField = renderField;
 
 /***/ })
 /******/ ]);

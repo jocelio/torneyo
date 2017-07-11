@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchEquipes, clearEquipe, deleteEquipe } from './actions/equipe_action';
+import { fetchEquipes, deleteEquipe } from './actions/equipe_action';
+import { reduxForm, Field } from 'redux-form';
 import Anchor from '../../components/Anchor';
 import {Link} from 'react-router';
 import Dialog from 'material-ui/Dialog';
@@ -14,7 +15,6 @@ class EquipeSearch extends Component {
         this.state = {showRemoveDialog:false, showMessageDialog:false, equipe:{}, message:"", view:'table'};
         this.props.fetchEquipes();
     }
-
 
     handleRemoveItem(){
         this.props.deleteEquipe(this.state.equipe).then(() => {
@@ -73,6 +73,7 @@ class EquipeSearch extends Component {
                         New Equipe
                     </Link>
 
+                    <hr/>
                     {this.search()}
 
                     <Dialog
@@ -166,6 +167,9 @@ class EquipeSearch extends Component {
 
 }
 
+EquipeSearch = reduxForm({
+    form:'SearchEquipeForm',
+})(EquipeSearch);
 
 function mapStateToProps( state ){
     if(state.equipesState.all)
@@ -173,4 +177,4 @@ function mapStateToProps( state ){
    return {equipes:[]};
 }
 
-export default connect(mapStateToProps, { fetchEquipes, clearEquipe, deleteEquipe })(EquipeSearch);
+export default connect(mapStateToProps, { fetchEquipes, deleteEquipe })(EquipeSearch);
