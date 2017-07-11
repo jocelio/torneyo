@@ -55195,7 +55195,8 @@ var EquipeSearch = function (_Component) {
                     ),
                     _react2.default.createElement(_EquipeSearchForm2.default, null),
                     _react2.default.createElement('hr', null),
-                    this.search(),
+                    this.state.view,
+                    this.state.view === 'table' ? this.tableEquipes() : this.listEquipes(),
                     _react2.default.createElement(
                         _Dialog2.default,
                         {
@@ -55233,64 +55234,64 @@ var EquipeSearch = function (_Component) {
             );
         }
     }, {
-        key: 'componentDidUpdate',
-        value: function componentDidUpdate() {
-            console.log(this.props.equipes.length);
-        }
-    }, {
-        key: 'search',
-        value: function search() {
+        key: 'listEquipes',
+        value: function listEquipes() {
             var _this4 = this;
 
-            if (this.state.view === 'table') {
-                return _react2.default.createElement(
-                    'ul',
+            return _react2.default.createElement(
+                'ul',
+                null,
+                ' ',
+                this.props.equipes.map(function (e) {
+                    return _this4.renderCards(e);
+                }),
+                ' '
+            );
+        }
+    }, {
+        key: 'tableEquipes',
+        value: function tableEquipes() {
+            var _this5 = this;
+
+            return _react2.default.createElement(
+                'table',
+                { className: 'mdl-data-table mdl-js-data-table mdl-shadow--2dp' },
+                _react2.default.createElement(
+                    'thead',
                     null,
-                    this.props.equipes.map(function (e) {
-                        return _this4.renderCards(e);
-                    })
-                );
-            } else {
-                return _react2.default.createElement(
-                    'table',
-                    { className: 'mdl-data-table mdl-js-data-table mdl-shadow--2dp' },
                     _react2.default.createElement(
-                        'thead',
+                        'tr',
                         null,
                         _react2.default.createElement(
-                            'tr',
+                            'th',
                             null,
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                'Equipe Name'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                'Equipe Description'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                'Actions'
-                            )
+                            'Equipe Name'
+                        ),
+                        _react2.default.createElement(
+                            'th',
+                            null,
+                            'Equipe Description'
+                        ),
+                        _react2.default.createElement(
+                            'th',
+                            null,
+                            'Actions'
                         )
-                    ),
-                    _react2.default.createElement(
-                        'tbody',
-                        null,
-                        this.props.equipes.map(function (e) {
-                            return _this4.renderTable(e);
-                        })
                     )
-                );
-            }
+                ),
+                _react2.default.createElement(
+                    'tbody',
+                    null,
+                    this.props.equipes.map(function (e) {
+                        return _this5.renderTable(e);
+                    })
+                )
+            );
         }
     }, {
         key: 'renderCards',
         value: function renderCards(equipe) {
-            var _this5 = this;
+            var _this6 = this;
 
             return _react2.default.createElement(
                 'li',
@@ -55319,7 +55320,7 @@ var EquipeSearch = function (_Component) {
                             _reactRouter.Link,
                             { to: this.props.href, className: 'mdl-button mdl-js-button mdl-js-ripple-effect',
                                 onClick: function onClick(e) {
-                                    return _this5.handleOpenRemoveDialog(equipe);
+                                    return _this6.handleOpenRemoveDialog(equipe);
                                 } },
                             'Delete'
                         ),
@@ -55332,7 +55333,7 @@ var EquipeSearch = function (_Component) {
     }, {
         key: 'renderTable',
         value: function renderTable(equipe) {
-            var _this6 = this;
+            var _this7 = this;
 
             return _react2.default.createElement(
                 'tr',
@@ -55354,7 +55355,7 @@ var EquipeSearch = function (_Component) {
                         _reactRouter.Link,
                         { to: this.props.href, className: 'mdl-button mdl-js-button mdl-js-ripple-effect',
                             onClick: function onClick(e) {
-                                return _this6.handleOpenRemoveDialog(equipe);
+                                return _this7.handleOpenRemoveDialog(equipe);
                             } },
                         'Delete'
                     ),

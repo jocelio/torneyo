@@ -88,7 +88,8 @@ class EquipeSearch extends Component {
                     <EquipeSearchForm />
 
                     <hr/>
-                    {this.search()}
+                    {this.state.view}
+                    {(this.state.view ==='table')?this.tableEquipes():this.listEquipes()}
 
                     <Dialog
                         title="Remove Item"
@@ -119,31 +120,24 @@ class EquipeSearch extends Component {
         )
     }
 
-    componentDidUpdate(){
-        console.log(this.props.equipes.length);
+
+    listEquipes(){
+        return (<ul> {this.props.equipes.map((e) => this.renderCards(e))} </ul>)
     }
 
-    search(){
-        if(this.state.view ==='table'){
-            return (
-                    <ul>
-                        {this.props.equipes.map((e) => this.renderCards(e))}
-                    </ul>
-            )
-        }else{
-            return (<table className="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-                <thead>
-                <tr>
-                    <th>Equipe Name</th>
-                    <th>Equipe Description</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
+    tableEquipes(){
+        return (<table className="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                    <thead>
+                    <tr>
+                        <th>Equipe Name</th>
+                        <th>Equipe Description</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
                 <tbody>
-                {this.props.equipes.map((e) => this.renderTable(e))}
+                    {this.props.equipes.map((e) => this.renderTable(e))}
                 </tbody>
             </table>)
-        }
     }
 
     renderCards(equipe){
