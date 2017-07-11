@@ -55092,7 +55092,7 @@ var EquipeSearch = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (EquipeSearch.__proto__ || Object.getPrototypeOf(EquipeSearch)).call(this, props));
 
-        _this.state = { showRemoveDialog: false, showMessageDialog: false, equipe: {}, message: "", view: 'table' };
+        _this.state = { showRemoveDialog: false, showMessageDialog: false, equipe: {}, message: "", view: 'card' };
         _this.props.fetchEquipes();
         return _this;
     }
@@ -55172,7 +55172,7 @@ var EquipeSearch = function (_Component) {
                         _react2.default.createElement(
                             'i',
                             { className: 'material-icons' },
-                            this.state.view === 'table' ? 'grid_on' : 'dashboard'
+                            this.state.view === 'table' ? 'dashboard' : 'grid_on'
                         )
                     )
                 ),

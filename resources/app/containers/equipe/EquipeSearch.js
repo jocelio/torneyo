@@ -14,7 +14,7 @@ class EquipeSearch extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {showRemoveDialog:false, showMessageDialog:false, equipe:{}, message:"", view:'table'};
+        this.state = {showRemoveDialog:false, showMessageDialog:false, equipe:{}, message:"", view:'card'};
         this.props.fetchEquipes();
     }
 
@@ -73,7 +73,7 @@ class EquipeSearch extends Component {
                 {this.props.equipes.length}
                 <div className="mdl-card__menu">
                     <button onClick={() => this.changeView()} className="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-                        <i className="material-icons">{this.state.view ==='table'?'grid_on':'dashboard'}</i>
+                        <i className="material-icons">{this.state.view ==='table'?'dashboard':'grid_on'}</i>
                     </button>
                 </div>
                 <div className="mdl-card__title">
