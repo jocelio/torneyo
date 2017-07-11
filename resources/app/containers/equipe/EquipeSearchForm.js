@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createEquipe } from './actions/equipe_action';
+import { searchEquipe } from './actions/equipe_action';
 import { reduxForm, Field } from 'redux-form';
 import PropTypes from 'prop-types';
 import { renderField } from '../../components/FieldHelper';
@@ -29,8 +29,6 @@ class EquipeSearchForm extends Component {
                 <Field name="description" type="text"
                     component={renderField} label="Equipe Description"/>
 
-
-
                 <br/>
 
                 <input type="submit" value="Search" className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"/>
@@ -49,8 +47,9 @@ EquipeSearchForm = reduxForm({
     form:'EquipeSearchForm',
 })(EquipeSearchForm);
 
-function mapStateToProps({ equipesState }){
-    return { equipesState };
+function mapStateToProps(state){
+    console.log(state);
+    return state;
 }
 
-export default connect(mapStateToProps, { createEquipe })(EquipeSearchForm);
+export default connect(mapStateToProps, { searchEquipe })(EquipeSearchForm);

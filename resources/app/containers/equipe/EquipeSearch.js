@@ -52,20 +52,9 @@ class EquipeSearch extends Component {
 
     render(){
 
-        const { handleSubmit } = this.props;
-
         const actions = [
-            <FlatButton
-                label="Cancel"
-                primary={true}
-                onClick={() => this.handleCloseRemoveDialog()}
-            />,
-            <FlatButton
-                label="Confirm"
-                primary={true}
-                keyboardFocused={false}
-                onClick={() => this.handleRemoveItem()}
-            />,
+             <FlatButton label="Cancel" onClick={() => this.handleCloseRemoveDialog()} />
+            ,<FlatButton label="Confirm" keyboardFocused={false} onClick={() => this.handleRemoveItem()}/>,
         ];
 
         return (
@@ -88,7 +77,7 @@ class EquipeSearch extends Component {
                     <EquipeSearchForm />
 
                     <hr/>
-                    {this.state.view}
+
                     {(this.state.view ==='table')?this.tableEquipes():this.listEquipes()}
 
                     <Dialog
@@ -178,10 +167,6 @@ class EquipeSearch extends Component {
     }
 
 }
-
-EquipeSearch = reduxForm({
-    form:'SearchEquipeForm',
-})(EquipeSearch);
 
 function mapStateToProps( state ){
     if(state.equipesState.all)

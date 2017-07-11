@@ -55139,23 +55139,11 @@ var EquipeSearch = function (_Component) {
         value: function render() {
             var _this3 = this;
 
-            var handleSubmit = this.props.handleSubmit;
-
-
-            var actions = [_react2.default.createElement(_FlatButton2.default, {
-                label: 'Cancel',
-                primary: true,
-                onClick: function onClick() {
+            var actions = [_react2.default.createElement(_FlatButton2.default, { label: 'Cancel', onClick: function onClick() {
                     return _this3.handleCloseRemoveDialog();
-                }
-            }), _react2.default.createElement(_FlatButton2.default, {
-                label: 'Confirm',
-                primary: true,
-                keyboardFocused: false,
-                onClick: function onClick() {
+                } }), _react2.default.createElement(_FlatButton2.default, { label: 'Confirm', keyboardFocused: false, onClick: function onClick() {
                     return _this3.handleRemoveItem();
-                }
-            })];
+                } })];
 
             return _react2.default.createElement(
                 'div',
@@ -55195,7 +55183,6 @@ var EquipeSearch = function (_Component) {
                     ),
                     _react2.default.createElement(_EquipeSearchForm2.default, null),
                     _react2.default.createElement('hr', null),
-                    this.state.view,
                     this.state.view === 'table' ? this.tableEquipes() : this.listEquipes(),
                     _react2.default.createElement(
                         _Dialog2.default,
@@ -55368,10 +55355,6 @@ var EquipeSearch = function (_Component) {
 
     return EquipeSearch;
 }(_react.Component);
-
-EquipeSearch = (0, _reduxForm.reduxForm)({
-    form: 'SearchEquipeForm'
-})(EquipeSearch);
 
 function mapStateToProps(state) {
     if (state.equipesState.all) return { equipes: state.equipesState.all };
@@ -56151,13 +56134,12 @@ EquipeSearchForm = (0, _reduxForm.reduxForm)({
     form: 'EquipeSearchForm'
 })(EquipeSearchForm);
 
-function mapStateToProps(_ref) {
-    var equipesState = _ref.equipesState;
-
-    return { equipesState: equipesState };
+function mapStateToProps(state) {
+    console.log(state);
+    return state;
 }
 
-exports.default = (0, _reactRedux.connect)(mapStateToProps, { createEquipe: _equipe_action.createEquipe })(EquipeSearchForm);
+exports.default = (0, _reactRedux.connect)(mapStateToProps, { searchEquipe: _equipe_action.searchEquipe })(EquipeSearchForm);
 
 /***/ })
 /******/ ]);
