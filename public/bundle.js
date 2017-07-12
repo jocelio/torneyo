@@ -55207,7 +55207,6 @@ var EquipeSearch = function (_Component) {
             return _react2.default.createElement(
                 'div',
                 { className: 'mdl-card mdl-shadow--2dp large' },
-                this.props.equipes.length,
                 _react2.default.createElement(
                     'div',
                     { className: 'mdl-card__menu' },
@@ -55496,6 +55495,13 @@ var EquipeSearchForm = function (_Component) {
                 _react2.default.createElement('br', null),
                 _react2.default.createElement('input', { type: 'submit', value: 'Search', className: 'mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect' })
             );
+        }
+    }, {
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            try {
+                componentHandler.upgradeAllRegistered();
+            } catch (e) {}
         }
     }]);
 
@@ -56134,7 +56140,7 @@ exports.default = function () {
         case _equipe_action.SEARCH_EQUIPES:
             return action.payload.data;
         default:
-            return [];
+            return state;
     }
 };
 

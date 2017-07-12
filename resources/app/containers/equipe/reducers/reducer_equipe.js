@@ -15,7 +15,7 @@ export default (state = [], action) => {
         case SEARCH_EQUIPES:
             return action.payload.data
         default:
-            return [];
+            return state;
     }
 
 };

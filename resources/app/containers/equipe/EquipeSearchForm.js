@@ -37,6 +37,12 @@ class EquipeSearchForm extends Component {
         )
     }
 
+    componentDidMount(){
+        try{
+            componentHandler.upgradeAllRegistered();
+        }catch (e){}
+    }
+
 }
 
 EquipeSearchForm.contextTypes = {
