@@ -43,12 +43,9 @@ EquipeSearchForm.contextTypes = {
     router: PropTypes.object
 };
 
-EquipeSearchForm = reduxForm({
-    form:'EquipeSearchForm',
-})(EquipeSearchForm);
+EquipeSearchForm = reduxForm({ form:'searchForm' })(EquipeSearchForm);
 
 function mapStateToProps(state){
-    console.log(state);
     return state;
 }
 

@@ -5,7 +5,7 @@ import { reducer as formReducer } from 'redux-form'
 const rootReducer = combineReducers({
     state: (state = {}) => state,
     equipesState: FetchEquipeReducer,
-    form: formReducer
+    formReducer: formReducer
 });
 
 export default rootReducer;

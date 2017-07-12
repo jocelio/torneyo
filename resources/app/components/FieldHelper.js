@@ -9,7 +9,8 @@ const renderField = ({
     <div className={`mdl-textfield mdl-js-textfield mdl-textfield--floating-label ${(touched && invalid)?'is-invalid':''}`}>
 
         <input {...input} type={type}
-        className="mdl-textfield__input" />
+        className="mdl-textfield__input"
+        onBlur={()=>{}} onFocus={()=>{}}/>
 
         <label className="mdl-textfield__label">{label}</label>
 
