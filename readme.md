@@ -2,7 +2,7 @@
 
 
 
-Lumen and React
+Laravel Lumen and React
 
 ## Running Mysql with Docker
 ```
