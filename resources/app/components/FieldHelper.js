@@ -10,7 +10,7 @@ const renderField = ({
 
         <input {...input} type={type}
         className="mdl-textfield__input"
-        onBlur={()=>{}} onFocus={()=>{}}/>
+        />
 
         <label className="mdl-textfield__label">{label}</label>
 

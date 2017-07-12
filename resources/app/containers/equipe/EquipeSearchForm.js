@@ -23,10 +23,10 @@ class EquipeSearchForm extends Component {
         return (
             <form onSubmit={handleSubmit((props) => this.formSubmit(props))}>
 
-                <Field name="name" type="text"
+                <Field name="name" type="text" onBlur={()=>{}} onFocus={()=>{}}
                     component={renderField} label="Equipe Name"/>
 
-                <Field name="description" type="text"
+                <Field name="description" type="text" onBlur={()=>{}} onFocus={()=>{}}
                     component={renderField} label="Equipe Description"/>
 
                 <br/>

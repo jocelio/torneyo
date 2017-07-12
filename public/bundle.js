@@ -15287,8 +15287,8 @@ var renderField = function renderField(_ref) {
         'div',
         { className: 'mdl-textfield mdl-js-textfield mdl-textfield--floating-label ' + (touched && invalid ? 'is-invalid' : '') },
         _react2.default.createElement('input', _extends({}, input, { type: type,
-            className: 'mdl-textfield__input',
-            onBlur: function onBlur() {}, onFocus: function onFocus() {} })),
+            className: 'mdl-textfield__input'
+        })),
         _react2.default.createElement(
             'label',
             { className: 'mdl-textfield__label' },
@@ -55489,9 +55489,9 @@ var EquipeSearchForm = function (_Component) {
                 { onSubmit: handleSubmit(function (props) {
                         return _this2.formSubmit(props);
                     }) },
-                _react2.default.createElement(_reduxForm.Field, { name: 'name', type: 'text',
+                _react2.default.createElement(_reduxForm.Field, { name: 'name', type: 'text', onBlur: function onBlur() {}, onFocus: function onFocus() {},
                     component: _FieldHelper.renderField, label: 'Equipe Name' }),
-                _react2.default.createElement(_reduxForm.Field, { name: 'description', type: 'text',
+                _react2.default.createElement(_reduxForm.Field, { name: 'description', type: 'text', onBlur: function onBlur() {}, onFocus: function onFocus() {},
                     component: _FieldHelper.renderField, label: 'Equipe Description' }),
                 _react2.default.createElement('br', null),
                 _react2.default.createElement('input', { type: 'submit', value: 'Search', className: 'mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect' })
@@ -56099,7 +56099,7 @@ var rootReducer = (0, _redux.combineReducers)({
         return _state;
     },
     equipesState: _reducer_equipe2.default,
-    formReducer: _reduxForm.reducer
+    form: _reduxForm.reducer
 });
 
 exports.default = rootReducer;
