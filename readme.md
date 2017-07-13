@@ -2,7 +2,7 @@
 
 
 
-Laravel Lumen and React
+A full-stack app built in Lumen, React and Docker.
 
 ## Running Mysql with Docker
 ```
