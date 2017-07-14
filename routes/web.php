@@ -29,9 +29,9 @@ $app->get('/', function ()  {
 /**
  * Routes for resource equipe
  */
+$app->get('equipe/search/', 'EquipesController@search');
 $app->get('equipe', 'EquipesController@all');
 $app->get('equipe/{id}', 'EquipesController@get');
-$app->get('equipe/search', 'EquipesController@search');
 $app->post('equipe', 'EquipesController@add');
 $app->put('equipe/{id}', 'EquipesController@put');
 $app->delete('equipe/{id}', 'EquipesController@remove');
