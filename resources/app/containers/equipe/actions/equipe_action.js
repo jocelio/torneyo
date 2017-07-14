@@ -19,7 +19,12 @@ export function fetchEquipes(equipe){
 }
 
 export function searchEquipes(equipe){
-    const url = `${ROOT_URL}/equipe`;
+    const query = Object.keys(equipe).map(function(k) {
+        return encodeURIComponent(k) + '=' + encodeURIComponent(equipe[k])
+    }).join('&')
+
+
+    const url = `${ROOT_URL}/equipe/search?${query}`;
     const response = axios.get(url);
     return {
         type: SEARCH_EQUIPES,

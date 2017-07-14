@@ -13,7 +13,7 @@ export default (state = [], action) => {
         case DELETE_EQUIPE:
             return action.payload.data
         case SEARCH_EQUIPES:
-            return action.payload.data
+            return {all:action.payload.data}
         default:
             return state;
     }

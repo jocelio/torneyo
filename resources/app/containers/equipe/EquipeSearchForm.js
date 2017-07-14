@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { searchEquipe } from './actions/equipe_action';
+import { searchEquipes } from './actions/equipe_action';
 import { reduxForm, Field } from 'redux-form';
 import PropTypes from 'prop-types';
 import { renderField } from '../../components/FieldHelper';
@@ -13,7 +13,12 @@ class EquipeSearchForm extends Component {
     }
 
     formSubmit(props){
-        this.props.searchEquipe(props)
+        this.props.searchEquipes(props);
+    }
+
+    handleKeyPress(props){
+        const {name , value} = props.target;
+        this.props.searchEquipes({name: value});
     }
 
     render(){
@@ -24,10 +29,12 @@ class EquipeSearchForm extends Component {
             <form onSubmit={handleSubmit((props) => this.formSubmit(props))}>
 
                 <Field name="name" type="text" onBlur={()=>{}} onFocus={()=>{}}
-                    component={renderField} label="Equipe Name"/>
+                    component={renderField} label="Equipe Name"
+                       onChange={(props) => this.handleKeyPress(props)}/>
 
                 <Field name="description" type="text" onBlur={()=>{}} onFocus={()=>{}}
-                    component={renderField} label="Equipe Description"/>
+                    component={renderField} label="Equipe Description"
+                       onChange={(props) => this.handleKeyPress(props)}/>
 
                 <br/>
 
@@ -55,4 +62,4 @@ function mapStateToProps(state){
     return state;
 }
 
-export default connect(mapStateToProps, { searchEquipe })(EquipeSearchForm);
+export default connect(mapStateToProps, { searchEquipes })(EquipeSearchForm);

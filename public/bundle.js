@@ -6231,7 +6231,11 @@ function fetchEquipes(equipe) {
 }
 
 function searchEquipes(equipe) {
-    var url = _config.ROOT_URL + '/equipe';
+    var query = Object.keys(equipe).map(function (k) {
+        return encodeURIComponent(k) + '=' + encodeURIComponent(equipe[k]);
+    }).join('&');
+
+    var url = _config.ROOT_URL + '/equipe/search?' + query;
     var response = _axios2.default.get(url);
     return {
         type: SEARCH_EQUIPES,
@@ -55473,7 +55477,16 @@ var EquipeSearchForm = function (_Component) {
     _createClass(EquipeSearchForm, [{
         key: 'formSubmit',
         value: function formSubmit(props) {
-            this.props.searchEquipe(props);
+            this.props.searchEquipes(props);
+        }
+    }, {
+        key: 'handleKeyPress',
+        value: function handleKeyPress(props) {
+            var _props$target = props.target,
+                name = _props$target.name,
+                value = _props$target.value;
+
+            this.props.searchEquipes({ name: value });
         }
     }, {
         key: 'render',
@@ -55489,9 +55502,15 @@ var EquipeSearchForm = function (_Component) {
                         return _this2.formSubmit(props);
                     }) },
                 _react2.default.createElement(_reduxForm.Field, { name: 'name', type: 'text', onBlur: function onBlur() {}, onFocus: function onFocus() {},
-                    component: _FieldHelper.renderField, label: 'Equipe Name' }),
+                    component: _FieldHelper.renderField, label: 'Equipe Name',
+                    onChange: function onChange(props) {
+                        return _this2.handleKeyPress(props);
+                    } }),
                 _react2.default.createElement(_reduxForm.Field, { name: 'description', type: 'text', onBlur: function onBlur() {}, onFocus: function onFocus() {},
-                    component: _FieldHelper.renderField, label: 'Equipe Description' }),
+                    component: _FieldHelper.renderField, label: 'Equipe Description',
+                    onChange: function onChange(props) {
+                        return _this2.handleKeyPress(props);
+                    } }),
                 _react2.default.createElement('br', null),
                 _react2.default.createElement('input', { type: 'submit', value: 'Search', className: 'mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect' })
             );
@@ -55518,7 +55537,7 @@ function mapStateToProps(state) {
     return state;
 }
 
-exports.default = (0, _reactRedux.connect)(mapStateToProps, { searchEquipe: _equipe_action.searchEquipe })(EquipeSearchForm);
+exports.default = (0, _reactRedux.connect)(mapStateToProps, { searchEquipes: _equipe_action.searchEquipes })(EquipeSearchForm);
 
 /***/ }),
 /* 732 */
@@ -56138,7 +56157,7 @@ exports.default = function () {
         case _equipe_action.DELETE_EQUIPE:
             return action.payload.data;
         case _equipe_action.SEARCH_EQUIPES:
-            return action.payload.data;
+            return { all: action.payload.data };
         default:
             return state;
     }
