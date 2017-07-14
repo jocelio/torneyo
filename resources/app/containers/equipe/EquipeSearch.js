@@ -59,7 +59,7 @@ class EquipeSearch extends Component {
 
         return (
             <div className="mdl-card mdl-shadow--2dp large">
-                
+
                 <div className="mdl-card__menu">
                     <button onClick={() => this.changeView()} className="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
                         <i className="material-icons">{this.state.view ==='table'?'dashboard':'grid_on'}</i>

@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use function MongoDB\BSON\toJSON;
 
 trait RESTActions {
 
@@ -16,6 +17,21 @@ trait RESTActions {
     {
         $m = self::MODEL;
         $model = $m::find($id);
+        if(is_null($model)){
+            return $this->respond(Response::HTTP_NOT_FOUND);
+        }
+        return $this->respond(Response::HTTP_OK, $model);
+    }
+
+    public function search(Request $request)
+    {
+        $m = self::MODEL;
+        $name = $request->input('name');
+        $description = $request->input('description');
+
+        $model = $m::where("name", 'like', "%$name%")
+                ->where("description", 'like', "%$description%") ->get();
+
         if(is_null($model)){
             return $this->respond(Response::HTTP_NOT_FOUND);
         }
