@@ -51,9 +51,10 @@ export function createEquipe(equipe){
 
 export function deleteEquipe(equipe){
     const url = `${ROOT_URL}/equipe/${equipe.id}`;
+
     return {
         type: DELETE_EQUIPE,
-        payload: axios.delete(url)
+        payload: {id: equipe.id, response:axios.delete(url)}
     };
 }
 

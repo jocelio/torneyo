@@ -6262,9 +6262,10 @@ function createEquipe(equipe) {
 
 function deleteEquipe(equipe) {
     var url = _config.ROOT_URL + '/equipe/' + equipe.id;
+
     return {
         type: DELETE_EQUIPE,
-        payload: _axios2.default.delete(url)
+        payload: { id: equipe.id, response: _axios2.default.delete(url) }
     };
 }
 
@@ -43169,8 +43170,9 @@ module.exports = function spread(callback) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var ROOT_URL = exports.ROOT_URL = "http://torneyo.herokuapp.com";
-// export const ROOT_URL = `http://localhost:8001`;
+
+// export const ROOT_URL = `http://torneyo.herokuapp.com`;
+var ROOT_URL = exports.ROOT_URL = "http://localhost:8001";
 
 /***/ }),
 /* 541 */
@@ -55162,13 +55164,11 @@ var EquipeSearch = function (_Component) {
     _createClass(EquipeSearch, [{
         key: 'handleRemoveItem',
         value: function handleRemoveItem() {
-            var _this2 = this;
+            this.props.deleteEquipe(this.state.equipe);
+            this.handleCloseRemoveDialog();
+            this.setState({ showMessageDialog: true, message: "Item deleted with success." });
 
-            this.props.deleteEquipe(this.state.equipe).then(function () {
-                _this2.handleCloseRemoveDialog();
-                _this2.setState({ showMessageDialog: true, message: "Item deleted with success." });
-            });
-            this.props.fetchEquipes();
+            // this.props.fetchEquipes();
         }
     }, {
         key: 'handleOpenRemoveDialog',
@@ -55199,12 +55199,12 @@ var EquipeSearch = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            var _this3 = this;
+            var _this2 = this;
 
             var actions = [_react2.default.createElement(_FlatButton2.default, { label: 'Cancel', onClick: function onClick() {
-                    return _this3.handleCloseRemoveDialog();
+                    return _this2.handleCloseRemoveDialog();
                 } }), _react2.default.createElement(_FlatButton2.default, { label: 'Confirm', keyboardFocused: false, onClick: function onClick() {
-                    return _this3.handleRemoveItem();
+                    return _this2.handleRemoveItem();
                 } })];
 
             return _react2.default.createElement(
@@ -55216,7 +55216,7 @@ var EquipeSearch = function (_Component) {
                     _react2.default.createElement(
                         'button',
                         { onClick: function onClick() {
-                                return _this3.changeView();
+                                return _this2.changeView();
                             }, className: 'mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect' },
                         _react2.default.createElement(
                             'i',
@@ -55253,7 +55253,7 @@ var EquipeSearch = function (_Component) {
                             modal: false,
                             open: this.state.showRemoveDialog,
                             onRequestClose: function onRequestClose() {
-                                return _this3.handleCloseRemoveDialog();
+                                return _this2.handleCloseRemoveDialog();
                             } },
                         'Are you sure you want to remove ',
                         this.state.equipe.name,
@@ -55268,13 +55268,13 @@ var EquipeSearch = function (_Component) {
                                 primary: true,
                                 keyboardFocused: false,
                                 onClick: function onClick() {
-                                    return _this3.handleCloseMessageDialog();
+                                    return _this2.handleCloseMessageDialog();
                                 }
                             }),
                             modal: false,
                             open: this.state.showMessageDialog,
                             onRequestClose: function onRequestClose() {
-                                return _this3.handleCloseMessageDialog();
+                                return _this2.handleCloseMessageDialog();
                             } },
                         this.state.message
                     )
@@ -55284,14 +55284,14 @@ var EquipeSearch = function (_Component) {
     }, {
         key: 'listEquipes',
         value: function listEquipes() {
-            var _this4 = this;
+            var _this3 = this;
 
             return _react2.default.createElement(
                 'ul',
                 null,
                 ' ',
                 this.props.equipes.map(function (e) {
-                    return _this4.renderCards(e);
+                    return _this3.renderCards(e);
                 }),
                 ' '
             );
@@ -55299,7 +55299,7 @@ var EquipeSearch = function (_Component) {
     }, {
         key: 'tableEquipes',
         value: function tableEquipes() {
-            var _this5 = this;
+            var _this4 = this;
 
             return _react2.default.createElement(
                 'table',
@@ -55331,7 +55331,7 @@ var EquipeSearch = function (_Component) {
                     'tbody',
                     null,
                     this.props.equipes.map(function (e) {
-                        return _this5.renderTable(e);
+                        return _this4.renderTable(e);
                     })
                 )
             );
@@ -55339,7 +55339,7 @@ var EquipeSearch = function (_Component) {
     }, {
         key: 'renderCards',
         value: function renderCards(equipe) {
-            var _this6 = this;
+            var _this5 = this;
 
             return _react2.default.createElement(
                 'li',
@@ -55368,7 +55368,7 @@ var EquipeSearch = function (_Component) {
                             _reactRouter.Link,
                             { to: this.props.href, className: 'mdl-button mdl-js-button mdl-js-ripple-effect',
                                 onClick: function onClick(e) {
-                                    return _this6.handleOpenRemoveDialog(equipe);
+                                    return _this5.handleOpenRemoveDialog(equipe);
                                 } },
                             'Delete'
                         ),
@@ -55381,7 +55381,7 @@ var EquipeSearch = function (_Component) {
     }, {
         key: 'renderTable',
         value: function renderTable(equipe) {
-            var _this7 = this;
+            var _this6 = this;
 
             return _react2.default.createElement(
                 'tr',
@@ -55403,7 +55403,7 @@ var EquipeSearch = function (_Component) {
                         _reactRouter.Link,
                         { to: this.props.href, className: 'mdl-button mdl-js-button mdl-js-ripple-effect',
                             onClick: function onClick(e) {
-                                return _this7.handleOpenRemoveDialog(equipe);
+                                return _this6.handleOpenRemoveDialog(equipe);
                             } },
                         'Delete'
                     ),
@@ -56157,7 +56157,9 @@ exports.default = function () {
         case _equipe_action.CREATE_EQUIPE:
             return action.payload;
         case _equipe_action.DELETE_EQUIPE:
-            return action.payload.data;
+            return { all: state.all.filter(function (i) {
+                    return i.id != action.payload.id;
+                }) };
         case _equipe_action.SEARCH_EQUIPES:
             return { all: action.payload.data };
         default:

@@ -19,11 +19,11 @@ class EquipeSearch extends Component {
     }
 
     handleRemoveItem(){
-        this.props.deleteEquipe(this.state.equipe).then(() => {
-             this.handleCloseRemoveDialog();
-             this.setState({showMessageDialog: true, message:"Item deleted with success."});
-        });
-        this.props.fetchEquipes();
+        this.props.deleteEquipe(this.state.equipe)
+        this.handleCloseRemoveDialog();
+        this.setState({showMessageDialog: true, message:"Item deleted with success."});
+
+        // this.props.fetchEquipes();
     }
 
     handleOpenRemoveDialog(equipe) {
