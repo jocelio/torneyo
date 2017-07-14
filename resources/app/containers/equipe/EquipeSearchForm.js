@@ -18,7 +18,8 @@ class EquipeSearchForm extends Component {
 
     handleKeyPress(props){
         const {name , value} = props.target;
-        this.props.searchEquipes({name: value});
+        console.log(name)
+        this.props.searchEquipes({[name]: value});
     }
 
     render(){
