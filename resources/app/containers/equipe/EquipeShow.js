@@ -6,22 +6,22 @@ import PropTypes from 'prop-types';
 import Anchor from '../../components/Anchor';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
+import { renderField, required } from '../../components/FieldHelper';
 
 class EquipeNew extends Component {
 
     constructor(props) {
         super(props);
         this.state = {showMessageDialog: false, message:''};
-
         this.props.fetchEquipe(this.props.params.id);
     }
 
     formSubmit(props){
-        this.props.updateEquipe(props).then(() => {
-                this.showMessage({text:`${props.name} updated with success.`, type:'info'});
-                this.props.reset();
-                // this.context.router.push('/equipe');
-        });
+        this.props.updateEquipe(props);
+        this.showMessage({text:`${props.name} updated with success.`, type:'info'});
+        this.props.reset();
+        // this.context.router.push('/equipe');
+
     }
 
     showMessage({text = '', type ='info'}){
@@ -30,6 +30,7 @@ class EquipeNew extends Component {
     }
 
     render(){
+
         if(!this.props.equipe){
             return <div>Loading...</div>
         }
@@ -76,37 +77,16 @@ class EquipeNew extends Component {
     }
 
     componentDidMount(){
-        try{
-            componentHandler.upgradeAllRegistered();
-
-        }catch (e){}
+        try{componentHandler.upgradeAllRegistered();}catch (e){}
     }
 }
 
-const required = value => (value ? undefined : 'Required')
-
-const renderField = ({input,label,type, meta: { touched, error, warning, invalid }}) => (
-
-    <div className={`mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-dirty ${(touched && invalid)?'is-invalid':''}`}>
-
-        <input {...input} type={type}
-        className="mdl-textfield__input"/>
-
-        <label className="mdl-textfield__label">{label}</label>
-
-        {touched &&
-        ((error && <span className="mdl-textfield__error">{error}</span>) ||
-        (warning && <span>{warning}</span>))}
-    </div>
-)
 
 EquipeNew.contextTypes = {
     router: PropTypes.object
 };
 
-EquipeNew = reduxForm({
-    form:'NewEquipeForm',
-})(EquipeNew);
+EquipeNew = reduxForm({ form:'NewEquipeForm'})(EquipeNew);
 
 function mapStateToProps(state){
     const {equipe} = state.equipesState;

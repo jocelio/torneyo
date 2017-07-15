@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchEquipes, deleteEquipe, searchEquipes } from './actions/equipe_action';
-import { reduxForm, Field } from 'redux-form';
 import Anchor from '../../components/Anchor';
 import EquipeSearchForm from './EquipeSearchForm';
 import { Link } from 'react-router';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-import { renderField } from '../../components/FieldHelper';
+
 
 
 class EquipeSearch extends Component {
@@ -81,6 +80,8 @@ class EquipeSearch extends Component {
                     <EquipeSearchForm />
 
                     <hr/>
+
+
 
                     {(this.state.view ==='table')?this.tableEquipes():this.listEquipes()}
 
@@ -164,6 +165,7 @@ class EquipeSearch extends Component {
                           onClick={(e) => this.handleOpenRemoveDialog(equipe)}>Delete</Link>
                     &nbsp;
                     <Anchor name="Update" href={`equipe/update/${equipe.id}`} className="mdl-button mdl-js-button mdl-js-ripple-effect"/>
+
 
                 </td>
             </tr>

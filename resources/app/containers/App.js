@@ -4,7 +4,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 
 class App extends Component {
 
-  componentDidMount(){
+  componentWillMount(){
       injectTapEventPlugin();
   }
 
