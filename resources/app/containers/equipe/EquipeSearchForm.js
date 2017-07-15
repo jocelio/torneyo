@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { searchEquipes } from './actions/equipe_action';
 import { reduxForm, Field } from 'redux-form';
-import PropTypes from 'prop-types';
 import { renderField } from '../../components/FieldHelper';
 
 class EquipeSearchForm extends Component {
@@ -39,23 +38,17 @@ class EquipeSearchForm extends Component {
 
                 <br/>
 
-                <input type="submit" value="Search" className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"/>
+                <input type="submit" value="Search" className="mdl-button mdl-js-button mdl-button--raised"/>
 
             </form>
         )
     }
 
     componentDidMount(){
-        try{
-            componentHandler.upgradeAllRegistered();
-        }catch (e){}
+        componentHandler.upgradeAllRegistered();
     }
 
 }
-
-EquipeSearchForm.contextTypes = {
-    router: PropTypes.object
-};
 
 EquipeSearchForm = reduxForm({ form:'searchForm' })(EquipeSearchForm);
 
