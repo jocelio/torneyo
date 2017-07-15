@@ -61,18 +61,24 @@ class EquipeSearch extends Component {
             <div className="mdl-card mdl-shadow--2dp large">
 
                 <div className="mdl-card__menu">
+
+                    <Link to="equipe/new" className="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                        <i className="material-icons">add_box</i>
+                    </Link>
+
                     <button onClick={() => this.changeView()} className="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
                         <i className="material-icons">{this.state.view ==='table'?'dashboard':'grid_on'}</i>
                     </button>
+
                 </div>
                 <div className="mdl-card__title">
                     <h2 className="mdl-card__title-text">{this.props.title}</h2>
                 </div>
                 <div className="mdl-card__supporting-text">
 
-                    <Link to="equipe/new" icon="book">
-                        New Equipe
-                    </Link>
+
+
+                    <hr/>
 
                     <EquipeSearchForm />
 
