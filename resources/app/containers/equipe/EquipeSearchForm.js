@@ -49,7 +49,7 @@ class EquipeSearchForm extends Component {
 
 }
 
-EquipeSearchForm = reduxForm({ form:'searchForm' })(EquipeSearchForm);
+EquipeSearchForm = reduxForm({ form:'SearchForm'})(EquipeSearchForm);
 
 function mapStateToProps(state){
     return state;

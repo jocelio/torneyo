@@ -138,19 +138,20 @@ class EquipeSearch extends Component {
         return (
             <li key={equipe.id}>
                 <div className="demo-card-square mdl-card mdl-shadow--2dp">
-                <div className="mdl-card__title mdl-card--expand">
-                    <h2 className="mdl-card__title-text">{equipe.name}</h2>
-                </div>
-                <div className="mdl-card__supporting-text">
-                    {equipe.description}
-                </div>
-                <div className="mdl-card__actions mdl-card--border">
-                    <Link to={this.props.href} className="mdl-button mdl-js-button mdl-js-ripple-effect"
-                          onClick={(e) => this.handleOpenRemoveDialog(equipe)}>Delete</Link>
-                    &nbsp;
-                    <Anchor name="Update" href={`equipe/update/${equipe.id}`} className="mdl-button mdl-js-button mdl-js-ripple-effect"/>
+                    <div className="mdl-card__title mdl-card--expand">
+                        <h2 className="mdl-card__title-text">{equipe.name}</h2>
+                    </div>
+                    <div className="mdl-card__supporting-text">
+                        {equipe.description}
+                    </div>
+                    <div className="mdl-card__actions mdl-card--border">
 
-                </div>
+                        <Link to={this.props.href} className="mdl-button mdl-js-button mdl-js-ripple-effect"
+                              onClick={(e) => this.handleOpenRemoveDialog(equipe)}>Delete</Link>
+                        &nbsp;
+                        <Link to={`equipe/update/${equipe.id}`} className="mdl-button mdl-js-button mdl-js-ripple-effect">Update</Link>
+
+                    </div>
                 </div>
             </li>)
     }
