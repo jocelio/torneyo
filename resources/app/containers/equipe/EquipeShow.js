@@ -12,6 +12,7 @@ class EquipeNew extends Component {
     constructor(props) {
         super(props);
         this.state = {showMessageDialog: false, message:''};
+
         this.props.fetchEquipe(this.props.params.id);
     }
 
@@ -20,7 +21,7 @@ class EquipeNew extends Component {
                 this.showMessage({text:`${props.name} updated with success.`, type:'info'});
                 this.props.reset();
                 // this.context.router.push('/equipe');
-            });
+        });
     }
 
     showMessage({text = '', type ='info'}){

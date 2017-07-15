@@ -76,8 +76,6 @@ class EquipeSearch extends Component {
                 </div>
                 <div className="mdl-card__supporting-text">
 
-
-
                     <hr/>
 
                     <EquipeSearchForm />

@@ -54922,6 +54922,7 @@ var EquipeNew = function (_Component) {
         var _this = _possibleConstructorReturn(this, (EquipeNew.__proto__ || Object.getPrototypeOf(EquipeNew)).call(this, props));
 
         _this.state = { showMessageDialog: false, message: '' };
+
         _this.props.fetchEquipe(_this.props.params.id);
         return _this;
     }
