@@ -43170,8 +43170,9 @@ module.exports = function spread(callback) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var ROOT_URL = exports.ROOT_URL = "http://torneyo.herokuapp.com";
-// export const ROOT_URL = `http://localhost:8001`;
+
+// export const ROOT_URL = `http://torneyo.herokuapp.com`;
+var ROOT_URL = exports.ROOT_URL = "http://localhost:8001";
 
 /***/ }),
 /* 541 */
@@ -55213,6 +55214,15 @@ var EquipeSearch = function (_Component) {
                     'div',
                     { className: 'mdl-card__menu' },
                     _react2.default.createElement(
+                        _reactRouter.Link,
+                        { to: 'equipe/new', className: 'mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect' },
+                        _react2.default.createElement(
+                            'i',
+                            { className: 'material-icons new-item-icon' },
+                            'add_box'
+                        )
+                    ),
+                    _react2.default.createElement(
                         'button',
                         { onClick: function onClick() {
                                 return _this2.changeView();
@@ -55236,11 +55246,7 @@ var EquipeSearch = function (_Component) {
                 _react2.default.createElement(
                     'div',
                     { className: 'mdl-card__supporting-text' },
-                    _react2.default.createElement(
-                        _reactRouter.Link,
-                        { to: 'equipe/new', icon: 'book' },
-                        'New Equipe'
-                    ),
+                    _react2.default.createElement('hr', null),
                     _react2.default.createElement(_EquipeSearchForm2.default, null),
                     _react2.default.createElement('hr', null),
                     this.state.view === 'table' ? this.tableEquipes() : this.listEquipes(),
@@ -55446,10 +55452,6 @@ var _equipe_action = __webpack_require__(82);
 
 var _reduxForm = __webpack_require__(83);
 
-var _propTypes = __webpack_require__(4);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
 var _FieldHelper = __webpack_require__(194);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -55513,24 +55515,18 @@ var EquipeSearchForm = function (_Component) {
                         return _this2.handleKeyPress(props);
                     } }),
                 _react2.default.createElement('br', null),
-                _react2.default.createElement('input', { type: 'submit', value: 'Search', className: 'mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect' })
+                _react2.default.createElement('input', { type: 'submit', value: 'Search', className: 'mdl-button mdl-js-button mdl-button--raised' })
             );
         }
     }, {
         key: 'componentDidMount',
         value: function componentDidMount() {
-            try {
-                componentHandler.upgradeAllRegistered();
-            } catch (e) {}
+            componentHandler.upgradeAllRegistered();
         }
     }]);
 
     return EquipeSearchForm;
 }(_react.Component);
-
-EquipeSearchForm.contextTypes = {
-    router: _propTypes2.default.object
-};
 
 EquipeSearchForm = (0, _reduxForm.reduxForm)({ form: 'searchForm' })(EquipeSearchForm);
 

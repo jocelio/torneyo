@@ -63,7 +63,7 @@ class EquipeSearch extends Component {
                 <div className="mdl-card__menu">
 
                     <Link to="equipe/new" className="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-                        <i className="material-icons">add_box</i>
+                        <i className="material-icons new-item-icon">add_box</i>
                     </Link>
 
                     <button onClick={() => this.changeView()} className="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
