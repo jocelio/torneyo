@@ -56,7 +56,7 @@ function mapStateToProps(state){
 
     if(state.equipesState.all)
         return {equipes: state.equipesState.all}
-        
+
     return {equipes:[]};
 }
 
