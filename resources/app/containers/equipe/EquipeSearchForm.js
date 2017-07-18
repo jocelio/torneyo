@@ -37,8 +37,6 @@ class EquipeSearchForm extends Component {
 
                 <br/>
 
-                <input type="submit" value="Search" className="mdl-button mdl-js-button mdl-button--raised"/>
-
             </form>
         )
     }
