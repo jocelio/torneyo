@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { searchEquipes } from './actions/equipe_action';
+import { searchEquipes, filterEquipes } from './actions/equipe_action';
 import { reduxForm, Field } from 'redux-form';
 import { renderField } from '../../components/FieldHelper';
 
@@ -17,7 +17,7 @@ class EquipeSearchForm extends Component {
 
     handleKeyPress(props){
         const {name , value} = props.target;
-        this.props.searchEquipes({[name]: value});
+        this.props.filterEquipes(this.props.equipes, {[name]: value});
     }
 
     render(){
@@ -50,7 +50,14 @@ class EquipeSearchForm extends Component {
 EquipeSearchForm = reduxForm({ form:'SearchForm'})(EquipeSearchForm);
 
 function mapStateToProps(state){
-    return state;
+
+    if(state.equipesState.holdEquipes)
+        return {equipes: state.equipesState.holdEquipes}
+
+    if(state.equipesState.all)
+        return {equipes: state.equipesState.all}
+        
+    return {equipes:[]};
 }
 
-export default connect(mapStateToProps, { searchEquipes })(EquipeSearchForm);
+export default connect(mapStateToProps, { searchEquipes, filterEquipes })(EquipeSearchForm);

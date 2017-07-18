@@ -1,4 +1,4 @@
-import { FETCH_EQUIPES, FETCH_EQUIPE, SEARCH_EQUIPES, CREATE_EQUIPE, DELETE_EQUIPE } from '../actions/equipe_action'
+import { FETCH_EQUIPES, FETCH_EQUIPE, SEARCH_EQUIPES, CREATE_EQUIPE, DELETE_EQUIPE, FILTER_EQUIPES } from '../actions/equipe_action'
 
 
 export default (state = [], action) => {
@@ -16,6 +16,8 @@ export default (state = [], action) => {
             })};
         case SEARCH_EQUIPES:
             return {all:action.payload.data}
+        case FILTER_EQUIPES:
+            return {all:action.payload.filteredEquipes, holdEquipes:action.payload.holdEquipes}
         default:
             return state;
     }

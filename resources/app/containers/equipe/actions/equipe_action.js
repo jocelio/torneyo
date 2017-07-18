@@ -7,6 +7,8 @@ export const CREATE_EQUIPE = 'CREATE_EQUIPE';
 export const DELETE_EQUIPE = 'DELETE_EQUIPE';
 export const UPDATE_EQUIPE = 'UPDATE_EQUIPE';
 export const SEARCH_EQUIPES = 'SEARCH_EQUIPES';
+export const FILTER_EQUIPES = 'FILTER_EQUIPES';
+
 
 
 export function fetchEquipes(equipe){
@@ -15,6 +17,28 @@ export function fetchEquipes(equipe){
     return {
         type: FETCH_EQUIPES,
         payload: response
+    };
+}
+
+export function filterEquipes(equipes, equipe){
+
+    const {name, description} = equipe;
+
+    if(!name && !description){
+        console.log("aqui")
+        return {type: FILTER_EQUIPES, payload: {filteredEquipes:equipes, holdEquipes:equipes}};
+    }
+
+    const filteredEquipes = equipes.filter((e) => {
+        if(name)
+            return (new RegExp(name.toUpperCase())).test(e.name.toUpperCase());
+        if(description)
+            return (new RegExp(description.toUpperCase())).test(e.description.toUpperCase());
+    });
+
+    return {
+        type: FILTER_EQUIPES,
+        payload: {filteredEquipes, holdEquipes:equipes}
     };
 }
 
