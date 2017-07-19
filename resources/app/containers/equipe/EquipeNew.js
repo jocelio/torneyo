@@ -18,13 +18,19 @@ class EquipeNew extends Component {
             previewImage: null};
     }
 
-    formSubmit(props){
-        this.props.createEquipe(props)
-            .then(() => {
-                this.setState({showMessageDialog: true, message:`${props.name} created with success.`});
-                this.props.reset();
-                // this.context.router.push('/equipe');
-            });
+    formSubmit(equipe){
+        this.refs.crop.cropImage().then((img) => {
+
+            equipe.equipeImage = img;
+
+            console.log(equipe)
+            this.props.createEquipe(equipe)
+                .then(() => {
+                    this.setState({showMessageDialog: true, message:`${equipe.name} created with success.`});
+                    this.props.reset();
+                    // this.context.router.push('/equipe');
+                });
+        });
     }
 
     onChange(evt) {
@@ -35,6 +41,7 @@ class EquipeNew extends Component {
 
     crop() {
         let image = this.refs.crop.cropImage()
+
         image.then((img)=> {
             this.setState({
                 previewUrl: (window.URL || window.webkitURL).createObjectURL(img)
@@ -64,16 +71,15 @@ class EquipeNew extends Component {
             <form onSubmit={handleSubmit((props) => this.formSubmit(props))}>
 
 
-
-                        <div className="mdl-card mdl-shadow--2dp large">
+                        <div className="mdl-card mdl-shadow--2dp large ">
                             <div className="mdl-card__title">
                                 <h2 className="mdl-card__title-text">{this.props.title}</h2>
                             </div>
                             <div className="mdl-card__supporting-text">
 
 
-                                <div className="content-grid mdl-grid">
-                                    <div className="mdl-cell mdl-cell--4-col">
+                                <div className="content-grid mdl-grid" style={{"height":"300px","padding":"0px"}}>
+                                    <div className="mdl-cell mdl-cell--4-col" style={{"margin":"0px"}}>
 
                                         <input ref='file' id="file" type='file' onChange={(e) => this.onChange(e)}/>
 
@@ -93,7 +99,7 @@ class EquipeNew extends Component {
 
                                     </div>
                                     {this.state.image &&
-                                        <div className="mdl-cell mdl-cell--4-col">
+                                        <div className="mdl-cell mdl-cell--3-col " style={{"paddingTop":"120px"}}>
 
                                             <button type="button" onClick={() => this.crop()}
                                                     className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Crop</button>
@@ -103,24 +109,24 @@ class EquipeNew extends Component {
                                                     className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Clear</button>
                                         </div>
                                     }
-                                    <div className="mdl-cell mdl-cell--4-col">
-                                        {this.state.previewUrl && <img src={this.state.previewUrl} />}
+                                    <div className="mdl-cell mdl-cell--4-col" style={{"margin":"2px"}}>
+                                        {this.state.previewUrl &&
+                                            <div>
+                                                <span>Equipe Image</span>
+                                                <img src={this.state.previewUrl} />
+                                            </div>
+                                        }
                                     </div>
                                 </div>
 
 
+                            </div>
+                            <div className="mdl-card__actions mdl-card--border">
+                                <Field name="name" type="text"
+                                       component={renderField} validate={[required]} label="Equipe Name"/>
 
-
-
-                                    <Field name="name" type="text"
-                                           component={renderField} validate={[required]} label="Equipe Name"/>
-
-                                    <Field name="description" type="text"
-                                           component={renderField} validate={[required]} label="Equipe Description"/>
-
-
-
-
+                                <Field name="description" type="text"
+                                       component={renderField} validate={[required]} label="Equipe Description"/>
                             </div>
                             <div className="mdl-card__actions mdl-card--border">
                                 <input type="submit" value="Save" className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"/>
