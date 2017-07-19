@@ -65,58 +65,52 @@ class EquipeNew extends Component {
 
 
 
-
                         <div className="mdl-card mdl-shadow--2dp large">
                             <div className="mdl-card__title">
                                 <h2 className="mdl-card__title-text">{this.props.title}</h2>
                             </div>
                             <div className="mdl-card__supporting-text">
 
+
                                 <div className="content-grid mdl-grid">
+                                    <div className="mdl-cell mdl-cell--4-col">
 
-                                    <div className="mdl-cell mdl-cell--8-col">
-                                        <div className="content-grid mdl-grid">
-                                            <div className="mdl-cell mdl-cell--4-col">
+                                        <input ref='file' id="file" type='file' onChange={(e) => this.onChange(e)}/>
 
-                                                <input ref='file' id="file" type='file' onChange={(e) => this.onChange(e)}/>
-                                                <label for="file" className="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
-                                                    <i className="material-icons">plus</i>
-                                                </label>
+                                        {this.state.image &&
 
-                                                {this.state.image &&
-
-                                                <div  style={{height: 400, width: '30%'}}>
-                                                    <Cropper
-                                                        height={250}
-                                                        width={250}
-                                                        ref='crop'
-                                                        image={this.state.image}
-                                                        onImageLoaded={() => this.imageLoaded()}
-                                                    />
-
-                                                    <hr/>
-
-                                                    <button type="button" onClick={() => this.crop()}
-                                                            className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Crop</button>
-                                                    &nbsp;
-                                                    <button type="button" onClick={() => this.clear()}
-                                                            className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Clear</button>
-                                                </div>
-
-                                                }
+                                            <div  style={{height: 400, width: '30%'}}>
+                                                <Cropper
+                                                    height={250}
+                                                    width={250}
+                                                    ref='crop'
+                                                    image={this.state.image}
+                                                    onImageLoaded={() => this.imageLoaded()}/>
 
                                             </div>
-                                            <div className="mdl-cell mdl-cell--4-col">
-                                            </div>
-                                            <div className="mdl-cell mdl-cell--4-col">
-                                                {this.state.previewUrl && <img src={this.state.previewUrl} />}
-                                            </div>
-                                        </div>
 
+                                        }
 
                                     </div>
+                                    {this.state.image &&
+                                        <div className="mdl-cell mdl-cell--4-col">
 
-                                <div className="mdl-cell mdl-cell--4-col">
+                                            <button type="button" onClick={() => this.crop()}
+                                                    className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Crop</button>
+                                            &nbsp;
+
+                                            <button type="button" onClick={() => this.clear()}
+                                                    className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Clear</button>
+                                        </div>
+                                    }
+                                    <div className="mdl-cell mdl-cell--4-col">
+                                        {this.state.previewUrl && <img src={this.state.previewUrl} />}
+                                    </div>
+                                </div>
+
+
+
+
 
                                     <Field name="name" type="text"
                                            component={renderField} validate={[required]} label="Equipe Name"/>
@@ -125,8 +119,7 @@ class EquipeNew extends Component {
                                            component={renderField} validate={[required]} label="Equipe Description"/>
 
 
-                                </div>
-                            </div>
+
 
                             </div>
                             <div className="mdl-card__actions mdl-card--border">

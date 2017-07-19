@@ -41296,74 +41296,54 @@ var EquipeNew = function (_Component) {
                                 { className: 'content-grid mdl-grid' },
                                 _react2.default.createElement(
                                     'div',
-                                    { className: 'mdl-cell mdl-cell--8-col' },
-                                    _react2.default.createElement(
+                                    { className: 'mdl-cell mdl-cell--4-col' },
+                                    _react2.default.createElement('input', { ref: 'file', id: 'file', type: 'file', onChange: function onChange(e) {
+                                            return _this4.onChange(e);
+                                        } }),
+                                    this.state.image && _react2.default.createElement(
                                         'div',
-                                        { className: 'content-grid mdl-grid' },
-                                        _react2.default.createElement(
-                                            'div',
-                                            { className: 'mdl-cell mdl-cell--4-col' },
-                                            _react2.default.createElement('input', { ref: 'file', id: 'file', type: 'file', onChange: function onChange(e) {
-                                                    return _this4.onChange(e);
-                                                } }),
-                                            _react2.default.createElement(
-                                                'label',
-                                                { 'for': 'file', className: 'mdl-button mdl-js-button mdl-button--fab mdl-button--colored' },
-                                                _react2.default.createElement(
-                                                    'i',
-                                                    { className: 'material-icons' },
-                                                    'plus'
-                                                )
-                                            ),
-                                            this.state.image && _react2.default.createElement(
-                                                'div',
-                                                { style: { height: 400, width: '30%' } },
-                                                _react2.default.createElement(_reactCrop2.default, {
-                                                    height: 250,
-                                                    width: 250,
-                                                    ref: 'crop',
-                                                    image: this.state.image,
-                                                    onImageLoaded: function onImageLoaded() {
-                                                        return _this4.imageLoaded();
-                                                    }
-                                                }),
-                                                _react2.default.createElement('hr', null),
-                                                _react2.default.createElement(
-                                                    'button',
-                                                    { type: 'button', onClick: function onClick() {
-                                                            return _this4.crop();
-                                                        },
-                                                        className: 'mdl-button mdl-js-button mdl-button--raised mdl-button--colored' },
-                                                    'Crop'
-                                                ),
-                                                '\xA0',
-                                                _react2.default.createElement(
-                                                    'button',
-                                                    { type: 'button', onClick: function onClick() {
-                                                            return _this4.clear();
-                                                        },
-                                                        className: 'mdl-button mdl-js-button mdl-button--raised mdl-button--colored' },
-                                                    'Clear'
-                                                )
-                                            )
-                                        ),
-                                        _react2.default.createElement('div', { className: 'mdl-cell mdl-cell--4-col' }),
-                                        _react2.default.createElement(
-                                            'div',
-                                            { className: 'mdl-cell mdl-cell--4-col' },
-                                            this.state.previewUrl && _react2.default.createElement('img', { src: this.state.previewUrl })
-                                        )
+                                        { style: { height: 400, width: '30%' } },
+                                        _react2.default.createElement(_reactCrop2.default, {
+                                            height: 250,
+                                            width: 250,
+                                            ref: 'crop',
+                                            image: this.state.image,
+                                            onImageLoaded: function onImageLoaded() {
+                                                return _this4.imageLoaded();
+                                            } })
+                                    )
+                                ),
+                                this.state.image && _react2.default.createElement(
+                                    'div',
+                                    { className: 'mdl-cell mdl-cell--4-col' },
+                                    _react2.default.createElement(
+                                        'button',
+                                        { type: 'button', onClick: function onClick() {
+                                                return _this4.crop();
+                                            },
+                                            className: 'mdl-button mdl-js-button mdl-button--raised mdl-button--colored' },
+                                        'Crop'
+                                    ),
+                                    '\xA0',
+                                    _react2.default.createElement(
+                                        'button',
+                                        { type: 'button', onClick: function onClick() {
+                                                return _this4.clear();
+                                            },
+                                            className: 'mdl-button mdl-js-button mdl-button--raised mdl-button--colored' },
+                                        'Clear'
                                     )
                                 ),
                                 _react2.default.createElement(
                                     'div',
                                     { className: 'mdl-cell mdl-cell--4-col' },
-                                    _react2.default.createElement(_reduxForm.Field, { name: 'name', type: 'text',
-                                        component: _FieldHelper.renderField, validate: [_FieldHelper.required], label: 'Equipe Name' }),
-                                    _react2.default.createElement(_reduxForm.Field, { name: 'description', type: 'text',
-                                        component: _FieldHelper.renderField, validate: [_FieldHelper.required], label: 'Equipe Description' })
+                                    this.state.previewUrl && _react2.default.createElement('img', { src: this.state.previewUrl })
                                 )
-                            )
+                            ),
+                            _react2.default.createElement(_reduxForm.Field, { name: 'name', type: 'text',
+                                component: _FieldHelper.renderField, validate: [_FieldHelper.required], label: 'Equipe Name' }),
+                            _react2.default.createElement(_reduxForm.Field, { name: 'description', type: 'text',
+                                component: _FieldHelper.renderField, validate: [_FieldHelper.required], label: 'Equipe Description' })
                         ),
                         _react2.default.createElement(
                             'div',
