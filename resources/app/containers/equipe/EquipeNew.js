@@ -2,13 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createEquipe } from './actions/equipe_action';
 import { reduxForm, Field } from 'redux-form';
-import PropTypes from 'prop-types';
 import Anchor from '../../components/Anchor';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import { renderField, required } from '../../components/FieldHelper';
 import Cropper from 'react-crop';
-// import 'react-crop/css';
 
 class EquipeNew extends Component {
 
@@ -21,14 +19,15 @@ class EquipeNew extends Component {
     formSubmit(equipe){
         this.refs.crop.cropImage().then((img) => {
 
-            equipe.equipeImage = img;
+            Object.assign(equipe, {image:img})
 
-            console.log(equipe)
             this.props.createEquipe(equipe)
                 .then(() => {
                     this.setState({showMessageDialog: true, message:`${equipe.name} created with success.`});
                     this.props.reset();
                     // this.context.router.push('/equipe');
+                }).catch((e) => {
+                    alert(e)
                 });
         });
     }
@@ -55,11 +54,10 @@ class EquipeNew extends Component {
     }
 
     imageLoaded(img) {
-
-        if (img.naturalWidth && img.naturalWidth < 262 &&
-            img.naturalHeight && img.naturalHeight < 147) {
-            this.crop()
-        }
+        // if (img.naturalWidth && img.naturalWidth < 262 &&
+        //     img.naturalHeight && img.naturalHeight < 147) {
+        //     this.crop()
+        // }
     }
 
     render(){
@@ -160,10 +158,6 @@ class EquipeNew extends Component {
         }catch (e){}
     }
 }
-
-EquipeNew.contextTypes = {
-    router: PropTypes.object
-};
 
 EquipeNew = reduxForm({
     form:'NewEquipeForm',
