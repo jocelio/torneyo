@@ -6280,9 +6280,7 @@ function createEquipe(equipe) {
 
     fd.append('name', equipe.name);
     fd.append('description', equipe.description);
-    var blob = new Blob([JSON.stringify(equipe.image)], { type: "image/jpg" });
-    var fileOfBlob = new File([blob], 'image.jpg');
-    fd.append('image', fileOfBlob);
+    fd.append('image', equipe.image, 'i.jpg');
 
     var url = _config.ROOT_URL + '/equipe';
     return {
@@ -41314,8 +41312,8 @@ var EquipeNew = function (_Component) {
                                         'div',
                                         { style: { height: 400, width: '30%' } },
                                         _react2.default.createElement(_reactCrop2.default, {
-                                            height: 250,
-                                            width: 250,
+                                            height: 177,
+                                            width: 280,
                                             ref: 'crop',
                                             image: this.state.image,
                                             onImageLoaded: function onImageLoaded() {
@@ -56720,12 +56718,8 @@ var EquipeSearch = function (_Component) {
                     { className: 'demo-card-square mdl-card mdl-shadow--2dp' },
                     _react2.default.createElement(
                         'div',
-                        { className: 'mdl-card__title mdl-card--expand' },
-                        _react2.default.createElement(
-                            'h2',
-                            { className: 'mdl-card__title-text' },
-                            equipe.name
-                        )
+                        { className: 'mdl-card__title mdl-card--expand card-image' },
+                        _react2.default.createElement('img', { src: equipe.image })
                     ),
                     _react2.default.createElement(
                         'div',

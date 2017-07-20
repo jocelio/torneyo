@@ -85,8 +85,8 @@ class EquipeNew extends Component {
 
                                             <div  style={{height: 400, width: '30%'}}>
                                                 <Cropper
-                                                    height={250}
-                                                    width={250}
+                                                    height={177}
+                                                    width={280}
                                                     ref='crop'
                                                     image={this.state.image}
                                                     onImageLoaded={() => this.imageLoaded()}/>

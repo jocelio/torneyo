@@ -278,3 +278,9 @@ ul li {
     color:#00BCD4;
     font-size: 28px;
 }
+
+
+.card-image{
+    padding: 0px !important;
+    padding-top: 2px !important;;
+}

@@ -70,9 +70,7 @@ export function createEquipe(equipe){
 
     fd.append('name', equipe.name);
     fd.append('description', equipe.description);
-    const blob = new Blob([JSON.stringify(equipe.image)], {type: "image/jpg"})
-    const fileOfBlob = new File([blob], 'image.jpg');
-    fd.append('image', fileOfBlob);
+    fd.append('image', equipe.image, 'i.jpg');
 
 
     const url = `${ROOT_URL}/equipe`;

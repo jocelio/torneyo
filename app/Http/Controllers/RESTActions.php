@@ -43,8 +43,8 @@ trait RESTActions {
         $m = self::MODEL;
         $this->validate($request, $m::$rules);
 
-        $imageName = $request->file('image')->getClientOriginalName().$request->file('image')->getClientOriginalExtension();
-        $imageName = uniqid("img-") . '_' . $imageName;
+        $imageName = $request->file('image')->getClientOriginalName();
+        $imageName = uniqid($request->input('name').'-') . '-' . $imageName;
         $path = 'uploads' . DIRECTORY_SEPARATOR . 'user_files' . DIRECTORY_SEPARATOR . 'imgs' . DIRECTORY_SEPARATOR;
         $destinationPath = $path;// public_path($path); // upload path
 
