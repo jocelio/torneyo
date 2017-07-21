@@ -20,7 +20,7 @@ class Equipe extends Seeder
 //        updated_at DATE,
 //        due DATE);
 
-//        \App\Equipe::truncate();
+        \App\Equipe::truncate();
 
         for ($i = 1; $i <= 200; $i++) {
 

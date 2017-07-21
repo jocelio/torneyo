@@ -56355,9 +56355,7 @@ var EquipeUpdate = function (_Component) {
             var _this2 = this;
 
             this.showMessage({ text: 'Carregando...', type: 'info' });
-
             this.props.fetchEquipe(this.props.params.id).then(function () {
-
                 _this2.setState({ showMessageDialog: false });
             });
         }
@@ -56554,30 +56552,38 @@ var EquipeSearch = function (_Component) {
         var _this = _possibleConstructorReturn(this, (EquipeSearch.__proto__ || Object.getPrototypeOf(EquipeSearch)).call(this, props));
 
         _this.state = { showRemoveDialog: false, showMessageDialog: false, equipe: {}, message: "", view: 'card' };
-        _this.props.fetchEquipes().then(function (response) {
-            console.log(response);
-            if (response.error) throw response.payload;
-        }).catch(function (error) {
-            console.log("error aqui");
-            _this.setState({ showMessageDialog: true, message: 'Item deleted with success..' });
-            _this.showMessage({ text: 'Something wrong happened, please try again later.', type: 'error' });
-        });
         return _this;
     }
 
     _createClass(EquipeSearch, [{
-        key: 'handleRemoveItem',
-        value: function handleRemoveItem() {
+        key: 'componentDidMount',
+        value: function componentDidMount() {
             var _this2 = this;
 
+            this.showMessage({ text: 'Carregando...', type: 'info' });
+
+            this.props.fetchEquipes().then(function (response) {
+                _this2.setState({ showMessageDialog: false });
+                if (response.error) throw response.payload;
+            }).catch(function (error) {
+                console.log("error aqui");
+                _this2.setState({ showMessageDialog: true, message: 'Item deleted with success..' });
+                _this2.showMessage({ text: 'Something wrong happened, please try again later.', type: 'error' });
+            });
+        }
+    }, {
+        key: 'handleRemoveItem',
+        value: function handleRemoveItem() {
+            var _this3 = this;
+
+            this.handleCloseRemoveDialog();
             this.props.deleteEquipe(this.state.equipe).payload.response.then(function (response) {
 
                 if (response.error) throw response.payload;
 
-                _this2.setState({ showMessageDialog: true, message: 'Item deleted with success..' });
-                _this2.handleCloseRemoveDialog();
+                _this3.setState({ showMessageDialog: true, message: 'Item deleted with success..' });
             }).catch(function (error) {
-                _this2.showMessage({ text: 'Something wrong happened, please try again later.', type: 'error' });
+                _this3.showMessage({ text: 'Something wrong happened, please try again later.', type: 'error' });
             });
 
             // this.props.fetchEquipes();
@@ -56620,12 +56626,12 @@ var EquipeSearch = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            var _this3 = this;
+            var _this4 = this;
 
             var actions = [_react2.default.createElement(_FlatButton2.default, { label: 'Cancel', onClick: function onClick() {
-                    return _this3.handleCloseRemoveDialog();
+                    return _this4.handleCloseRemoveDialog();
                 } }), _react2.default.createElement(_FlatButton2.default, { label: 'Confirm', keyboardFocused: false, onClick: function onClick() {
-                    return _this3.handleRemoveItem();
+                    return _this4.handleRemoveItem();
                 } })];
 
             return _react2.default.createElement(
@@ -56646,7 +56652,7 @@ var EquipeSearch = function (_Component) {
                     _react2.default.createElement(
                         'button',
                         { onClick: function onClick() {
-                                return _this3.changeView();
+                                return _this4.changeView();
                             }, className: 'mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect' },
                         _react2.default.createElement(
                             'i',
@@ -56679,7 +56685,7 @@ var EquipeSearch = function (_Component) {
                             modal: false,
                             open: this.state.showRemoveDialog,
                             onRequestClose: function onRequestClose() {
-                                return _this3.handleCloseRemoveDialog();
+                                return _this4.handleCloseRemoveDialog();
                             } },
                         'Are you sure you want to remove ',
                         this.state.equipe.name,
@@ -56694,13 +56700,13 @@ var EquipeSearch = function (_Component) {
                                 primary: true,
                                 keyboardFocused: false,
                                 onClick: function onClick() {
-                                    return _this3.handleCloseMessageDialog();
+                                    return _this4.handleCloseMessageDialog();
                                 }
                             }),
                             modal: false,
                             open: this.state.showMessageDialog,
                             onRequestClose: function onRequestClose() {
-                                return _this3.handleCloseMessageDialog();
+                                return _this4.handleCloseMessageDialog();
                             } },
                         this.state.message
                     )
@@ -56710,14 +56716,14 @@ var EquipeSearch = function (_Component) {
     }, {
         key: 'listEquipes',
         value: function listEquipes() {
-            var _this4 = this;
+            var _this5 = this;
 
             return _react2.default.createElement(
                 'ul',
                 null,
                 ' ',
                 this.props.equipes.map(function (e) {
-                    return _this4.renderCards(e);
+                    return _this5.renderCards(e);
                 }),
                 ' '
             );
@@ -56725,7 +56731,7 @@ var EquipeSearch = function (_Component) {
     }, {
         key: 'tableEquipes',
         value: function tableEquipes() {
-            var _this5 = this;
+            var _this6 = this;
 
             return _react2.default.createElement(
                 'table',
@@ -56757,7 +56763,7 @@ var EquipeSearch = function (_Component) {
                     'tbody',
                     null,
                     this.props.equipes.map(function (e) {
-                        return _this5.renderTable(e);
+                        return _this6.renderTable(e);
                     })
                 )
             );
@@ -56765,7 +56771,7 @@ var EquipeSearch = function (_Component) {
     }, {
         key: 'renderCards',
         value: function renderCards(equipe) {
-            var _this6 = this;
+            var _this7 = this;
 
             return _react2.default.createElement(
                 'li',
@@ -56790,7 +56796,7 @@ var EquipeSearch = function (_Component) {
                             _reactRouter.Link,
                             { to: this.props.href, className: 'mdl-button mdl-js-button mdl-js-ripple-effect',
                                 onClick: function onClick(e) {
-                                    return _this6.handleOpenRemoveDialog(equipe);
+                                    return _this7.handleOpenRemoveDialog(equipe);
                                 } },
                             'Delete'
                         ),
@@ -56807,7 +56813,7 @@ var EquipeSearch = function (_Component) {
     }, {
         key: 'renderTable',
         value: function renderTable(equipe) {
-            var _this7 = this;
+            var _this8 = this;
 
             return _react2.default.createElement(
                 'tr',
@@ -56829,7 +56835,7 @@ var EquipeSearch = function (_Component) {
                         _reactRouter.Link,
                         { to: this.props.href, className: 'mdl-button mdl-js-button mdl-js-ripple-effect',
                             onClick: function onClick(e) {
-                                return _this7.handleOpenRemoveDialog(equipe);
+                                return _this8.handleOpenRemoveDialog(equipe);
                             } },
                         'Delete'
                     ),

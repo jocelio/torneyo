@@ -14,18 +14,25 @@ class EquipeSearch extends Component {
     constructor(props) {
         super(props);
         this.state = {showRemoveDialog:false, showMessageDialog:false, equipe:{}, message:"", view:'card'};
-        this.props.fetchEquipes()
-            .then(response => {
-                console.log(response)
-                if(response.error) throw response.payload
-            }).catch(error => {
-                console.log("error aqui")
-            this.setState({showMessageDialog: true, message:`Item deleted with success..`});
-                this.showMessage({text:`Something wrong happened, please try again later.`, type:'error'});
-            });
     }
 
+    componentDidMount(){
+        this.showMessage({text:`Carregando...`, type:'info'});
+
+        this.props.fetchEquipes()
+            .then(response => {
+                this.setState({showMessageDialog: false})
+                if(response.error) throw response.payload
+            }).catch(error => {
+            console.log("error aqui")
+            this.setState({showMessageDialog: true, message:`Item deleted with success..`});
+            this.showMessage({text:`Something wrong happened, please try again later.`, type:'error'});
+        });
+    }
+
+
     handleRemoveItem(){
+        this.handleCloseRemoveDialog();
         this.props.deleteEquipe(this.state.equipe)
             .payload.response
             .then(response => {
@@ -33,7 +40,7 @@ class EquipeSearch extends Component {
                 if(response.error) throw response.payload
 
                 this.setState({showMessageDialog: true, message:`Item deleted with success..`});
-                this.handleCloseRemoveDialog();
+
 
             }).catch(error => {
                 this.showMessage({text:`Something wrong happened, please try again later.`, type:'error'});
