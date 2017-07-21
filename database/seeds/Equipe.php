@@ -21,22 +21,25 @@ class Equipe extends Seeder
 //        due DATE);
 
 //        \App\Equipe::truncate();
-        \App\Equipe::insert(array(
-                'name' => 'Valencia',
-                'description' => 'Valencia Club de Fútbol',
-                'image' => null,
-                'created_at' =>  new DateTime('02/31/2011'),
-                'updated_at' =>  new DateTime('02/31/2011'),
-                'due' =>  new DateTime('02/31/2011')
+
+        for ($i = 1; $i <= 200; $i++) {
+
+            \App\Equipe::insert(array(
+                    'name' => 'Valencia',
+                    'description' => 'Valencia Club de Fútbol',
+                    'image' => null,
+                    'created_at' =>  new DateTime('02/31/2011'),
+                    'updated_at' =>  new DateTime('02/31/2011'),
+                    'due' =>  new DateTime('02/31/2011')
+                ));
+            \App\Equipe::insert(array(
+                    'name' => 'Borussia',
+                    'description' => 'Borussia Dortmund',
+                    'image' => null,
+                    'created_at' =>  new DateTime('02/31/2011'),
+                    'updated_at' =>  new DateTime('02/31/2011'),
+                    'due' =>  new DateTime('02/31/2011')
             ));
-        \App\Equipe::insert(array(
-                'name' => 'Borussia',
-                'description' => 'Borussia Dortmund',
-                'image' => null,
-                'created_at' =>  new DateTime('02/31/2011'),
-                'updated_at' =>  new DateTime('02/31/2011'),
-                'due' =>  new DateTime('02/31/2011')
-        ));
             \App\Equipe::insert(array(
                 'name' => 'Monaco',
                 'description' => 'Association Sportive de Monaco Football Club',
@@ -53,7 +56,7 @@ class Equipe extends Seeder
                 'updated_at' =>  new DateTime('02/31/2011'),
                 'due' =>  new DateTime('02/31/2011')
                 ));
-         \App\Equipe::insert(array(
+             \App\Equipe::insert(array(
                 'name' => 'Bayer 04',
                 'description' => 'Bayer 04 Leverkusen',
                 'image' => null,
@@ -61,6 +64,8 @@ class Equipe extends Seeder
                 'updated_at' =>  new DateTime('02/31/2011'),
                 'due' =>  new DateTime('02/31/2011')
             ));
+
+        }
 
     }
 }

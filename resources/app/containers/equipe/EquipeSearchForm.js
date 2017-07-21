@@ -12,7 +12,12 @@ class EquipeSearchForm extends Component {
     }
 
     formSubmit(props){
-        this.props.searchEquipes(props);
+        this.props.searchEquipes(props)
+            .then((response) => {
+                if(response.error) throw response.payload
+            }).catch((error) => {
+                console.log(error)
+            });
     }
 
     handleKeyPress(props){

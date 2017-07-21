@@ -19,8 +19,17 @@ class EquipeSearch extends Component {
 
     handleRemoveItem(){
         this.props.deleteEquipe(this.state.equipe)
-        this.handleCloseRemoveDialog();
-        this.setState({showMessageDialog: true, message:"Item deleted with success."});
+            .payload.response
+            .then(response => {
+
+                if(response.error) throw response.payload
+
+                this.setState({showMessageDialog: true, message:`Item deleted with success..`});
+                this.handleCloseRemoveDialog();
+
+            }).catch(error => {
+                this.showMessage({text:`Something wrong happened, please try again later.`, type:'error'});
+            });
 
         // this.props.fetchEquipes();
     }

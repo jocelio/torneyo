@@ -37,9 +37,8 @@ class EquipeUpdate extends Component {
                  this.showMessage({text:`${props.name} updated with success.`, type:'info'});
             })
             .catch((error) => {
-                console.log(error);
                 this.showMessage({text:`Something wrong happened, please try again later.`, type:'error'});
-            })
+            });
 
         // this.context.router.push('/equipe');
 

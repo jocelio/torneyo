@@ -22,12 +22,15 @@ class EquipeNew extends Component {
             Object.assign(equipe, {image:img})
 
             this.props.createEquipe(equipe)
-                .then(() => {
+                .then(response => {
+
+                    if(response.error) throw response.payload
+
                     this.setState({showMessageDialog: true, message:`${equipe.name} created with success.`});
                     this.props.reset();
-                    // this.context.router.push('/equipe');
-                }).catch((e) => {
-                    alert(e)
+
+                }).catch(error => {
+                    this.showMessage({text:`Something wrong happened, please try again later.`, type:'error'});
                 });
         });
     }
@@ -39,9 +42,8 @@ class EquipeNew extends Component {
     }
 
     crop() {
-        let image = this.refs.crop.cropImage()
 
-        image.then((img)=> {
+        this.refs.crop.cropImage().then((img)=> {
             this.setState({
                 previewUrl: (window.URL || window.webkitURL).createObjectURL(img)
             })
