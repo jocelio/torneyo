@@ -6,7 +6,7 @@ import Home from './components/Home';
 import Inbox from './components/Inbox';
 import Equipe from './containers/equipe/Equipe';
 import EquipeNew from './containers/equipe/EquipeNew';
-import EquipeShow from './containers/equipe/EquipeShow';
+import EquipeUpdate from './containers/equipe/EquipeUpdate';
 import EquipeSearch from './containers/equipe/EquipeSearch';
 
 
@@ -17,7 +17,7 @@ export default (
         <Route path="/equipe" component={Equipe}>
             <IndexRoute component={EquipeSearch}/>
             <Route path="new" component={EquipeNew}/>
-            <Route path="update/:id" component={EquipeShow}/>
+            <Route path="update/:id" component={EquipeUpdate}/>
         </Route>
     </Route>
 );

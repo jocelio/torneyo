@@ -1,4 +1,4 @@
-import { FETCH_EQUIPES, FETCH_EQUIPE, SEARCH_EQUIPES, CREATE_EQUIPE, DELETE_EQUIPE, FILTER_EQUIPES } from '../actions/equipe_action'
+import { FETCH_EQUIPES, FETCH_EQUIPE, SEARCH_EQUIPES, CREATE_EQUIPE, DELETE_EQUIPE, FILTER_EQUIPES, UPDATE_EQUIPE } from '../actions/equipe_action'
 
 
 export default (state = [], action) => {
@@ -10,8 +10,10 @@ export default (state = [], action) => {
             return {equipe:action.payload.data}
         case CREATE_EQUIPE:
             return action.payload
+        case UPDATE_EQUIPE:
+            return action.payload
         case DELETE_EQUIPE:
-            return {all: state.all.filter(function(i) {
+            return {all: state.all.filter((i) => {
                 return i.id != action.payload.id
             })};
         case SEARCH_EQUIPES:

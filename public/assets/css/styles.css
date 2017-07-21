@@ -258,8 +258,8 @@ table th{
 }
 
 .demo-card-square.mdl-card {
-    width: 280px;
-    height: 280px;
+    width: 230px;
+    height: 230px;
 }
 .demo-card-square > .mdl-card__title {
     color: #fff;

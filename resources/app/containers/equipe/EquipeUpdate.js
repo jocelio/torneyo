@@ -8,18 +8,41 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import { renderField, required } from '../../components/FieldHelper';
 
-class EquipeNew extends Component {
+class EquipeUpdate extends Component {
 
     constructor(props) {
         super(props);
+
         this.state = {showMessageDialog: false, message:''};
-        this.props.fetchEquipe(this.props.params.id);
+
+    }
+
+    componentDidMount(){
+
+        this.showMessage({text:`Carregando...`, type:'info'});
+
+        this.props.fetchEquipe(this.props.params.id).then(()=>{
+
+            this.setState({showMessageDialog: false})
+
+            componentHandler.upgradeAllRegistered();
+
+        });
+
     }
 
     formSubmit(props){
-        this.props.updateEquipe(props);
-        this.showMessage({text:`${props.name} updated with success.`, type:'info'});
-        this.props.reset();
+        this.props.updateEquipe(props)
+            .then(function (response) {
+
+                console.log("s",response)
+                // this.showMessage({text:`${props.name} updated with success.`, type:'info'});
+            })
+            .catch(function (error) {
+                console.log(error);
+                // this.showMessage({text:`Something wrong happened, please try again later.`, type:'error'});
+            });
+
         // this.context.router.push('/equipe');
 
     }
@@ -76,19 +99,20 @@ class EquipeNew extends Component {
         )
     }
 
-    componentDidMount(){
+    componentDidUpdate(){
         try{componentHandler.upgradeAllRegistered();}catch (e){}
     }
 }
 
 
-EquipeNew.contextTypes = {
+EquipeUpdate.contextTypes = {
     router: PropTypes.object
 };
 
-EquipeNew = reduxForm({ form:'NewEquipeForm'})(EquipeNew);
+EquipeUpdate = reduxForm({ form:'NewEquipeForm'})(EquipeUpdate);
 
 function mapStateToProps(state){
+    console.log(state)
     const {equipe} = state.equipesState;
     if(state.equipesState.equipe) {
         return {
@@ -103,4 +127,4 @@ function mapStateToProps(state){
     return { equipe:{}}
 }
 
-export default connect(mapStateToProps, {fetchEquipe, updateEquipe })(EquipeNew);
+export default connect(mapStateToProps, {fetchEquipe, updateEquipe })(EquipeUpdate);
