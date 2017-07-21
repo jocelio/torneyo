@@ -41269,6 +41269,21 @@ var EquipeNew = function (_Component) {
             // }
         }
     }, {
+        key: 'showMessage',
+        value: function showMessage(_ref) {
+            var _ref$text = _ref.text,
+                text = _ref$text === undefined ? '' : _ref$text,
+                _ref$type = _ref.type,
+                type = _ref$type === undefined ? 'info' : _ref$type;
+
+            var message = _react2.default.createElement(
+                'span',
+                { className: type == 'info' ? 'info-message' : 'error-message' },
+                text
+            );
+            this.setState({ showMessageDialog: true, message: message });
+        }
+    }, {
         key: 'render',
         value: function render() {
             var _this4 = this;
@@ -41411,8 +41426,8 @@ EquipeNew = (0, _reduxForm.reduxForm)({
     form: 'NewEquipeForm'
 })(EquipeNew);
 
-function mapStateToProps(_ref) {
-    var equipesState = _ref.equipesState;
+function mapStateToProps(_ref2) {
+    var equipesState = _ref2.equipesState;
 
     return { equipesState: equipesState };
 }
@@ -56539,7 +56554,14 @@ var EquipeSearch = function (_Component) {
         var _this = _possibleConstructorReturn(this, (EquipeSearch.__proto__ || Object.getPrototypeOf(EquipeSearch)).call(this, props));
 
         _this.state = { showRemoveDialog: false, showMessageDialog: false, equipe: {}, message: "", view: 'card' };
-        _this.props.fetchEquipes();
+        _this.props.fetchEquipes().then(function (response) {
+            console.log(response);
+            if (response.error) throw response.payload;
+        }).catch(function (error) {
+            console.log("error aqui");
+            _this.setState({ showMessageDialog: true, message: 'Item deleted with success..' });
+            _this.showMessage({ text: 'Something wrong happened, please try again later.', type: 'error' });
+        });
         return _this;
     }
 
@@ -56581,10 +56603,19 @@ var EquipeSearch = function (_Component) {
             if (this.state.view === 'table') this.setState({ view: 'card' });else this.setState({ view: 'table' });
         }
     }, {
-        key: 'formSubmit',
-        value: function formSubmit(props) {
-            // this.props.searchEquipes(props)
+        key: 'showMessage',
+        value: function showMessage(_ref) {
+            var _ref$text = _ref.text,
+                text = _ref$text === undefined ? '' : _ref$text,
+                _ref$type = _ref.type,
+                type = _ref$type === undefined ? 'info' : _ref$type;
 
+            var message = _react2.default.createElement(
+                'span',
+                { className: type == 'info' ? 'info-message' : 'error-message' },
+                text
+            );
+            this.setState({ showMessageDialog: true, message: message });
         }
     }, {
         key: 'render',

@@ -62,6 +62,11 @@ class EquipeNew extends Component {
         // }
     }
 
+    showMessage({text = '', type ='info'}){
+        const message = <span className={type == 'info'?'info-message':'error-message'}>{text}</span>
+        this.setState({showMessageDialog: true, message:message});
+    }
+
     render(){
 
         const { handleSubmit } = this.props;

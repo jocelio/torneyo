@@ -14,7 +14,15 @@ class EquipeSearch extends Component {
     constructor(props) {
         super(props);
         this.state = {showRemoveDialog:false, showMessageDialog:false, equipe:{}, message:"", view:'card'};
-        this.props.fetchEquipes();
+        this.props.fetchEquipes()
+            .then(response => {
+                console.log(response)
+                if(response.error) throw response.payload
+            }).catch(error => {
+                console.log("error aqui")
+            this.setState({showMessageDialog: true, message:`Item deleted with success..`});
+                this.showMessage({text:`Something wrong happened, please try again later.`, type:'error'});
+            });
     }
 
     handleRemoveItem(){
@@ -53,9 +61,9 @@ class EquipeSearch extends Component {
             this.setState({view:'table'});
     }
 
-    formSubmit(props){
-        // this.props.searchEquipes(props)
-
+    showMessage({text = '', type ='info'}){
+        const message = <span className={type == 'info'?'info-message':'error-message'}>{text}</span>
+        this.setState({showMessageDialog: true, message:message});
     }
 
     render(){
