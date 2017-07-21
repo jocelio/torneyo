@@ -25,23 +25,21 @@ class EquipeUpdate extends Component {
 
             this.setState({showMessageDialog: false})
 
-            componentHandler.upgradeAllRegistered();
-
         });
 
     }
 
     formSubmit(props){
         this.props.updateEquipe(props)
-            .then(function (response) {
-
-                console.log("s",response)
-                // this.showMessage({text:`${props.name} updated with success.`, type:'info'});
+            .then((response) => {
+                if(response.error)
+                    throw response.payload
+                 this.showMessage({text:`${props.name} updated with success.`, type:'info'});
             })
-            .catch(function (error) {
+            .catch((error) => {
                 console.log(error);
-                // this.showMessage({text:`Something wrong happened, please try again later.`, type:'error'});
-            });
+                this.showMessage({text:`Something wrong happened, please try again later.`, type:'error'});
+            })
 
         // this.context.router.push('/equipe');
 
@@ -112,7 +110,6 @@ EquipeUpdate.contextTypes = {
 EquipeUpdate = reduxForm({ form:'NewEquipeForm'})(EquipeUpdate);
 
 function mapStateToProps(state){
-    console.log(state)
     const {equipe} = state.equipesState;
     if(state.equipesState.equipe) {
         return {

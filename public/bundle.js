@@ -57415,20 +57415,19 @@ var EquipeUpdate = function (_Component) {
             this.props.fetchEquipe(this.props.params.id).then(function () {
 
                 _this2.setState({ showMessageDialog: false });
-
-                componentHandler.upgradeAllRegistered();
             });
         }
     }, {
         key: 'formSubmit',
         value: function formSubmit(props) {
-            this.props.updateEquipe(props).then(function (response) {
+            var _this3 = this;
 
-                console.log("s", response);
-                // this.showMessage({text:`${props.name} updated with success.`, type:'info'});
+            this.props.updateEquipe(props).then(function (response) {
+                if (response.error) throw response.payload;
+                _this3.showMessage({ text: props.name + ' updated with success.', type: 'info' });
             }).catch(function (error) {
                 console.log(error);
-                // this.showMessage({text:`Something wrong happened, please try again later.`, type:'error'});
+                _this3.showMessage({ text: 'Something wrong happened, please try again later.', type: 'error' });
             });
 
             // this.context.router.push('/equipe');
@@ -57451,7 +57450,7 @@ var EquipeUpdate = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            var _this3 = this;
+            var _this4 = this;
 
             if (!this.props.equipe) {
                 return _react2.default.createElement(
@@ -57469,7 +57468,7 @@ var EquipeUpdate = function (_Component) {
                 _react2.default.createElement(
                     'form',
                     { onSubmit: handleSubmit(function (props) {
-                            return _this3.formSubmit(props);
+                            return _this4.formSubmit(props);
                         }) },
                     _react2.default.createElement(
                         'div',
@@ -57508,13 +57507,13 @@ var EquipeUpdate = function (_Component) {
                             primary: true,
                             keyboardFocused: false,
                             onClick: function onClick() {
-                                return _this3.setState({ showMessageDialog: false });
+                                return _this4.setState({ showMessageDialog: false });
                             }
                         }),
                         modal: false,
                         open: this.state.showMessageDialog,
                         onRequestClose: function onRequestClose() {
-                            return _this3.setState({ showMessageDialog: false });
+                            return _this4.setState({ showMessageDialog: false });
                         } },
                     this.state.message
                 )
@@ -57539,7 +57538,6 @@ EquipeUpdate.contextTypes = {
 EquipeUpdate = (0, _reduxForm.reduxForm)({ form: 'NewEquipeForm' })(EquipeUpdate);
 
 function mapStateToProps(state) {
-    console.log(state);
     var equipe = state.equipesState.equipe;
 
     if (state.equipesState.equipe) {
