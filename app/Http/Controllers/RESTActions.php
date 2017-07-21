@@ -1,8 +1,8 @@
 <?php namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use function MongoDB\BSON\toJSON;
 
 trait RESTActions {
 
@@ -38,11 +38,25 @@ trait RESTActions {
         return $this->respond(Response::HTTP_OK, $model);
     }
 
-    public function add(Request $request)
-    {
+    public function add(Request $request){
+
         $m = self::MODEL;
         $this->validate($request, $m::$rules);
-        return $this->respond(Response::HTTP_CREATED, $m::create($request->all()));
+
+        $imageName = $request->file('image')->getClientOriginalName();
+        $imageName = uniqid($request->input('name').'-') . '-' . $imageName;
+        $path = 'uploads' . DIRECTORY_SEPARATOR . 'user_files' . DIRECTORY_SEPARATOR . 'imgs' . DIRECTORY_SEPARATOR;
+        $destinationPath = $path;// public_path($path); // upload path
+
+        if(!file_exists($destinationPath))
+            mkdir($destinationPath, 0777, true );
+
+        $request->file('image')->move($destinationPath, $imageName);
+
+        $fields = $request->all();
+        $fields['image'] = $destinationPath.$imageName;
+
+        return $this->respond(Response::HTTP_CREATED, $m::create($fields));
     }
 
     public function put(Request $request, $id)

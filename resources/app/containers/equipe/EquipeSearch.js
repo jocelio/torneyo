@@ -14,13 +14,37 @@ class EquipeSearch extends Component {
     constructor(props) {
         super(props);
         this.state = {showRemoveDialog:false, showMessageDialog:false, equipe:{}, message:"", view:'card'};
-        this.props.fetchEquipes();
     }
 
+    componentDidMount(){
+        this.showMessage({text:`Carregando...`, type:'info'});
+
+        this.props.fetchEquipes()
+            .then(response => {
+                this.setState({showMessageDialog: false})
+                if(response.error) throw response.payload
+            }).catch(error => {
+            console.log("error aqui")
+            this.setState({showMessageDialog: true, message:`Item deleted with success..`});
+            this.showMessage({text:`Something wrong happened, please try again later.`, type:'error'});
+        });
+    }
+
+
     handleRemoveItem(){
-        this.props.deleteEquipe(this.state.equipe)
         this.handleCloseRemoveDialog();
-        this.setState({showMessageDialog: true, message:"Item deleted with success."});
+        this.props.deleteEquipe(this.state.equipe)
+            .payload.response
+            .then(response => {
+
+                if(response.error) throw response.payload
+
+                this.setState({showMessageDialog: true, message:`Item deleted with success..`});
+
+
+            }).catch(error => {
+                this.showMessage({text:`Something wrong happened, please try again later.`, type:'error'});
+            });
 
         // this.props.fetchEquipes();
     }
@@ -44,9 +68,9 @@ class EquipeSearch extends Component {
             this.setState({view:'table'});
     }
 
-    formSubmit(props){
-        // this.props.searchEquipes(props)
-
+    showMessage({text = '', type ='info'}){
+        const message = <span className={type == 'info'?'info-message':'error-message'}>{text}</span>
+        this.setState({showMessageDialog: true, message:message});
     }
 
     render(){
@@ -138,8 +162,9 @@ class EquipeSearch extends Component {
         return (
             <li key={equipe.id}>
                 <div className="demo-card-square mdl-card mdl-shadow--2dp">
-                    <div className="mdl-card__title mdl-card--expand">
-                        <h2 className="mdl-card__title-text">{equipe.name}</h2>
+                    <div className="mdl-card__title mdl-card--expand card-image" >
+                        <img src={equipe.image} />
+                        {/*<h2 className="mdl-card__title-text">{equipe.name}</h2>*/}
                     </div>
                     <div className="mdl-card__supporting-text">
                         {equipe.description}

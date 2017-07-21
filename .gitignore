@@ -4,3 +4,4 @@ vendor/
 public/bundle.js
 public/bundle-login.js
 storage/
+/public/uploads/user_files/imgs/

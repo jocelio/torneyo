@@ -25,7 +25,6 @@ export function filterEquipes(equipes, equipe){
     const {name, description} = equipe;
 
     if(!name && !description){
-        console.log("aqui")
         return {type: FILTER_EQUIPES, payload: {filteredEquipes:equipes, holdEquipes:equipes}};
     }
 
@@ -66,10 +65,18 @@ export function fetchEquipe(id){
 }
 
 export function createEquipe(equipe){
+
+    var fd = new FormData();
+
+    fd.append('name', equipe.name);
+    fd.append('description', equipe.description);
+    fd.append('image', equipe.image, 'i.jpg');
+
+
     const url = `${ROOT_URL}/equipe`;
     return {
         type: CREATE_EQUIPE,
-        payload: axios.post(url, equipe)
+        payload: axios.post(url, fd, {headers: { 'content-type': 'multipart/form-data' }})
     };
 }
 

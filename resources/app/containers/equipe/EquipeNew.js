@@ -2,13 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createEquipe } from './actions/equipe_action';
 import { reduxForm, Field } from 'redux-form';
-import PropTypes from 'prop-types';
 import Anchor from '../../components/Anchor';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import { renderField, required } from '../../components/FieldHelper';
 import Cropper from 'react-crop';
-// import 'react-crop/css';
 
 class EquipeNew extends Component {
 
@@ -21,14 +19,18 @@ class EquipeNew extends Component {
     formSubmit(equipe){
         this.refs.crop.cropImage().then((img) => {
 
-            equipe.equipeImage = img;
+            Object.assign(equipe, {image:img})
 
-            console.log(equipe)
             this.props.createEquipe(equipe)
-                .then(() => {
+                .then(response => {
+
+                    if(response.error) throw response.payload
+
                     this.setState({showMessageDialog: true, message:`${equipe.name} created with success.`});
                     this.props.reset();
-                    // this.context.router.push('/equipe');
+
+                }).catch(error => {
+                    this.showMessage({text:`Something wrong happened, please try again later.`, type:'error'});
                 });
         });
     }
@@ -40,9 +42,8 @@ class EquipeNew extends Component {
     }
 
     crop() {
-        let image = this.refs.crop.cropImage()
 
-        image.then((img)=> {
+        this.refs.crop.cropImage().then((img)=> {
             this.setState({
                 previewUrl: (window.URL || window.webkitURL).createObjectURL(img)
             })
@@ -55,11 +56,15 @@ class EquipeNew extends Component {
     }
 
     imageLoaded(img) {
+        // if (img.naturalWidth && img.naturalWidth < 262 &&
+        //     img.naturalHeight && img.naturalHeight < 147) {
+        //     this.crop()
+        // }
+    }
 
-        if (img.naturalWidth && img.naturalWidth < 262 &&
-            img.naturalHeight && img.naturalHeight < 147) {
-            this.crop()
-        }
+    showMessage({text = '', type ='info'}){
+        const message = <span className={type == 'info'?'info-message':'error-message'}>{text}</span>
+        this.setState({showMessageDialog: true, message:message});
     }
 
     render(){
@@ -87,8 +92,8 @@ class EquipeNew extends Component {
 
                                             <div  style={{height: 400, width: '30%'}}>
                                                 <Cropper
-                                                    height={250}
-                                                    width={250}
+                                                    height={127}
+                                                    width={230}
                                                     ref='crop'
                                                     image={this.state.image}
                                                     onImageLoaded={() => this.imageLoaded()}/>
@@ -160,10 +165,6 @@ class EquipeNew extends Component {
         }catch (e){}
     }
 }
-
-EquipeNew.contextTypes = {
-    router: PropTypes.object
-};
 
 EquipeNew = reduxForm({
     form:'NewEquipeForm',

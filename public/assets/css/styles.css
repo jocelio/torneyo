@@ -258,8 +258,8 @@ table th{
 }
 
 .demo-card-square.mdl-card {
-    width: 280px;
-    height: 280px;
+    width: 230px;
+    height: 230px;
 }
 .demo-card-square > .mdl-card__title {
     color: #fff;
@@ -277,4 +277,10 @@ ul li {
 .new-item-icon{
     color:#00BCD4;
     font-size: 28px;
+}
+
+
+.card-image{
+    padding: 0px !important;
+    padding-top: 2px !important;;
 }
