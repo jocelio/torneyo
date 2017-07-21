@@ -41327,8 +41327,8 @@ var EquipeNew = function (_Component) {
                                         'div',
                                         { style: { height: 400, width: '30%' } },
                                         _react2.default.createElement(_reactCrop2.default, {
-                                            height: 177,
-                                            width: 280,
+                                            height: 127,
+                                            width: 230,
                                             ref: 'crop',
                                             image: this.state.image,
                                             onImageLoaded: function onImageLoaded() {
@@ -43308,9 +43308,8 @@ module.exports = function spread(callback) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-// export const ROOT_URL = `http://torneyo.herokuapp.com`;
-var ROOT_URL = exports.ROOT_URL = "http://localhost:8001";
+var ROOT_URL = exports.ROOT_URL = "http://torneyo.herokuapp.com";
+// export const ROOT_URL = `http://localhost:8001`;
 
 /***/ }),
 /* 541 */
