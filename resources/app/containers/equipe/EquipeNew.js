@@ -12,8 +12,7 @@ class EquipeNew extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {showMessageDialog: false, message:'',image: null,
-            previewImage: null};
+        this.state = {showMessageDialog: false, message:'',image: null,previewImage: null};
     }
 
     formSubmit(equipe){
