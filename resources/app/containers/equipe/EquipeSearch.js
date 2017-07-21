@@ -24,10 +24,9 @@ class EquipeSearch extends Component {
                 this.setState({showMessageDialog: false})
                 if(response.error) throw response.payload
             }).catch(error => {
-            console.log("error aqui")
-            this.setState({showMessageDialog: true, message:`Item deleted with success..`});
-            this.showMessage({text:`Something wrong happened, please try again later.`, type:'error'});
-        });
+                this.setState({showMessageDialog: true, message:`Item deleted with success..`});
+                this.showMessage({text:`Something wrong happened, please try again later.`, type:'error'});
+            });
     }
 
 
