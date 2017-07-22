@@ -17,7 +17,7 @@ class EquipeSearch extends Component {
     }
 
     componentDidMount(){
-        this.showMessage({text:`Carregando...`, type:'info'});
+        this.showMessage({text:`Loading...`, type:'info'});
 
         this.props.fetchEquipes()
             .then(response => {

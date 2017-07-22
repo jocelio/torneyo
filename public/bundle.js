@@ -56558,7 +56558,7 @@ var EquipeSearch = function (_Component) {
         value: function componentDidMount() {
             var _this2 = this;
 
-            this.showMessage({ text: 'Carregando...', type: 'info' });
+            this.showMessage({ text: 'Loading...', type: 'info' });
 
             this.props.fetchEquipes().then(function (response) {
                 if (response.error) throw response.payload;
