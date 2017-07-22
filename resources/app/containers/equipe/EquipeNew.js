@@ -81,8 +81,7 @@ class EquipeNew extends Component {
                             </div>
                             <div className="mdl-card__supporting-text">
 
-
-                                <div className="content-grid mdl-grid" style={{"height":"300px","padding":"0px"}}>
+                                <div className="content-grid mdl-grid" style={{"maxHeight":"300px","height":"auto","padding":"0px"}}>
                                     <div className="mdl-cell mdl-cell--4-col" style={{"margin":"0px"}}>
 
                                         <input ref='file' id="file" type='file' onChange={(e) => this.onChange(e)}/>
