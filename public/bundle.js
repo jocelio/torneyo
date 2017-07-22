@@ -43307,8 +43307,9 @@ module.exports = function spread(callback) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var ROOT_URL = exports.ROOT_URL = "http://torneyo.herokuapp.com";
-// export const ROOT_URL = `http://localhost:8001`;
+
+// export const ROOT_URL = `http://torneyo.herokuapp.com`;
+var ROOT_URL = exports.ROOT_URL = "http://localhost:8001";
 
 /***/ }),
 /* 541 */
@@ -56352,7 +56353,7 @@ var EquipeUpdate = function (_Component) {
         value: function componentDidMount() {
             var _this2 = this;
 
-            this.showMessage({ text: 'Carregando...', type: 'info' });
+            this.showMessage({ text: 'Loading...', type: 'info' });
             this.props.fetchEquipe(this.props.params.id).then(function () {
                 _this2.setState({ showMessageDialog: false });
             });

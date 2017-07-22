@@ -18,7 +18,7 @@ class EquipeUpdate extends Component {
     }
 
     componentDidMount(){
-        this.showMessage({text:`Carregando...`, type:'info'});
+        this.showMessage({text:`Loading...`, type:'info'});
         this.props.fetchEquipe(this.props.params.id).then(()=>{
             this.setState({showMessageDialog: false})
         });
