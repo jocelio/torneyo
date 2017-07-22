@@ -43,7 +43,7 @@
 <body>
 <div id="app"></div>
 
-<script type="text/javascript" src="bundle.js"></script></body>
+<script type="text/javascript" src="bundle.js?rnd=<?=uniqid();?>"></script></body>
 <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 </body>
 </html>
