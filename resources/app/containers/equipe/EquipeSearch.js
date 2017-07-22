@@ -21,8 +21,9 @@ class EquipeSearch extends Component {
 
         this.props.fetchEquipes()
             .then(response => {
-                this.setState({showMessageDialog: false})
                 if(response.error) throw response.payload
+                this.setState({showMessageDialog: false})
+
             }).catch(error => {
                 this.setState({showMessageDialog: true, message:`Item deleted with success..`});
                 this.showMessage({text:`Something wrong happened, please try again later.`, type:'error'});

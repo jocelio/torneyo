@@ -56561,8 +56561,8 @@ var EquipeSearch = function (_Component) {
             this.showMessage({ text: 'Carregando...', type: 'info' });
 
             this.props.fetchEquipes().then(function (response) {
-                _this2.setState({ showMessageDialog: false });
                 if (response.error) throw response.payload;
+                _this2.setState({ showMessageDialog: false });
             }).catch(function (error) {
                 _this2.setState({ showMessageDialog: true, message: 'Item deleted with success..' });
                 _this2.showMessage({ text: 'Something wrong happened, please try again later.', type: 'error' });

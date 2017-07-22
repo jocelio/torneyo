@@ -22,7 +22,7 @@ class Equipe extends Seeder
 
         \App\Equipe::truncate();
 
-        for ($i = 1; $i <= 200; $i++) {
+        for ($i = 1; $i <= 1; $i++) {
 
             \App\Equipe::insert(array(
                     'name' => 'Valencia',
