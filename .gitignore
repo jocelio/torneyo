@@ -3,4 +3,4 @@ node_modules/
 vendor/
 public/bundle-login.js
 storage/
-/public/uploads/user_files/imgs/
+/public/uploads/user_files/imgs/*
