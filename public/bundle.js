@@ -41319,9 +41319,25 @@ var EquipeNew = function (_Component) {
                                 _react2.default.createElement(
                                     'div',
                                     { className: 'mdl-cell mdl-cell--4-col', style: { "margin": "0px" } },
-                                    _react2.default.createElement('input', { ref: 'file', id: 'file', type: 'file', onChange: function onChange(e) {
+                                    _react2.default.createElement('input', { required: true, ref: 'file', id: 'file', type: 'file', onChange: function onChange(e) {
                                             return _this4.onChange(e);
-                                        } }),
+                                        },
+                                        style: { "display": "none" } }),
+                                    _react2.default.createElement(
+                                        'label',
+                                        { htmlFor: 'file', className: 'mdl-button mdl-js-button mdl-button--fab mdl-button--colored',
+                                            style: { "paddingBotton": "2px" } },
+                                        _react2.default.createElement(
+                                            'i',
+                                            { className: 'material-icons' },
+                                            'verified_user'
+                                        ),
+                                        _react2.default.createElement(
+                                            'i',
+                                            { className: 'material-icons' },
+                                            'fiber_manual_record'
+                                        )
+                                    ),
                                     this.state.image && _react2.default.createElement(
                                         'div',
                                         { style: { height: 400, width: '30%' } },
@@ -41358,7 +41374,7 @@ var EquipeNew = function (_Component) {
                                 ),
                                 _react2.default.createElement(
                                     'div',
-                                    { className: 'mdl-cell mdl-cell--4-col', style: { "margin": "2px" } },
+                                    { className: 'mdl-cell mdl-cell--4-col', style: { "marginTop": "38px" } },
                                     this.state.previewUrl && _react2.default.createElement(
                                         'div',
                                         null,
@@ -41384,7 +41400,8 @@ var EquipeNew = function (_Component) {
                         _react2.default.createElement(
                             'div',
                             { className: 'mdl-card__actions mdl-card--border' },
-                            _react2.default.createElement('input', { type: 'submit', value: 'Save', className: 'mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect' }),
+                            _react2.default.createElement('input', { type: 'submit', value: 'Save', className: 'mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect',
+                                disabled: !this.state.image }),
                             _react2.default.createElement(_Anchor2.default, { name: 'Cancel', href: 'equipe', className: 'mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect' })
                         )
                     )
@@ -43308,9 +43325,8 @@ module.exports = function spread(callback) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-// export const ROOT_URL = `http://torneyo.herokuapp.com`;
-var ROOT_URL = exports.ROOT_URL = "http://localhost:8001";
+var ROOT_URL = exports.ROOT_URL = "http://torneyo.herokuapp.com";
+// export const ROOT_URL = `http://localhost:8001`;
 
 /***/ }),
 /* 541 */
