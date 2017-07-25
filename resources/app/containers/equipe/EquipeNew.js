@@ -84,7 +84,7 @@ class EquipeNew extends Component {
                                 <div className="content-grid mdl-grid" style={{"maxHeight":"300px","height":"auto","padding":"0px"}}>
                                     <div className="mdl-cell mdl-cell--4-col" style={{"margin":"0px"}}>
 
-                                        <input ref='file' id="file" type='file' onChange={(e) => this.onChange(e)}/>
+                                        <input required ref='file' id="file" type='file' onChange={(e) => this.onChange(e)}/>
 
                                         {this.state.image &&
 
@@ -132,7 +132,8 @@ class EquipeNew extends Component {
                                        component={renderField} validate={[required]} label="Equipe Description"/>
                             </div>
                             <div className="mdl-card__actions mdl-card--border">
-                                <input type="submit" value="Save" className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"/>
+                                <input type="submit" value="Save" className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                                       disabled={!this.state.image}/>
                                 <Anchor name="Cancel" href="equipe" className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"/>
                             </div>
                         </div>
