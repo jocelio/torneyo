@@ -74,10 +74,14 @@ trait RESTActions {
     public function remove($id)
     {
         $m = self::MODEL;
-        if(is_null($m::find($id))){
+        $equipe = $m::find($id);
+        if(is_null($equipe)){
             return $this->respond(Response::HTTP_NOT_FOUND);
         }
         $m::destroy($id);
+        if (file_exists($equipe->image)) {
+            unlink($equipe->image);
+        }
         return $this->respond(Response::HTTP_NO_CONTENT);
     }
 
