@@ -115,7 +115,7 @@ class EquipeNew extends Component {
                                     <div className="mdl-cell mdl-cell--4-col" style={{"margin":"2px"}}>
                                         {this.state.previewUrl &&
                                             <div>
-                                                <span>Equipe Image</span>
+                                                <span>Equipe Image</span><br/>
                                                 <img src={this.state.previewUrl} />
                                             </div>
                                         }

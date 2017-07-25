@@ -22,6 +22,7 @@ class EquipeUpdate extends Component {
         this.props.fetchEquipe(this.props.params.id).then(()=>{
             this.setState({showMessageDialog: false})
         });
+        console.log(this.refs.ted)
     }
 
     formSubmit(props){

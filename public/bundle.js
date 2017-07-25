@@ -15314,7 +15314,7 @@ var renderField = function renderField(_ref) {
         invalid = _ref$meta.invalid;
     return _react2.default.createElement(
         'div',
-        { className: 'mdl-textfield mdl-js-textfield mdl-textfield--floating-label ' + (touched && invalid ? 'is-invalid' : '') },
+        { className: 'mdl-textfield mdl-js-textfield mdl-textfield--floating-label ' + (input.value ? 'is-dirty' : '') + ' ' + (touched && invalid ? 'is-invalid' : '') },
         _react2.default.createElement('input', _extends({}, input, { type: type,
             className: 'mdl-textfield__input'
         })),
@@ -41315,7 +41315,7 @@ var EquipeNew = function (_Component) {
                             { className: 'mdl-card__supporting-text' },
                             _react2.default.createElement(
                                 'div',
-                                { className: 'content-grid mdl-grid', style: { "height": "300px", "padding": "0px" } },
+                                { className: 'content-grid mdl-grid', style: { "maxHeight": "300px", "height": "auto", "padding": "0px" } },
                                 _react2.default.createElement(
                                     'div',
                                     { className: 'mdl-cell mdl-cell--4-col', style: { "margin": "0px" } },
@@ -41367,6 +41367,7 @@ var EquipeNew = function (_Component) {
                                             null,
                                             'Equipe Image'
                                         ),
+                                        _react2.default.createElement('br', null),
                                         _react2.default.createElement('img', { src: this.state.previewUrl })
                                     )
                                 )
@@ -56357,6 +56358,7 @@ var EquipeUpdate = function (_Component) {
             this.props.fetchEquipe(this.props.params.id).then(function () {
                 _this2.setState({ showMessageDialog: false });
             });
+            console.log(this.refs.ted);
         }
     }, {
         key: 'formSubmit',
@@ -56565,7 +56567,7 @@ var EquipeSearch = function (_Component) {
                 if (response.error) throw response.payload;
                 _this2.setState({ showMessageDialog: false });
             }).catch(function (error) {
-                _this2.setState({ showMessageDialog: true, message: 'Item deleted with success..' });
+                _this2.setState({ showMessageDialog: true, message: 'Item deleted with success.' });
                 _this2.showMessage({ text: 'Something wrong happened, please try again later.', type: 'error' });
             });
         }
@@ -56579,7 +56581,7 @@ var EquipeSearch = function (_Component) {
 
                 if (response.error) throw response.payload;
 
-                _this3.setState({ showMessageDialog: true, message: 'Item deleted with success..' });
+                _this3.setState({ showMessageDialog: true, message: 'Item deleted with success.' });
             }).catch(function (error) {
                 _this3.showMessage({ text: 'Something wrong happened, please try again later.', type: 'error' });
             });

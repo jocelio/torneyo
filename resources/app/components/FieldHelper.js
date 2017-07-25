@@ -6,7 +6,7 @@ const renderField = ({
                          meta: { touched, error, warning, invalid },
 
                      }) => (
-    <div className={`mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-focused ${(touched && invalid)?'is-invalid':''}`}>
+    <div className={`mdl-textfield mdl-js-textfield mdl-textfield--floating-label ${(input.value)? 'is-dirty':''} ${(touched && invalid)?'is-invalid':''}`}>
 
         <input {...input} type={type}
         className="mdl-textfield__input"
