@@ -84,7 +84,15 @@ class EquipeNew extends Component {
                                 <div className="content-grid mdl-grid" style={{"maxHeight":"300px","height":"auto","padding":"0px"}}>
                                     <div className="mdl-cell mdl-cell--4-col" style={{"margin":"0px"}}>
 
-                                        <input required ref='file' id="file" type='file' onChange={(e) => this.onChange(e)}/>
+
+                                        <input required ref='file' id="file" type='file' onChange={(e) => this.onChange(e)}
+                                               style={{"display":"none"}}/>
+                                        <label htmlFor="file" className="mdl-button mdl-js-button mdl-button--fab mdl-button--colored"
+                                               style={{"paddingBotton":"2px"}}>
+                                            <i className="material-icons">verified_user</i>
+                                            <i className="material-icons">fiber_manual_record</i>
+                                        </label>
+
 
                                         {this.state.image &&
 
@@ -112,7 +120,7 @@ class EquipeNew extends Component {
                                                     className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Clear</button>
                                         </div>
                                     }
-                                    <div className="mdl-cell mdl-cell--4-col" style={{"margin":"2px"}}>
+                                    <div className="mdl-cell mdl-cell--4-col" style={{"marginTop":"38px"}}>
                                         {this.state.previewUrl &&
                                             <div>
                                                 <span>Equipe Image</span><br/>
