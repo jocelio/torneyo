@@ -43308,8 +43308,9 @@ module.exports = function spread(callback) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var ROOT_URL = exports.ROOT_URL = "http://torneyo.herokuapp.com";
-// export const ROOT_URL = `http://localhost:8001`;
+
+// export const ROOT_URL = `http://torneyo.herokuapp.com`;
+var ROOT_URL = exports.ROOT_URL = "http://localhost:8001";
 
 /***/ }),
 /* 541 */
