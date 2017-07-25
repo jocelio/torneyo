@@ -20,17 +20,17 @@ class EquipeNew extends Component {
 
             Object.assign(equipe, {image:img})
 
-            this.props.createEquipe(equipe)
-                .then(response => {
+            this.props.createEquipe(equipe).then(response => {
 
-                    if(response.error) throw response.payload
+                if(response.error) throw response.payload;
 
-                    this.setState({showMessageDialog: true, message:`${equipe.name} created with success.`});
-                    this.props.reset();
+                this.setState({previewUrl: null,image: null, showMessageDialog: true, message:`${equipe.name} created with success.`});
+                this.props.reset();
 
-                }).catch(error => {
-                    this.showMessage({text:`Something wrong happened, please try again later.`, type:'error'});
-                });
+            }).catch(error => {
+                this.showMessage({text:`Something wrong happened, please try again later.`, type:'error'});
+            });
+
         });
     }
 

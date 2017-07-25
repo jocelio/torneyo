@@ -41228,7 +41228,7 @@ var EquipeNew = function (_Component) {
 
                     if (response.error) throw response.payload;
 
-                    _this2.setState({ showMessageDialog: true, message: equipe.name + ' created with success.' });
+                    _this2.setState({ previewUrl: null, image: null, showMessageDialog: true, message: equipe.name + ' created with success.' });
                     _this2.props.reset();
                 }).catch(function (error) {
                     _this2.showMessage({ text: 'Something wrong happened, please try again later.', type: 'error' });
