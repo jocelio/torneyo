@@ -23,7 +23,12 @@
                         <h2 class="mdl-card__title-text">Torneyo</h2>
                     </div>
                     <div class="mdl-card__supporting-text">
-                        <form action="/login" id="login" method="post">
+                        <form action="/oauth/token" id="login" method="post">
+
+                            <input type="hidden" name="client_secret" value="bEoyH3MtiBgpLRRgl08wHo2sKra6Me3RuR4IJya0" />
+                            <input type="hidden" name="grant_type" value="password" />
+                            <input type="hidden" name="client_id" value="2" />
+
                             <div class="mdl-textfield mdl-js-textfield">
                                 <input class="mdl-textfield__input" type="text" id="username" name="username"/>
                                 <label class="mdl-textfield__label" for="username">Username</label>

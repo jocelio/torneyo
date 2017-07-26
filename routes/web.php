@@ -13,22 +13,25 @@
 
 
 
-$app->get('/', function ()  {
-    return view('home', ['name' => 'teste']);
+$app->get('/login', function ()  {
+    return view('login', ['name' => 'teste']);
+});
+
+$app->group(['middleware' => ['auth']], function($app) {
+
+    /**
+     * Routes for resource equipe
+     */
+    $app->get('equipe/search/', 'EquipesController@search');
+    $app->get('equipe', 'EquipesController@all');
+    $app->get('equipe/{id}', 'EquipesController@get');
+    $app->post('equipe', 'EquipesController@add');
+    $app->put('equipe/{id}', 'EquipesController@put');
+    $app->delete('equipe/{id}', 'EquipesController@remove');
+
 });
 
 
-
-
-/**
- * Routes for resource equipe
- */
-$app->get('equipe/search/', 'EquipesController@search');
-$app->get('equipe', 'EquipesController@all');
-$app->get('equipe/{id}', 'EquipesController@get');
-$app->post('equipe', 'EquipesController@add');
-$app->put('equipe/{id}', 'EquipesController@put');
-$app->delete('equipe/{id}', 'EquipesController@remove');
 
 Dusterio\LumenPassport\LumenPassport::routes($app);
 
@@ -37,16 +40,12 @@ Dusterio\LumenPassport\LumenPassport::routes($app);
 /**
  * Routes for resource task
  */
-$app->get('task', 'TasksController@all');
-$app->get('task/{id}', 'TasksController@get');
-$app->post('task', 'TasksController@add');
-$app->put('task/{id}', 'TasksController@put');
-$app->delete('task/{id}', 'TasksController@remove');
+
 
 /**
  * Routes for resource user
  */
-$app->get('UserSeeder', 'UsersController@all');
+$app->get('User', 'UsersController@all');
 $app->get('user/{id}', 'UsersController@get');
 $app->post('UserSeeder', 'UsersController@add');
 $app->put('user/{id}', 'UsersController@put');
