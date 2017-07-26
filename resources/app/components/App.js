@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Menu from '../components/Menu';
+import Menu from './Menu';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 class App extends Component {

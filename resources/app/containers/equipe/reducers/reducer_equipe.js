@@ -1,4 +1,4 @@
-import { FETCH_EQUIPES, FETCH_EQUIPE, SEARCH_EQUIPES, CREATE_EQUIPE, DELETE_EQUIPE, FILTER_EQUIPES, UPDATE_EQUIPE } from '../actions/equipe_action'
+import { FETCH_EQUIPES, FETCH_EQUIPE, SEARCH_EQUIPES, CREATE_EQUIPE, DELETE_EQUIPE, FILTER_EQUIPES, UPDATE_EQUIPE } from '../actions/actions_equipe'
 
 
 export default (state = [], action) => {

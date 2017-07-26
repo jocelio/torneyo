@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchEquipes, deleteEquipe, searchEquipes } from './actions/equipe_action';
+import { fetchEquipes, deleteEquipe, searchEquipes } from './actions/actions_equipe';
 import Anchor from '../../components/Anchor';
 import EquipeSearchForm from './EquipeSearchForm';
 import { Link } from 'react-router';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-
-
 
 class EquipeSearch extends Component {
 

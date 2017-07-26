@@ -4,10 +4,12 @@ namespace App;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Auth\Authenticatable as AuthenticableTrait;
+use \Laravel\Passport\HasApiTokens as HasApiTokens;
 use Illuminate\Database\Eloquent\Model as Model;
 
 class User extends Model implements Authenticatable
 {
+    use HasApiTokens;
     use AuthenticableTrait;
 
 //{

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchEquipe, updateEquipe } from './actions/equipe_action';
+import { fetchEquipe, updateEquipe } from './actions/actions_equipe';
 import { reduxForm, Field } from 'redux-form';
 import PropTypes from 'prop-types';
 import Anchor from '../../components/Anchor';

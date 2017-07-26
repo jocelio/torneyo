@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { searchEquipes, filterEquipes } from './actions/equipe_action';
+import { searchEquipes, filterEquipes } from './actions/actions_equipe';
 import { reduxForm, Field } from 'redux-form';
 import { renderField } from '../../components/FieldHelper';
 

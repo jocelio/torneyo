@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createEquipe } from './actions/equipe_action';
+import { createEquipe } from './actions/actions_equipe';
 import { reduxForm, Field } from 'redux-form';
 import Anchor from '../../components/Anchor';
 import Dialog from 'material-ui/Dialog';
