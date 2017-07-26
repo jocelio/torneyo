@@ -17,11 +17,12 @@ $app->get('/login', function ()  {
     return view('login', ['name' => 'teste']);
 });
 
+    $app->get('/', function ()  {
+        return view('home');
+    });
 $app->group(['middleware' => ['auth']], function($app) {
 
-    /**
-     * Routes for resource equipe
-     */
+
     $app->get('equipe/search/', 'EquipesController@search');
     $app->get('equipe', 'EquipesController@all');
     $app->get('equipe/{id}', 'EquipesController@get');

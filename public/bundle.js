@@ -44865,6 +44865,8 @@ var _react = __webpack_require__(3);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRedux = __webpack_require__(19);
+
 var _Menu = __webpack_require__(620);
 
 var _Menu2 = _interopRequireDefault(_Menu);
@@ -44872,6 +44874,8 @@ var _Menu2 = _interopRequireDefault(_Menu);
 var _reactTapEventPlugin = __webpack_require__(622);
 
 var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
+
+var _actions_login = __webpack_require__(754);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -44884,18 +44888,17 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var App = function (_Component) {
     _inherits(App, _Component);
 
-    function App() {
+    function App(props) {
         _classCallCheck(this, App);
 
-        return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+
+        (0, _reactTapEventPlugin2.default)();
+        _this.props.keepSession();
+        return _this;
     }
 
     _createClass(App, [{
-        key: 'componentWillMount',
-        value: function componentWillMount() {
-            (0, _reactTapEventPlugin2.default)();
-        }
-    }, {
         key: 'render',
         value: function render() {
 
@@ -45037,7 +45040,7 @@ var App = function (_Component) {
     return App;
 }(_react.Component);
 
-exports.default = App;
+exports.default = (0, _reactRedux.connect)(null, { keepSession: _actions_login.keepSession })(App);
 
 /***/ }),
 /* 620 */
@@ -57508,7 +57511,80 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, { searchEquipes: _ac
 /* 751 */,
 /* 752 */,
 /* 753 */,
-/* 754 */,
+/* 754 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.KEEP_SESSION = exports.REDIRECT_IN = exports.WRITE_LOCAL_STORAGE = exports.LOGIN = undefined;
+exports.login = login;
+exports.storeAuthCredentials = storeAuthCredentials;
+exports.redirectIn = redirectIn;
+exports.keepSession = keepSession;
+
+var _axiosFactory = __webpack_require__(757);
+
+var LOGIN = exports.LOGIN = 'LOGIN';
+var WRITE_LOCAL_STORAGE = exports.WRITE_LOCAL_STORAGE = 'WRITE_LOCALS_TORAGE';
+var REDIRECT_IN = exports.REDIRECT_IN = 'REDIRECT_IN';
+var KEEP_SESSION = exports.KEEP_SESSION = 'KEEP_SESSION';
+
+function login(data) {
+
+    var url = '/oauth/token';
+
+    var formData = {
+        client_secret: 'bEoyH3MtiBgpLRRgl08wHo2sKra6Me3RuR4IJya0',
+        grant_type: 'password',
+        client_id: 2,
+        username: data.username,
+        password: data.password
+    };
+
+    var response = (0, _axiosFactory.axiosInstance)().post(url, formData);
+
+    return {
+        type: LOGIN,
+        payload: response
+    };
+}
+
+function storeAuthCredentials(credentials) {
+
+    localStorage.setItem('access_token', credentials.access_token);
+    localStorage.setItem('expires_in', credentials.expires_in);
+
+    return {
+        type: WRITE_LOCAL_STORAGE,
+        payload: true
+    };
+}
+
+function redirectIn() {
+
+    window.location.href = "/#/";
+
+    return {
+        type: REDIRECT_IN,
+        payload: null
+    };
+}
+
+function keepSession() {
+
+    if (!localStorage.getItem('access_token')) window.location.href = "/login";
+
+    return {
+        type: KEEP_SESSION,
+        payload: null
+    };
+}
+
+/***/ }),
 /* 755 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -57527,14 +57603,11 @@ exports.createEquipe = createEquipe;
 exports.deleteEquipe = deleteEquipe;
 exports.updateEquipe = updateEquipe;
 
-var _axios = __webpack_require__(361);
-
-var _axios2 = _interopRequireDefault(_axios);
+var _axiosFactory = __webpack_require__(757);
 
 var _config = __webpack_require__(380);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+// import axios from 'axios';
 var FETCH_EQUIPES = exports.FETCH_EQUIPES = 'FETCH_EQUIPES';
 var FETCH_EQUIPE = exports.FETCH_EQUIPE = 'FETCH_EQUIPE';
 var CREATE_EQUIPE = exports.CREATE_EQUIPE = 'CREATE_EQUIPE';
@@ -57544,8 +57617,10 @@ var SEARCH_EQUIPES = exports.SEARCH_EQUIPES = 'SEARCH_EQUIPES';
 var FILTER_EQUIPES = exports.FILTER_EQUIPES = 'FILTER_EQUIPES';
 
 function fetchEquipes(equipe) {
-    var url = _config.ROOT_URL + '/equipe';
-    var response = _axios2.default.get(url);
+
+    var url = '/equipe';
+
+    var response = (0, _axiosFactory.axiosInstance)().get(url);
     return {
         type: FETCH_EQUIPES,
         payload: response
@@ -57578,7 +57653,7 @@ function searchEquipes(equipe) {
     }).join('&');
 
     var url = _config.ROOT_URL + '/equipe/search?' + query;
-    var response = _axios2.default.get(url);
+    var response = (0, _axiosFactory.axiosInstance)().get(url);
     return {
         type: SEARCH_EQUIPES,
         payload: response
@@ -57587,7 +57662,7 @@ function searchEquipes(equipe) {
 
 function fetchEquipe(id) {
     var url = _config.ROOT_URL + '/equipe/' + id;
-    var response = _axios2.default.get(url);
+    var response = (0, _axiosFactory.axiosInstance)().get(url);
     return {
         type: FETCH_EQUIPE,
         payload: response
@@ -57605,7 +57680,7 @@ function createEquipe(equipe) {
     var url = _config.ROOT_URL + '/equipe';
     return {
         type: CREATE_EQUIPE,
-        payload: _axios2.default.post(url, fd, { headers: { 'content-type': 'multipart/form-data' } })
+        payload: (0, _axiosFactory.axiosInstance)().post(url, fd, { headers: { 'content-type': 'multipart/form-data' } })
     };
 }
 
@@ -57614,7 +57689,7 @@ function deleteEquipe(equipe) {
 
     return {
         type: DELETE_EQUIPE,
-        payload: { id: equipe.id, response: _axios2.default.delete(url) }
+        payload: { id: equipe.id, response: (0, _axiosFactory.axiosInstance)().delete(url) }
     };
 }
 
@@ -57622,8 +57697,45 @@ function updateEquipe(equipe) {
     var url = _config.ROOT_URL + '/equipe/' + equipe.id;
     return {
         type: UPDATE_EQUIPE,
-        payload: _axios2.default.put(url, equipe)
+        payload: (0, _axiosFactory.axiosInstance)().put(url, equipe)
     };
+}
+
+/***/ }),
+/* 756 */,
+/* 757 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.axiosInstance = axiosInstance;
+
+var _axios = __webpack_require__(361);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _config = __webpack_require__(380);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Created by jocelio on 26/07/17.
+ */
+function axiosInstance() {
+
+    var token = localStorage.getItem('access_token');
+
+    var instance = _axios2.default.create({
+        baseURL: _config.ROOT_URL,
+        timeout: 1000,
+        headers: { 'Authorization': 'Bearer ' + token }
+    });
+
+    return instance;
 }
 
 /***/ })

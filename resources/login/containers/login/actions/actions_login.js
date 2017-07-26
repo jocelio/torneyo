@@ -1,14 +1,17 @@
-import axios from 'axios';
-import {ROOT_URL} from '../../../../app/config'
+import { axiosInstance } from '../../../../app/axiosFactory'
+
 
 export const LOGIN = 'LOGIN';
-export const WRITE_LOCALSTORAGE = 'WRITE_LOCALSTORAGE';
+export const WRITE_LOCAL_STORAGE = 'WRITE_LOCALS_TORAGE';
+export const REDIRECT_IN = 'REDIRECT_IN';
+export const KEEP_SESSION = 'KEEP_SESSION';
+
 
 export function login(data){
 
-    const url = `${ROOT_URL}/oauth/token`;
+    const url = '/oauth/token';
 
-    const formdata = {
+    const formData = {
         client_secret:'bEoyH3MtiBgpLRRgl08wHo2sKra6Me3RuR4IJya0',
         grant_type:'password',
         client_id:2,
@@ -16,12 +19,13 @@ export function login(data){
         password:data.password
     }
 
-    const response = axios.post(url, formdata);
+    const response = axiosInstance().post(url, formData);
 
     return {
         type: LOGIN,
         payload: response
     };
+
 }
 
 export function storeAuthCredentials(credentials){
@@ -30,7 +34,30 @@ export function storeAuthCredentials(credentials){
     localStorage.setItem('expires_in',credentials.expires_in);
 
     return {
-        type: WRITE_LOCALSTORAGE,
+        type: WRITE_LOCAL_STORAGE,
         payload: true
     };
+}
+
+export function redirectIn() {
+
+    window.location.href="/#/"
+
+    return {
+        type: REDIRECT_IN,
+        payload: null
+    };
+
+}
+
+export function keepSession() {
+
+    if(!localStorage.getItem('access_token'))
+        window.location.href="/login";
+
+    return {
+        type: KEEP_SESSION,
+        payload: null
+    };
+
 }

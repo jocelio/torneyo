@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import {login , storeAuthCredentials } from './actions/actions_login';
+import {login , storeAuthCredentials, redirectIn } from './actions/actions_login';
 import {styles} from '../../../../public/assets/css/login.css';
 
 class FormLogin extends Component {
@@ -17,8 +17,8 @@ class FormLogin extends Component {
             if(response.error) throw response.data;
 
             this.props.storeAuthCredentials(response.payload.data);
+            this.props.redirectIn()
 
-            this.context.router.push('/equipe');
 
         }).catch(error => {
            alert(error);
@@ -69,4 +69,4 @@ function mapStateToProps(state){
     return state;
 }
 
-export default connect(mapStateToProps, {login, storeAuthCredentials})(FormLogin);
+export default connect(mapStateToProps, {login, storeAuthCredentials, redirectIn})(FormLogin);
