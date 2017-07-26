@@ -26,3 +26,21 @@ $factory->define(App\Equipe::class, function ($faker) {
         'project_id' => $faker->key,
     ];
 });
+
+/**
+ * Factory definition for model App\Task.
+ */
+$factory->define(App\Task::class, function ($faker) {
+    return [
+        'torneyo_id' => $faker->key,
+    ];
+});
+
+/**
+ * Factory definition for model App\User.
+ */
+$factory->define(App\User::class, function ($faker) {
+    return [
+        'torneyo_id' => $faker->key,
+    ];
+});

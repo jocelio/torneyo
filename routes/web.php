@@ -34,3 +34,20 @@ Dusterio\LumenPassport\LumenPassport::routes($app);
 
 
 Dusterio\LumenPassport\LumenPassport::routes($app, ['prefix' => 'v1/oauth']);
+/**
+ * Routes for resource task
+ */
+$app->get('task', 'TasksController@all');
+$app->get('task/{id}', 'TasksController@get');
+$app->post('task', 'TasksController@add');
+$app->put('task/{id}', 'TasksController@put');
+$app->delete('task/{id}', 'TasksController@remove');
+
+/**
+ * Routes for resource user
+ */
+$app->get('UserSeed', 'UsersController@all');
+$app->get('user/{id}', 'UsersController@get');
+$app->post('UserSeed', 'UsersController@add');
+$app->put('user/{id}', 'UsersController@put');
+$app->delete('user/{id}', 'UsersController@remove');
