@@ -13,17 +13,11 @@
 
 
 
-//$app->get('/', function ()  {
-//    return view('login');
-//});
-
 $app->get('/', function ()  {
     return view('home', ['name' => 'teste']);
 });
 
-//$app->post('/login', 'UserController@login');
 
-//----------------
 
 
 /**
@@ -35,3 +29,8 @@ $app->get('equipe/{id}', 'EquipesController@get');
 $app->post('equipe', 'EquipesController@add');
 $app->put('equipe/{id}', 'EquipesController@put');
 $app->delete('equipe/{id}', 'EquipesController@remove');
+
+Dusterio\LumenPassport\LumenPassport::routes($app);
+
+
+Dusterio\LumenPassport\LumenPassport::routes($app, ['prefix' => 'v1/oauth']);
