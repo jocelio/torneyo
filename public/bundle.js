@@ -43325,8 +43325,9 @@ module.exports = function spread(callback) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var ROOT_URL = exports.ROOT_URL = "http://torneyo.herokuapp.com";
-// export const ROOT_URL = `http://localhost:8001`;
+
+// export const ROOT_URL = `http://torneyo.herokuapp.com`;
+var ROOT_URL = exports.ROOT_URL = "http://localhost:8001";
 
 /***/ }),
 /* 541 */
@@ -56583,7 +56584,6 @@ var EquipeSearch = function (_Component) {
                 if (response.error) throw response.payload;
                 _this2.setState({ showMessageDialog: false });
             }).catch(function (error) {
-                _this2.setState({ showMessageDialog: true, message: 'Item deleted with success.' });
                 _this2.showMessage({ text: 'Something wrong happened, please try again later.', type: 'error' });
             });
         }
