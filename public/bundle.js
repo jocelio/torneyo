@@ -32003,8 +32003,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-// export const ROOT_URL = `http://torneyo.herokuapp.com`;
-var ROOT_URL = exports.ROOT_URL = "http://localhost:8001";
+// export const API_URL = `http://torneyo.herokuapp.com`;
+var API_URL = exports.API_URL = "http://localhost:8001";
 
 /***/ }),
 /* 381 */
@@ -57730,7 +57730,7 @@ function axiosInstance() {
     var token = localStorage.getItem('access_token');
 
     var instance = _axios2.default.create({
-        baseURL: _config.ROOT_URL,
+        baseURL: _config.API_URL,
         timeout: 1000,
         headers: { 'Authorization': 'Bearer ' + token }
     });
