@@ -10,4 +10,12 @@ class User extends Model implements Authenticatable
 {
     use AuthenticableTrait;
 
+    protected $fillable = ["username", "email","password"];
+
+    public static $rules = [
+        "username" => "required",
+        "email" => "required",
+        'password' => 'required'
+    ];
+
 }

@@ -12,13 +12,11 @@ class Equipe extends Seeder
     public function run()
     {
 
-//        CREATE TABLE IF NOT EXISTS equipes (
+//        CREATE TABLE IF NOT EXISTS users (
 //        id INT(5) AUTO_INCREMENT PRIMARY KEY,
-//        name VARCHAR(20),
-//        description VARCHAR(30),
-//        created_at DATE,
-//        updated_at DATE,
-//        due DATE);
+//        user VARCHAR(20),
+//        email VARCHAR(30),
+//        password VARCHAR(100));
 
         \App\Equipe::truncate();
 

@@ -33,7 +33,7 @@ $app->delete('equipe/{id}', 'EquipesController@remove');
 Dusterio\LumenPassport\LumenPassport::routes($app);
 
 
-Dusterio\LumenPassport\LumenPassport::routes($app, ['prefix' => 'v1/oauth']);
+//Dusterio\LumenPassport\LumenPassport::routes($app, ['prefix' => 'v1/oauth']);
 /**
  * Routes for resource task
  */
@@ -46,8 +46,8 @@ $app->delete('task/{id}', 'TasksController@remove');
 /**
  * Routes for resource user
  */
-$app->get('UserSeed', 'UsersController@all');
+$app->get('UserSeeder', 'UsersController@all');
 $app->get('user/{id}', 'UsersController@get');
-$app->post('UserSeed', 'UsersController@add');
+$app->post('UserSeeder', 'UsersController@add');
 $app->put('user/{id}', 'UsersController@put');
 $app->delete('user/{id}', 'UsersController@remove');

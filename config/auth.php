@@ -24,7 +24,6 @@ return [
             'driver' => 'eloquent',
             'model' => \App\User::class
         ]
-    ],
-    'cipher' => 'AES-128-CBC'
+    ]
 
 ];
