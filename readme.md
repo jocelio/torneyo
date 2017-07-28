@@ -2,7 +2,7 @@
 
 
 
-A full-stack app built in Lumen, React and Docker.
+A full-stack app built with Lumen React.
 
 ## Running Mysql with Docker
 ```
