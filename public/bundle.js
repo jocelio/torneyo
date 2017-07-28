@@ -44966,6 +44966,11 @@ var App = function (_Component) {
                                 'li',
                                 { className: 'mdl-menu__item' },
                                 'Legal information'
+                            ),
+                            _react2.default.createElement(
+                                'li',
+                                { className: 'mdl-menu__item' },
+                                'Logout'
                             )
                         )
                     )

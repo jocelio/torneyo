@@ -39,6 +39,7 @@ class App extends Component {
                         <li className="mdl-menu__item">About</li>
                         <li className="mdl-menu__item">Contact</li>
                         <li className="mdl-menu__item">Legal information</li>
+                        <li className="mdl-menu__item">Logout</li>
                     </ul>
                 </div>
             </header>
