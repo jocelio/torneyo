@@ -7,7 +7,6 @@ import ReduxPromise from 'redux-promise';
 import reducers from '../app/reducers/index';
 import {Router, hashHistory} from 'react-router';
 
-
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
 ReactDOM.render(
