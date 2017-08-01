@@ -1,14 +1,14 @@
-// import axios from 'axios';
+
 import { axiosInstance } from '../../../axiosFactory'
 import {ROOT_URL} from '../../../config'
 
-export const FETCH_EQUIPES = 'FETCH_EQUIPES';
-export const FETCH_EQUIPE  = 'FETCH_EQUIPE';
-export const CREATE_EQUIPE = 'CREATE_EQUIPE';
-export const DELETE_EQUIPE = 'DELETE_EQUIPE';
-export const UPDATE_EQUIPE = 'UPDATE_EQUIPE';
-export const SEARCH_EQUIPES = 'SEARCH_EQUIPES';
-export const FILTER_EQUIPES = 'FILTER_EQUIPES';
+export const FETCH_EQUIPES = 'FETCH_PLAYERS';
+export const FETCH_EQUIPE  = 'FETCH_PLAYER';
+export const CREATE_EQUIPE = 'CREATE_PLAYER';
+export const DELETE_EQUIPE = 'DELETE_PLAYER';
+export const UPDATE_EQUIPE = 'UPDATE_PLAYER';
+export const SEARCH_EQUIPES = 'SEARCH_PLAYERS';
+export const FILTER_EQUIPES = 'FILTER_PLAYERS';
 
 
 export function fetchEquipes(equipe){
