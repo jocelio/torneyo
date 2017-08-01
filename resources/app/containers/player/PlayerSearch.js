@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPlayers, deletePlayer, searchPlayer } from './actions/actions_player';
 import Anchor from '../../components/Anchor';
-import EquipeSearchForm from './EquipeSearchForm';
+import PlayerSearchForm from './PlayerSearchForm';
 import { Link } from 'react-router';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
@@ -30,7 +30,7 @@ class PlayerSearch extends Component {
 
     handleRemoveItem(){
         this.handleCloseRemoveDialog();
-        this.props.deleteEquipe(this.state.equipe)
+        this.props.deletePlayer(this.state.player)
             .payload.response
             .then(response => {
 
@@ -97,11 +97,11 @@ class PlayerSearch extends Component {
 
                     <hr/>
 
-                        <EquipeSearchForm />
+                        <PlayerSearchForm />
 
                     <hr/>
 
-                    {(this.state.view ==='table')?this.tableEquipes():this.listEquipes()}
+                    {(this.state.view ==='table')?this.tablePlayers():this.listPlayers()}
 
                     <Dialog
                         title="Remove Item"
@@ -133,11 +133,11 @@ class PlayerSearch extends Component {
     }
 
 
-    listEquipes(){
+    listPlayers(){
         return (<ul> {this.props.players.map((e) => this.renderCards(e))} </ul>)
     }
 
-    tableEquipes(){
+    tablePlayers(){
         return (<table className="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
                     <thead>
                     <tr>
