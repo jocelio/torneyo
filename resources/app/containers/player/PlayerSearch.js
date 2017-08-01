@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchEquipes, deleteEquipe, searchEquipes } from './actions/actions_equipe';
+import { fetchPlayers, deletePlayer, searchPlayer } from './actions/actions_player';
 import Anchor from '../../components/Anchor';
 import EquipeSearchForm from './EquipeSearchForm';
 import { Link } from 'react-router';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 
-class EquipeSearch extends Component {
+class PlayerSearch extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {showRemoveDialog:false, showMessageDialog:false, equipe:{}, message:"", view:'card'};
+        this.state = {showRemoveDialog:false, showMessageDialog:false, player:{}, message:"", view:'card'};
     }
 
     componentDidMount(){
         this.showMessage({text:`Loading...`, type:'info'});
 
-        this.props.fetchEquipes()
+        this.props.fetchPlayers()
             .then(response => {
                 if(response.error) throw response.payload
                 this.setState({showMessageDialog: false})
@@ -45,8 +45,8 @@ class EquipeSearch extends Component {
         // this.props.fetchEquipes();
     }
 
-    handleOpenRemoveDialog(equipe) {
-        this.setState({showRemoveDialog: true, equipe: equipe});
+    handleOpenRemoveDialog(player) {
+        this.setState({showRemoveDialog: true, equipe: player});
     }
 
     handleCloseRemoveDialog(){
@@ -97,11 +97,9 @@ class EquipeSearch extends Component {
 
                     <hr/>
 
-                    <EquipeSearchForm />
+                        <EquipeSearchForm />
 
                     <hr/>
-
-
 
                     {(this.state.view ==='table')?this.tableEquipes():this.listEquipes()}
 
@@ -111,7 +109,7 @@ class EquipeSearch extends Component {
                         modal={false}
                         open={this.state.showRemoveDialog}
                         onRequestClose={() => this.handleCloseRemoveDialog()}>
-                        Are you sure you want to remove {this.state.equipe.name}?
+                        Are you sure you want to remove {this.state.player.name}?
                     </Dialog>
 
                     <Dialog
@@ -136,57 +134,57 @@ class EquipeSearch extends Component {
 
 
     listEquipes(){
-        return (<ul> {this.props.equipes.map((e) => this.renderCards(e))} </ul>)
+        return (<ul> {this.props.players.map((e) => this.renderCards(e))} </ul>)
     }
 
     tableEquipes(){
         return (<table className="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
                     <thead>
                     <tr>
-                        <th>Equipe Name</th>
-                        <th>Equipe Description</th>
+                        <th>Player Name</th>
+                        <th>Player Description</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
                 <tbody>
-                    {this.props.equipes.map((e) => this.renderTable(e))}
+                    {this.props.players.map((e) => this.renderTable(e))}
                 </tbody>
             </table>)
     }
 
-    renderCards(equipe){
+    renderCards(player){
         return (
-            <li key={equipe.id}>
+            <li key={player.id}>
                 <div className="demo-card-square mdl-card mdl-shadow--2dp">
                     <div className="mdl-card__title mdl-card--expand card-image" >
-                        <img src={equipe.image} />
-                        <h2 className="mdl-card__title-text">{equipe.name}</h2>
+                        <img src={player.image} />
+                        <h2 className="mdl-card__title-text">{player.name}</h2>
                     </div>
                     <div className="mdl-card__supporting-text">
-                        {equipe.description}
+                        {player.description}
                     </div>
                     <div className="mdl-card__actions mdl-card--border">
 
                         <Link to={this.props.href} className="mdl-button mdl-js-button mdl-js-ripple-effect"
-                              onClick={(e) => this.handleOpenRemoveDialog(equipe)}>Delete</Link>
+                              onClick={(e) => this.handleOpenRemoveDialog(player)}>Delete</Link>
                         &nbsp;
-                        <Link to={`equipe/update/${equipe.id}`} className="mdl-button mdl-js-button mdl-js-ripple-effect">Update</Link>
+                        <Link to={`equipe/update/${player.id}`} className="mdl-button mdl-js-button mdl-js-ripple-effect">Update</Link>
 
                     </div>
                 </div>
             </li>)
     }
-    renderTable(equipe){
+    renderTable(player){
         return(
-            <tr key={equipe.id} >
-                <td>{equipe.name}</td>
-                <td>{equipe.description}</td>
+            <tr key={player.id} >
+                <td>{player.name}</td>
+                <td>{player.description}</td>
                 <td className="td-center">
 
                     <Link to={this.props.href} className="mdl-button mdl-js-button mdl-js-ripple-effect"
-                          onClick={(e) => this.handleOpenRemoveDialog(equipe)}>Delete</Link>
+                          onClick={(e) => this.handleOpenRemoveDialog(player)}>Delete</Link>
                     &nbsp;
-                    <Anchor name="Update" href={`equipe/update/${equipe.id}`} className="mdl-button mdl-js-button mdl-js-ripple-effect"/>
+                    <Anchor name="Update" href={`equipe/update/${player.id}`} className="mdl-button mdl-js-button mdl-js-ripple-effect"/>
 
 
                 </td>
@@ -197,9 +195,9 @@ class EquipeSearch extends Component {
 }
 
 function mapStateToProps( state ){
-    if(state.equipesState.all)
-        return {equipes: state.equipesState.all}
-   return {equipes:[]};
+    if(state.playersState.all)
+        return {players: state.playersState.all}
+   return {players:[]};
 }
 
-export default connect(mapStateToProps, { fetchEquipes, deleteEquipe, searchEquipes })(EquipeSearch);
+export default connect(mapStateToProps, { fetchPlayers, deletePlayer, searchPlayer })(PlayerSearch);
