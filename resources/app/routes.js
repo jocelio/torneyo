@@ -19,5 +19,10 @@ export default (
             <Route path="new" component={EquipeNew}/>
             <Route path="update/:id" component={EquipeUpdate}/>
         </Route>
+        <Route path="/player" component={Equipe}>
+            <IndexRoute component={EquipeSearch}/>
+            <Route path="new" component={EquipeNew}/>
+            <Route path="update/:id" component={EquipeUpdate}/>
+        </Route>
     </Route>
 );
