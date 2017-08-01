@@ -1,24 +1,24 @@
-import { FETCH_EQUIPES, FETCH_EQUIPE, SEARCH_EQUIPES, CREATE_EQUIPE, DELETE_EQUIPE, FILTER_EQUIPES, UPDATE_EQUIPE } from '../actions/actions_equipe'
+import { FETCH_PLAYERS, FETCH_PLAYER, SEARCH_PLAYERS, CREATE_PLAYER, DELETE_PLAYER, FILTER_PLAYERS, UPDATE_PLAYER } from '../actions/actions_player'
 
 
 export default (state = [], action) => {
 
     switch (action.type) {
-        case FETCH_EQUIPES:
+        case FETCH_PLAYERS:
             return {all:action.payload.data}
-        case FETCH_EQUIPE:
+        case FETCH_PLAYER:
             return {equipe:action.payload.data}
-        case CREATE_EQUIPE:
+        case CREATE_PLAYER:
             return action.payload
-        case UPDATE_EQUIPE:
+        case UPDATE_PLAYER:
             return action.payload
-        case DELETE_EQUIPE:
+        case DELETE_PLAYER:
             return {all: state.all.filter((i) => {
                 return i.id != action.payload.id
             })};
-        case SEARCH_EQUIPES:
+        case SEARCH_PLAYERS:
             return {all:action.payload.data}
-        case FILTER_EQUIPES:
+        case FILTER_PLAYERS:
             return {all:action.payload.filteredEquipes, holdEquipes:action.payload.holdEquipes}
         default:
             return state;
