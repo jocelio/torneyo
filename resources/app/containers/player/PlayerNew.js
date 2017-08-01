@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createEquipe } from './actions/actions_equipe';
+import { createPlayer } from './actions/actions_player';
 import { reduxForm, Field } from 'redux-form';
 import Anchor from '../../components/Anchor';
 import Dialog from 'material-ui/Dialog';
@@ -8,23 +8,23 @@ import FlatButton from 'material-ui/FlatButton';
 import { renderField, required } from '../../components/FieldHelper';
 import Cropper from 'react-crop';
 
-class EquipeNew extends Component {
+class PlayerNew extends Component {
 
     constructor(props) {
         super(props);
         this.state = {showMessageDialog: false, message:'',image: null,previewImage: null};
     }
 
-    formSubmit(equipe){
+    formSubmit(player){
         this.refs.crop.cropImage().then((img) => {
 
-            Object.assign(equipe, {image:img})
+            Object.assign(player, {image:img})
 
-            this.props.createEquipe(equipe).then(response => {
+            this.props.createPlayer(player).then(response => {
 
                 if(response.error) throw response.payload;
 
-                this.setState({previewUrl: null,image: null, showMessageDialog: true, message:`${equipe.name} created with success.`});
+                this.setState({previewUrl: null,image: null, showMessageDialog: true, message:`${player.name} created with success.`});
                 this.props.reset();
 
             }).catch(error => {
@@ -173,12 +173,12 @@ class EquipeNew extends Component {
     }
 }
 
-EquipeNew = reduxForm({
-    form:'NewEquipeForm',
-})(EquipeNew);
+PlayerNew = reduxForm({
+    form:'NewPlayerForm',
+})(PlayerNew);
 
-function mapStateToProps({ equipesState }){
-    return { equipesState };
+function mapStateToProps({ playersState }){
+    return { playersState };
 }
 
-export default connect(mapStateToProps, { createEquipe })(EquipeNew);
+export default connect(mapStateToProps, { createPlayer })(PlayerNew);

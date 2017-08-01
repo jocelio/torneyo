@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
-import FetchEquipeReducer from '../containers/equipe/reducers/reducer_equipe';
+import EquipeReducer from '../containers/equipe/reducers/reducer_equipe';
+import PlayerReducer from '../containers/player/reducers/reducer_player';
 import { reducer as formReducer } from 'redux-form'
 
 const rootReducer = combineReducers({
     state: (state = {}) => state,
-    equipesState: FetchEquipeReducer,
+    equipesState: EquipeReducer,
+    playersState: PlayerReducer,
     form: formReducer
 });
 
