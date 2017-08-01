@@ -11,7 +11,7 @@ export const SEARCH_PLAYERS = 'SEARCH_PLAYERS';
 export const FILTER_PLAYERS = 'FILTER_PLAYERS';
 
 
-export function fetchPlayer(){
+export function fetchPlayers(){
 
     const url = '/player';
 

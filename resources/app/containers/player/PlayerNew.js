@@ -146,8 +146,6 @@ class PlayerNew extends Component {
                             </div>
                         </div>
 
-
-
             </form>
                 <Dialog
                     title="Message"
