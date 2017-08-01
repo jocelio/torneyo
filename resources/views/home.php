@@ -28,17 +28,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.cyan-light_blue.min.css">
     <link rel="stylesheet" href="assets/css/styles.css">
-    <style>
-        #view-source {
-            position: fixed;
-            display: block;
-            right: 0;
-            bottom: 0;
-            margin-right: 40px;
-            margin-bottom: 40px;
-            z-index: 900;
-        }
-    </style>
 </head>
 <body>
 <div id="app"></div>
