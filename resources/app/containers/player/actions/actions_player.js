@@ -10,7 +10,6 @@ export const UPDATE_PLAYER = 'UPDATE_PLAYER';
 export const SEARCH_PLAYERS = 'SEARCH_PLAYERS';
 export const FILTER_PLAYERS = 'FILTER_PLAYERS';
 
-
 export function fetchPlayers(){
 
     const url = '/player';

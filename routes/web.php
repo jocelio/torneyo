@@ -22,13 +22,30 @@ $app->get('/login', function ()  {
     });
 $app->group(['middleware' => ['auth']], function($app) {
 
-
     $app->get('equipe/search/', 'EquipesController@search');
     $app->get('equipe', 'EquipesController@all');
     $app->get('equipe/{id}', 'EquipesController@get');
     $app->post('equipe', 'EquipesController@add');
     $app->put('equipe/{id}', 'EquipesController@put');
     $app->delete('equipe/{id}', 'EquipesController@remove');
+
+    /**
+     * Routes for resource player
+     */
+    $app->get('player', 'PlayersController@all');
+    $app->get('player/{id}', 'PlayersController@get');
+    $app->post('player', 'PlayersController@add');
+    $app->put('player/{id}', 'PlayersController@put');
+    $app->delete('player/{id}', 'PlayersController@remove');
+
+    /**
+     * Routes for resource user
+     */
+    $app->get('User', 'UsersController@all');
+    $app->get('user/{id}', 'UsersController@get');
+    $app->post('UserSeeder', 'UsersController@add');
+    $app->put('user/{id}', 'UsersController@put');
+    $app->delete('user/{id}', 'UsersController@remove');
 
 });
 
@@ -38,16 +55,6 @@ Dusterio\LumenPassport\LumenPassport::routes($app);
 
 
 //Dusterio\LumenPassport\LumenPassport::routes($app, ['prefix' => 'v1/oauth']);
-/**
- * Routes for resource task
- */
 
 
-/**
- * Routes for resource user
- */
-$app->get('User', 'UsersController@all');
-$app->get('user/{id}', 'UsersController@get');
-$app->post('UserSeeder', 'UsersController@add');
-$app->put('user/{id}', 'UsersController@put');
-$app->delete('user/{id}', 'UsersController@remove');
+

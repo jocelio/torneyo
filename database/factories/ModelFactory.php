@@ -44,3 +44,12 @@ $factory->define(App\User::class, function ($faker) {
         'torneyo_id' => $faker->key,
     ];
 });
+
+/**
+ * Factory definition for model App\Player.
+ */
+$factory->define(App\Player::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
