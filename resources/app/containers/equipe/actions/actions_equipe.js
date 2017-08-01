@@ -49,7 +49,7 @@ export function searchEquipes(equipe){
     }).join('&')
 
 
-    const url = `${ROOT_URL}/equipe/search?${query}`;
+    const url = `/equipe/search?${query}`;
     const response = axiosInstance().get(url);
     return {
         type: SEARCH_EQUIPES,
@@ -58,7 +58,7 @@ export function searchEquipes(equipe){
 }
 
 export function fetchEquipe(id){
-    const url = `${ROOT_URL}/equipe/${id}`;
+    const url = `/equipe/${id}`;
     const response = axiosInstance().get(url);
     return {
         type: FETCH_EQUIPE,
@@ -75,7 +75,7 @@ export function createEquipe(equipe){
     fd.append('image', equipe.image, 'i.jpg');
 
 
-    const url = `${ROOT_URL}/equipe`;
+    const url = `/equipe`;
     return {
         type: CREATE_EQUIPE,
         payload: axiosInstance().post(url, fd, {headers: { 'content-type': 'multipart/form-data' }})
@@ -83,7 +83,7 @@ export function createEquipe(equipe){
 }
 
 export function deleteEquipe(equipe){
-    const url = `${ROOT_URL}/equipe/${equipe.id}`;
+    const url = `/equipe/${equipe.id}`;
 
     return {
         type: DELETE_EQUIPE,
@@ -92,7 +92,7 @@ export function deleteEquipe(equipe){
 }
 
 export function updateEquipe(equipe){
-    const url = `${ROOT_URL}/equipe/${equipe.id}`;
+    const url = `/equipe/${equipe.id}`;
     return {
         type: UPDATE_EQUIPE,
         payload: axiosInstance().put(url, equipe)
