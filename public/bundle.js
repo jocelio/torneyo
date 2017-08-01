@@ -57120,7 +57120,10 @@ var EquipeUpdate = function (_Component) {
 
             this.showMessage({ text: 'Loading...', type: 'info' });
             this.props.fetchEquipe(this.props.params.id).then(function () {
+                if (response.error) throw response.payload;
                 _this2.setState({ showMessageDialog: false });
+            }).catch(function (error) {
+                _this2.showMessage({ text: 'Something wrong happened, please try again later.', type: 'error' });
             });
             console.log(this.refs.ted);
         }
