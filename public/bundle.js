@@ -57548,7 +57548,12 @@ var EquipeSearch = function (_Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'mdl-card__title mdl-card--expand card-image' },
-                        _react2.default.createElement('img', { src: equipe.image })
+                        _react2.default.createElement('img', { src: equipe.image }),
+                        _react2.default.createElement(
+                            'h2',
+                            { className: 'mdl-card__title-text' },
+                            equipe.name
+                        )
                     ),
                     _react2.default.createElement(
                         'div',
