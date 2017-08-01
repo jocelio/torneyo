@@ -1,4 +1,4 @@
-// import axios from 'axios';
+
 import { axiosInstance } from '../../../axiosFactory'
 import {ROOT_URL} from '../../../config'
 
@@ -11,9 +11,9 @@ export const SEARCH_EQUIPES = 'SEARCH_EQUIPES';
 export const FILTER_EQUIPES = 'FILTER_EQUIPES';
 
 
-export function fetchEquipes(equipe){
+export function fetchPlayer(equipe){
 
-    const url = '/equipe';
+    const url = '/player';
 
     const response = axiosInstance().get(url);
     return {
@@ -22,15 +22,15 @@ export function fetchEquipes(equipe){
     };
 }
 
-export function filterEquipes(equipes, equipe){
+export function filterPlayer(equipes, equipe){
 
     const {name, description} = equipe;
 
     if(!name && !description){
-        return {type: FILTER_EQUIPES, payload: {filteredEquipes:equipes, holdEquipes:equipes}};
+        return {type: FILTER_EQUIPES, payload: {filteredPlayer:equipes, holdPlayer:equipes}};
     }
 
-    const filteredEquipes = equipes.filter((e) => {
+    const filteredPlayer = equipes.filter((e) => {
         if(name)
             return (new RegExp(name.toUpperCase())).test(e.name.toUpperCase());
         if(description)
@@ -39,17 +39,17 @@ export function filterEquipes(equipes, equipe){
 
     return {
         type: FILTER_EQUIPES,
-        payload: {filteredEquipes, holdEquipes:equipes}
+        payload: {filteredPlayer, holdPlayer:equipes}
     };
 }
 
-export function searchEquipes(equipe){
-    const query = Object.keys(equipe).map(function(k) {
-        return encodeURIComponent(k) + '=' + encodeURIComponent(equipe[k])
+export function searchPlayer(player){
+    const query = Object.keys(player).map(function(k) {
+        return encodeURIComponent(k) + '=' + encodeURIComponent(player[k])
     }).join('&')
 
 
-    const url = `/equipe/search?${query}`;
+    const url = `/player/search?${query}`;
     const response = axiosInstance().get(url);
     return {
         type: SEARCH_EQUIPES,
@@ -57,8 +57,8 @@ export function searchEquipes(equipe){
     };
 }
 
-export function fetchEquipe(id){
-    const url = `/equipe/${id}`;
+export function fetchPlayer(id){
+    const url = `/player/${id}`;
     const response = axiosInstance().get(url);
     return {
         type: FETCH_EQUIPE,
@@ -66,7 +66,7 @@ export function fetchEquipe(id){
     };
 }
 
-export function createEquipe(equipe){
+export function createPlayer(equipe){
 
     var fd = new FormData();
 
@@ -75,15 +75,15 @@ export function createEquipe(equipe){
     fd.append('image', equipe.image, 'i.jpg');
 
 
-    const url = `/equipe`;
+    const url = `/player`;
     return {
         type: CREATE_EQUIPE,
         payload: axiosInstance().post(url, fd, {headers: { 'content-type': 'multipart/form-data' }})
     };
 }
 
-export function deleteEquipe(equipe){
-    const url = `/equipe/${equipe.id}`;
+export function deletePlayer(equipe){
+    const url = `/player/${equipe.id}`;
 
     return {
         type: DELETE_EQUIPE,
