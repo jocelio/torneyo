@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchEquipe, updateEquipe } from './actions/actions_equipe';
+import { fetchPlayer, updatePlayer } from './actions/actions_player';
 import { reduxForm, Field } from 'redux-form';
 import PropTypes from 'prop-types';
 import Anchor from '../../components/Anchor';
@@ -8,31 +8,31 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import { renderField, required } from '../../components/FieldHelper';
 
-class EquipeUpdate extends Component {
+class PlayerUpdate extends Component {
 
     constructor(props) {
         super(props);
-
         this.state = {showMessageDialog: false, message:''};
-
     }
 
     componentDidMount(){
+
         this.showMessage({text:`Loading...`, type:'info'});
-        this.props.fetchEquipe(this.props.params.id).then(()=>{
+
+        this.props.fetchPlayer(this.props.params.id).then(()=>{
             if(response.error) throw response.payload
             this.setState({showMessageDialog: false})
         }).catch((error) => {
             this.showMessage({text:`Something wrong happened, please try again later.`, type:'error'});
         });
-        console.log(this.refs.ted)
+
     }
 
-    formSubmit(props){
-        this.props.updateEquipe(props)
+    formSubmit(player){
+        this.props.updatePlayer(player)
             .then((response) => {
                 if(response.error) throw response.payload
-                 this.showMessage({text:`${props.name} updated with success.`, type:'info'});
+                 this.showMessage({text:`${player.name} updated with success.`, type:'info'});
             })
             .catch((error) => {
                 this.showMessage({text:`Something wrong happened, please try again later.`, type:'error'});
@@ -49,7 +49,7 @@ class EquipeUpdate extends Component {
 
     render(){
 
-        if(!this.props.equipe){
+        if(!this.props.player){
             return <div>Loading...</div>
         }
 
@@ -65,15 +65,15 @@ class EquipeUpdate extends Component {
                     <div className="mdl-card__supporting-text">
 
                         <Field name="name" type="text" value="teste"
-                            component={renderField} validate={[required]} label="Equipe Name"/>
+                            component={renderField} validate={[required]} label="Player Name"/>
 
                         <Field name="description" type="text"
-                            component={renderField} validate={[required]} label="Equipe Description"/>
+                            component={renderField} validate={[required]} label="Player Description"/>
 
                     </div>
                     <div className="mdl-card__actions mdl-card--border">
                         <input type="submit" value="Update" className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"/>
-                        <Anchor name="Cancel" href="equipe" className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"/>
+                        <Anchor name="Cancel" href="player" className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"/>
                     </div>
                 </div>
             </form>
@@ -100,25 +100,25 @@ class EquipeUpdate extends Component {
 }
 
 
-EquipeUpdate.contextTypes = {
+PlayerUpdate.contextTypes = {
     router: PropTypes.object
 };
 
-EquipeUpdate = reduxForm({ form:'NewEquipeForm'})(EquipeUpdate);
+PlayerUpdate = reduxForm({ form:'NewPlayerForm'})(PlayerUpdate);
 
 function mapStateToProps(state){
-    const {equipe} = state.equipesState;
-    if(state.equipesState.equipe) {
+    const {player} = state.playersState;
+    if(state.playersState.player) {
         return {
-                    equipe: state.equipesState.equipe
+                    player: state.playersState.player
                     , initialValues: {
-                            name:equipe.name
-                          , description:equipe.description
-                          , id:equipe.id
+                            name:player.name
+                          , description:player.description
+                          , id:player.id
                     }
         }
     }
-    return { equipe:{}}
+    return { player:{}}
 }
 
-export default connect(mapStateToProps, {fetchEquipe, updateEquipe })(EquipeUpdate);
+export default connect(mapStateToProps, {fetchPlayer, updatePlayer})(PlayerUpdate);

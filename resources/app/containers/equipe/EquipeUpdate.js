@@ -19,13 +19,14 @@ class EquipeUpdate extends Component {
 
     componentDidMount(){
         this.showMessage({text:`Loading...`, type:'info'});
+
         this.props.fetchEquipe(this.props.params.id).then(()=>{
             if(response.error) throw response.payload
             this.setState({showMessageDialog: false})
         }).catch((error) => {
             this.showMessage({text:`Something wrong happened, please try again later.`, type:'error'});
         });
-        console.log(this.refs.ted)
+
     }
 
     formSubmit(props){
