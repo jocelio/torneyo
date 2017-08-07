@@ -46,7 +46,7 @@ class PlayerSearch extends Component {
     }
 
     handleOpenRemoveDialog(player) {
-        this.setState({showRemoveDialog: true, equipe: player});
+        this.setState({showRemoveDialog: true, player: player});
     }
 
     handleCloseRemoveDialog(){
@@ -141,8 +141,8 @@ class PlayerSearch extends Component {
         return (<table className="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
                     <thead>
                     <tr>
-                        <th>Player Name</th>
-                        <th>Player Description</th>
+                        <th>Name</th>
+                        <th>Surname</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
@@ -161,7 +161,7 @@ class PlayerSearch extends Component {
                         <h2 className="mdl-card__title-text">{player.name}</h2>
                     </div>
                     <div className="mdl-card__supporting-text">
-                        {player.description}
+                        {player.surname}
                     </div>
                     <div className="mdl-card__actions mdl-card--border">
 

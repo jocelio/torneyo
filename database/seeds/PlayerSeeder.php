@@ -16,7 +16,7 @@ class PlayerSeeder extends Seeder
 
         \App\Player::insert(array(
                 'name' => 'Neymar',
-                'description' => 'Neymar Junior',
+                'surname' => 'Neymar Junior',
                 'image' => null,
                 'created_at' =>  new DateTime('02/31/2011'),
                 'updated_at' =>  new DateTime('02/31/2011'),

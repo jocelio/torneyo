@@ -57956,19 +57956,16 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Equipe = function (_Component) {
-    _inherits(Equipe, _Component);
+var Player = function (_Component) {
+    _inherits(Player, _Component);
 
-    function Equipe(props) {
-        _classCallCheck(this, Equipe);
+    function Player(props) {
+        _classCallCheck(this, Player);
 
-        var _this = _possibleConstructorReturn(this, (Equipe.__proto__ || Object.getPrototypeOf(Equipe)).call(this, props));
-
-        _this.state = { equipe: {} };
-        return _this;
+        return _possibleConstructorReturn(this, (Player.__proto__ || Object.getPrototypeOf(Player)).call(this, props));
     }
 
-    _createClass(Equipe, [{
+    _createClass(Player, [{
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
@@ -57979,10 +57976,10 @@ var Equipe = function (_Component) {
         }
     }]);
 
-    return Equipe;
+    return Player;
 }(_react.Component);
 
-exports.default = Equipe;
+exports.default = Player;
 
 /***/ }),
 /* 753 */
@@ -58211,7 +58208,7 @@ var PlayerNew = function (_Component) {
                                         _react2.default.createElement(
                                             'span',
                                             null,
-                                            'Equipe Image'
+                                            'Player Image'
                                         ),
                                         _react2.default.createElement('br', null),
                                         _react2.default.createElement('img', { src: this.state.previewUrl })
@@ -58223,16 +58220,16 @@ var PlayerNew = function (_Component) {
                             'div',
                             { className: 'mdl-card__actions mdl-card--border' },
                             _react2.default.createElement(_reduxForm.Field, { name: 'name', type: 'text',
-                                component: _FieldHelper.renderField, validate: [_FieldHelper.required], label: 'Equipe Name' }),
+                                component: _FieldHelper.renderField, validate: [_FieldHelper.required], label: 'Player Name' }),
                             _react2.default.createElement(_reduxForm.Field, { name: 'description', type: 'text',
-                                component: _FieldHelper.renderField, validate: [_FieldHelper.required], label: 'Equipe Description' })
+                                component: _FieldHelper.renderField, validate: [_FieldHelper.required], label: 'Player Description' })
                         ),
                         _react2.default.createElement(
                             'div',
                             { className: 'mdl-card__actions mdl-card--border' },
                             _react2.default.createElement('input', { type: 'submit', value: 'Save', className: 'mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect',
                                 disabled: !this.state.image }),
-                            _react2.default.createElement(_Anchor2.default, { name: 'Cancel', href: 'equipe', className: 'mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect' })
+                            _react2.default.createElement(_Anchor2.default, { name: 'Cancel', href: 'player', className: 'mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect' })
                         )
                     )
                 ),
@@ -58586,7 +58583,7 @@ var PlayerSearch = function (_Component) {
     }, {
         key: 'handleOpenRemoveDialog',
         value: function handleOpenRemoveDialog(player) {
-            this.setState({ showRemoveDialog: true, equipe: player });
+            this.setState({ showRemoveDialog: true, player: player });
         }
     }, {
         key: 'handleCloseRemoveDialog',
@@ -58637,7 +58634,7 @@ var PlayerSearch = function (_Component) {
                     { className: 'mdl-card__menu' },
                     _react2.default.createElement(
                         _reactRouter.Link,
-                        { to: 'equipe/new', className: 'mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect' },
+                        { to: 'player/new', className: 'mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect' },
                         _react2.default.createElement(
                             'i',
                             { className: 'material-icons new-item-icon' },
@@ -58740,12 +58737,12 @@ var PlayerSearch = function (_Component) {
                         _react2.default.createElement(
                             'th',
                             null,
-                            'Player Name'
+                            'Name'
                         ),
                         _react2.default.createElement(
                             'th',
                             null,
-                            'Player Description'
+                            'Surname'
                         ),
                         _react2.default.createElement(
                             'th',
@@ -58787,7 +58784,7 @@ var PlayerSearch = function (_Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'mdl-card__supporting-text' },
-                        player.description
+                        player.surname
                     ),
                     _react2.default.createElement(
                         'div',
