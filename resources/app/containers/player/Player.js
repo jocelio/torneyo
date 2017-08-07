@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-class Equipe extends Component {
+class Player extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {equipe:{}};
     }
-
 
     render(){
         return (<MuiThemeProvider>
@@ -18,4 +16,4 @@ class Equipe extends Component {
 }
 
 
-export default Equipe;
+export default Player;

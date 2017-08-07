@@ -123,7 +123,7 @@ class PlayerNew extends Component {
                                     <div className="mdl-cell mdl-cell--4-col" style={{"marginTop":"38px"}}>
                                         {this.state.previewUrl &&
                                             <div>
-                                                <span>Equipe Image</span><br/>
+                                                <span>Player Image</span><br/>
                                                 <img src={this.state.previewUrl} />
                                             </div>
                                         }
@@ -134,15 +134,15 @@ class PlayerNew extends Component {
                             </div>
                             <div className="mdl-card__actions mdl-card--border">
                                 <Field name="name" type="text"
-                                       component={renderField} validate={[required]} label="Equipe Name"/>
+                                       component={renderField} validate={[required]} label="Player Name"/>
 
                                 <Field name="description" type="text"
-                                       component={renderField} validate={[required]} label="Equipe Description"/>
+                                       component={renderField} validate={[required]} label="Player Description"/>
                             </div>
                             <div className="mdl-card__actions mdl-card--border">
                                 <input type="submit" value="Save" className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
                                        disabled={!this.state.image}/>
-                                <Anchor name="Cancel" href="equipe" className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"/>
+                                <Anchor name="Cancel" href="player" className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"/>
                             </div>
                         </div>
 
