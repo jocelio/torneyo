@@ -32,9 +32,9 @@ $app->group(['middleware' => ['auth']], function($app) {
     /**
      * Routes for resource player
      */
-    $app->get('player', 'PlayersController@all');
+    $app->get('PlayerSeeder', 'PlayersController@all');
     $app->get('player/{id}', 'PlayersController@get');
-    $app->post('player', 'PlayersController@add');
+    $app->post('PlayerSeeder', 'PlayersController@add');
     $app->put('player/{id}', 'PlayersController@put');
     $app->delete('player/{id}', 'PlayersController@remove');
 
