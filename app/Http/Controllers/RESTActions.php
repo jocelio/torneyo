@@ -1,6 +1,5 @@
 <?php namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -23,40 +22,11 @@ trait RESTActions {
         return $this->respond(Response::HTTP_OK, $model);
     }
 
-    public function search(Request $request)
+    public function add(Request $request)
     {
         $m = self::MODEL;
-        $name = $request->input('name');
-        $description = $request->input('description');
-
-        $model = $m::where("name", 'like', "%$name%")
-                ->where("description", 'like', "%$description%") ->get();
-
-        if(is_null($model)){
-            return $this->respond(Response::HTTP_NOT_FOUND);
-        }
-        return $this->respond(Response::HTTP_OK, $model);
-    }
-
-    public function add(Request $request){
-
-        $m = self::MODEL;
         $this->validate($request, $m::$rules);
-
-        $imageName = $request->file('image')->getClientOriginalName();
-        $imageName = uniqid($request->input('name').'-') . '-' . $imageName;
-        $path = 'uploads' . DIRECTORY_SEPARATOR . 'user_files' . DIRECTORY_SEPARATOR . 'imgs' . DIRECTORY_SEPARATOR;
-        $destinationPath = $path;// public_path($path); // upload path
-
-        if(!file_exists($destinationPath))
-            mkdir($destinationPath, 0777, true );
-
-        $request->file('image')->move($destinationPath, $imageName);
-
-        $fields = $request->all();
-        $fields['image'] = $destinationPath.$imageName;
-
-        return $this->respond(Response::HTTP_CREATED, $m::create($fields));
+        return $this->respond(Response::HTTP_CREATED, $m::create($request->all()));
     }
 
     public function put(Request $request, $id)
@@ -74,14 +44,10 @@ trait RESTActions {
     public function remove($id)
     {
         $m = self::MODEL;
-        $equipe = $m::find($id);
-        if(is_null($equipe)){
+        if(is_null($m::find($id))){
             return $this->respond(Response::HTTP_NOT_FOUND);
         }
         $m::destroy($id);
-        if (file_exists($equipe->image)) {
-            unlink($equipe->image);
-        }
         return $this->respond(Response::HTTP_NO_CONTENT);
     }
 

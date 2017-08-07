@@ -22,12 +22,12 @@ $app->get('/login', function ()  {
     });
 $app->group(['middleware' => ['auth']], function($app) {
 
-    $app->get('equipe/search/', 'EquipesController@search');
+    $app->get('equipe/search/', 'EquipesController@searchEquipe');
     $app->get('equipe', 'EquipesController@all');
     $app->get('equipe/{id}', 'EquipesController@get');
-    $app->post('equipe', 'EquipesController@add');
+    $app->post('equipe', 'EquipesController@addEquipe');
     $app->put('equipe/{id}', 'EquipesController@put');
-    $app->delete('equipe/{id}', 'EquipesController@remove');
+    $app->delete('equipe/{id}', 'EquipesController@removeEquipe');
 
     /**
      * Routes for resource player
