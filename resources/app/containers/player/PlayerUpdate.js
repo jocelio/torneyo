@@ -19,7 +19,7 @@ class PlayerUpdate extends Component {
 
         this.showMessage({text:`Loading...`, type:'info'});
 
-        this.props.fetchPlayer(this.props.params.id).then(()=>{
+        this.props.fetchPlayer(this.props.params.id).then(response =>{
             if(response.error) throw response.payload
             this.setState({showMessageDialog: false})
         }).catch((error) => {
@@ -113,7 +113,7 @@ function mapStateToProps(state){
                     player: state.playersState.player
                     , initialValues: {
                             name:player.name
-                          , description:player.description
+                          , surname:player.surname
                           , id:player.id
                     }
         }

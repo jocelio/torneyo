@@ -90,7 +90,7 @@ export function deletePlayer(player){
     };
 }
 
-export function updateEquipe(player){
+export function updatePlayer(player){
     const url = `/player/${player.id}`;
     return {
         type: UPDATE_PLAYER,

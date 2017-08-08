@@ -7,7 +7,7 @@ export default (state = [], action) => {
         case FETCH_PLAYERS:
             return {all:action.payload.data}
         case FETCH_PLAYER:
-            return {equipe:action.payload.data}
+            return {player:action.payload.data}
         case CREATE_PLAYER:
             return action.payload
         case UPDATE_PLAYER:
@@ -19,7 +19,7 @@ export default (state = [], action) => {
         case SEARCH_PLAYERS:
             return {all:action.payload.data}
         case FILTER_PLAYERS:
-            return {all:action.payload.filteredEquipes, holdEquipes:action.payload.holdEquipes}
+            return {all:action.payload.filteredPlayers, holdPlayers:action.payload.holdPlayers}
         default:
             return state;
     }

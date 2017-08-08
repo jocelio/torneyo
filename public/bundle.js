@@ -10914,7 +10914,7 @@ exports.searchPlayer = searchPlayer;
 exports.fetchPlayer = fetchPlayer;
 exports.createPlayer = createPlayer;
 exports.deletePlayer = deletePlayer;
-exports.updateEquipe = updateEquipe;
+exports.updatePlayer = updatePlayer;
 
 var _axiosFactory = __webpack_require__(112);
 
@@ -11005,7 +11005,7 @@ function deletePlayer(player) {
     };
 }
 
-function updateEquipe(player) {
+function updatePlayer(player) {
     var url = '/player/' + player.id;
     return {
         type: UPDATE_PLAYER,
@@ -45073,7 +45073,7 @@ exports.default = function () {
         case _actions_player.FETCH_PLAYERS:
             return { all: action.payload.data };
         case _actions_player.FETCH_PLAYER:
-            return { equipe: action.payload.data };
+            return { player: action.payload.data };
         case _actions_player.CREATE_PLAYER:
             return action.payload;
         case _actions_player.UPDATE_PLAYER:
@@ -45085,7 +45085,7 @@ exports.default = function () {
         case _actions_player.SEARCH_PLAYERS:
             return { all: action.payload.data };
         case _actions_player.FILTER_PLAYERS:
-            return { all: action.payload.filteredEquipes, holdEquipes: action.payload.holdEquipes };
+            return { all: action.payload.filteredPlayers, holdPlayers: action.payload.holdPlayers };
         default:
             return state;
     }
@@ -57293,7 +57293,6 @@ var EquipeUpdate = function (_Component) {
         var _this = _possibleConstructorReturn(this, (EquipeUpdate.__proto__ || Object.getPrototypeOf(EquipeUpdate)).call(this, props));
 
         _this.state = { showMessageDialog: false, message: '' };
-
         return _this;
     }
 
@@ -57304,7 +57303,7 @@ var EquipeUpdate = function (_Component) {
 
             this.showMessage({ text: 'Loading...', type: 'info' });
 
-            this.props.fetchEquipe(this.props.params.id).then(function () {
+            this.props.fetchEquipe(this.props.params.id).then(function (response) {
                 if (response.error) throw response.payload;
                 _this2.setState({ showMessageDialog: false });
             }).catch(function (error) {
@@ -58164,8 +58163,8 @@ var PlayerNew = function (_Component) {
                                         'div',
                                         { style: { height: 400, width: '30%' } },
                                         _react2.default.createElement(_reactCrop2.default, {
-                                            height: 127,
-                                            width: 230,
+                                            height: 231,
+                                            width: 212,
                                             ref: 'crop',
                                             image: this.state.image,
                                             onImageLoaded: function onImageLoaded() {
@@ -58341,7 +58340,7 @@ var PlayerUpdate = function (_Component) {
 
             this.showMessage({ text: 'Loading...', type: 'info' });
 
-            this.props.fetchPlayer(this.props.params.id).then(function () {
+            this.props.fetchPlayer(this.props.params.id).then(function (response) {
                 if (response.error) throw response.payload;
                 _this2.setState({ showMessageDialog: false });
             }).catch(function (error) {
@@ -58475,7 +58474,7 @@ function mapStateToProps(state) {
             player: state.playersState.player,
             initialValues: {
                 name: player.name,
-                description: player.description,
+                surname: player.surname,
                 id: player.id
             }
         };
@@ -58765,7 +58764,7 @@ var PlayerSearch = function (_Component) {
                 { key: player.id },
                 _react2.default.createElement(
                     'div',
-                    { className: 'demo-card-square mdl-card mdl-shadow--2dp' },
+                    { className: 'players-card-square mdl-card mdl-shadow--2dp' },
                     _react2.default.createElement(
                         'div',
                         { className: 'mdl-card__title mdl-card--expand card-image' },

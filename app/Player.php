@@ -11,7 +11,6 @@ class Player extends Model {
     public static $rules = [
         "name" => "required",
         "surname" => "required",
-        "image" => "required",
         "equipe_id" => "numeric",
     ];
 

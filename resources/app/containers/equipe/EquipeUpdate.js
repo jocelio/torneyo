@@ -12,15 +12,13 @@ class EquipeUpdate extends Component {
 
     constructor(props) {
         super(props);
-
         this.state = {showMessageDialog: false, message:''};
-
     }
 
     componentDidMount(){
         this.showMessage({text:`Loading...`, type:'info'});
 
-        this.props.fetchEquipe(this.props.params.id).then(()=>{
+        this.props.fetchEquipe(this.props.params.id).then(response =>{
             if(response.error) throw response.payload
             this.setState({showMessageDialog: false})
         }).catch((error) => {
