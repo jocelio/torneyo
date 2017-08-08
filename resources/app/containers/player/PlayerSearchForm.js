@@ -22,7 +22,7 @@ class PlayerSearchForm extends Component {
 
     handleKeyPress(props){
         const {name , value} = props.target;
-        this.props.filterPlayers(this.props.equipes, {[name]: value});
+        this.props.filterPlayers(this.props.players, {[name]: value});
     }
 
     render(){
@@ -33,11 +33,11 @@ class PlayerSearchForm extends Component {
             <form onSubmit={handleSubmit((props) => this.formSubmit(props))}>
 
                 <Field name="name" type="text" onBlur={()=>{}} onFocus={()=>{}}
-                    component={renderField} label="Player Name"
+                    component={renderField} label="Name"
                        onChange={(props) => this.handleKeyPress(props)}/>
 
-                <Field name="description" type="text" onBlur={()=>{}} onFocus={()=>{}}
-                    component={renderField} label="Player Description"
+                <Field name="surname" type="text" onBlur={()=>{}} onFocus={()=>{}}
+                    component={renderField} label="Surname"
                        onChange={(props) => this.handleKeyPress(props)}/>
 
                 <br/>

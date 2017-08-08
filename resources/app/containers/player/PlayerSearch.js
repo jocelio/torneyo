@@ -168,7 +168,7 @@ class PlayerSearch extends Component {
                         <Link to={this.props.href} className="mdl-button mdl-js-button mdl-js-ripple-effect"
                               onClick={(e) => this.handleOpenRemoveDialog(player)}>Delete</Link>
                         &nbsp;
-                        <Link to={`equipe/update/${player.id}`} className="mdl-button mdl-js-button mdl-js-ripple-effect">Update</Link>
+                        <Link to={`player/update/${player.id}`} className="mdl-button mdl-js-button mdl-js-ripple-effect">Update</Link>
 
                     </div>
                 </div>

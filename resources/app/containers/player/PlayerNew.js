@@ -89,8 +89,7 @@ class PlayerNew extends Component {
                                                style={{"display":"none"}}/>
                                         <label htmlFor="file" className="mdl-button mdl-js-button mdl-button--fab mdl-button--colored"
                                                style={{"paddingBotton":"2px"}}>
-                                            <i className="material-icons">verified_user</i>
-                                            <i className="material-icons">fiber_manual_record</i>
+                                            <i className="material-icons">person</i>
                                         </label>
 
 
@@ -134,10 +133,10 @@ class PlayerNew extends Component {
                             </div>
                             <div className="mdl-card__actions mdl-card--border">
                                 <Field name="name" type="text"
-                                       component={renderField} validate={[required]} label="Player Name"/>
+                                       component={renderField} validate={[required]} label="Name"/>
 
-                                <Field name="description" type="text"
-                                       component={renderField} validate={[required]} label="Player Description"/>
+                                <Field name="surname" type="text"
+                                       component={renderField} validate={[required]} label="Surname"/>
                             </div>
                             <div className="mdl-card__actions mdl-card--border">
                                 <input type="submit" value="Save" className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"

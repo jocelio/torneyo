@@ -58157,12 +58157,7 @@ var PlayerNew = function (_Component) {
                                         _react2.default.createElement(
                                             'i',
                                             { className: 'material-icons' },
-                                            'verified_user'
-                                        ),
-                                        _react2.default.createElement(
-                                            'i',
-                                            { className: 'material-icons' },
-                                            'fiber_manual_record'
+                                            'person'
                                         )
                                     ),
                                     this.state.image && _react2.default.createElement(
@@ -58220,9 +58215,9 @@ var PlayerNew = function (_Component) {
                             'div',
                             { className: 'mdl-card__actions mdl-card--border' },
                             _react2.default.createElement(_reduxForm.Field, { name: 'name', type: 'text',
-                                component: _FieldHelper.renderField, validate: [_FieldHelper.required], label: 'Player Name' }),
-                            _react2.default.createElement(_reduxForm.Field, { name: 'description', type: 'text',
-                                component: _FieldHelper.renderField, validate: [_FieldHelper.required], label: 'Player Description' })
+                                component: _FieldHelper.renderField, validate: [_FieldHelper.required], label: 'Name' }),
+                            _react2.default.createElement(_reduxForm.Field, { name: 'surname', type: 'text',
+                                component: _FieldHelper.renderField, validate: [_FieldHelper.required], label: 'Surname' })
                         ),
                         _react2.default.createElement(
                             'div',
@@ -58800,7 +58795,7 @@ var PlayerSearch = function (_Component) {
                         '\xA0',
                         _react2.default.createElement(
                             _reactRouter.Link,
-                            { to: 'equipe/update/' + player.id, className: 'mdl-button mdl-js-button mdl-js-ripple-effect' },
+                            { to: 'player/update/' + player.id, className: 'mdl-button mdl-js-button mdl-js-ripple-effect' },
                             'Update'
                         )
                     )
@@ -58916,7 +58911,7 @@ var PlayerSearchForm = function (_Component) {
                 name = _props$target.name,
                 value = _props$target.value;
 
-            this.props.filterPlayers(this.props.equipes, _defineProperty({}, name, value));
+            this.props.filterPlayers(this.props.players, _defineProperty({}, name, value));
         }
     }, {
         key: 'render',
@@ -58932,12 +58927,12 @@ var PlayerSearchForm = function (_Component) {
                         return _this2.formSubmit(props);
                     }) },
                 _react2.default.createElement(_reduxForm.Field, { name: 'name', type: 'text', onBlur: function onBlur() {}, onFocus: function onFocus() {},
-                    component: _FieldHelper.renderField, label: 'Player Name',
+                    component: _FieldHelper.renderField, label: 'Name',
                     onChange: function onChange(props) {
                         return _this2.handleKeyPress(props);
                     } }),
-                _react2.default.createElement(_reduxForm.Field, { name: 'description', type: 'text', onBlur: function onBlur() {}, onFocus: function onFocus() {},
-                    component: _FieldHelper.renderField, label: 'Player Description',
+                _react2.default.createElement(_reduxForm.Field, { name: 'surname', type: 'text', onBlur: function onBlur() {}, onFocus: function onFocus() {},
+                    component: _FieldHelper.renderField, label: 'Surname',
                     onChange: function onChange(props) {
                         return _this2.handleKeyPress(props);
                     } }),
