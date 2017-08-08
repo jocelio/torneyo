@@ -97,8 +97,8 @@ class PlayerNew extends Component {
 
                                             <div  style={{height: 400, width: '30%'}}>
                                                 <Cropper
-                                                    height={127}
-                                                    width={230}
+                                                    height={231}
+                                                    width={212}
                                                     ref='crop'
                                                     image={this.state.image}
                                                     onImageLoaded={() => this.imageLoaded()}/>

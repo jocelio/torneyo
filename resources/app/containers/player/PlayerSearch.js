@@ -155,7 +155,7 @@ class PlayerSearch extends Component {
     renderCards(player){
         return (
             <li key={player.id}>
-                <div className="demo-card-square mdl-card mdl-shadow--2dp">
+                <div className="players-card-square mdl-card mdl-shadow--2dp">
                     <div className="mdl-card__title mdl-card--expand card-image" >
 
                         {(player.image)? <img src={player.image} />:''}

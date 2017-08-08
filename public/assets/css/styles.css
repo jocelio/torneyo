@@ -264,8 +264,17 @@ table th{
 .demo-card-square > .mdl-card__title {
     color: #fff;
     background-color:#46B6AC;
-            /*url('../assets/demos/dog.png') bottom right 15% no-repeat ;*/
 }
+
+.players-card-square.mdl-card {
+    width: 212px;
+    height: 334px;
+}
+.players-card-square > .mdl-card__title {
+    color: #fff;
+    background-color:#46B6AC;
+}
+
 ul{
     list-style: none;
     padding-left:0px;
