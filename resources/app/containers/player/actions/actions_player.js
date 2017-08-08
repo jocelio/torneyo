@@ -70,7 +70,7 @@ export function createPlayer(player){
     var fd = new FormData();
 
     fd.append('name', player.name);
-    fd.append('description', player.description);
+    fd.append('surname', player.surname);
     fd.append('image', player.image, 'i.jpg');
 
 

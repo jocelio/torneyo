@@ -157,7 +157,9 @@ class PlayerSearch extends Component {
             <li key={player.id}>
                 <div className="demo-card-square mdl-card mdl-shadow--2dp">
                     <div className="mdl-card__title mdl-card--expand card-image" >
-                        <img src={player.image} />
+
+                        {(player.image)? <img src={player.image} />:''}
+
                         <h2 className="mdl-card__title-text">{player.name}</h2>
                     </div>
                     <div className="mdl-card__supporting-text">
@@ -184,7 +186,7 @@ class PlayerSearch extends Component {
                     <Link to={this.props.href} className="mdl-button mdl-js-button mdl-js-ripple-effect"
                           onClick={(e) => this.handleOpenRemoveDialog(player)}>Delete</Link>
                     &nbsp;
-                    <Anchor name="Update" href={`equipe/update/${player.id}`} className="mdl-button mdl-js-button mdl-js-ripple-effect"/>
+                    <Anchor name="Update" href={`player/update/${player.id}`} className="mdl-button mdl-js-button mdl-js-ripple-effect"/>
 
 
                 </td>

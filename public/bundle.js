@@ -10986,7 +10986,7 @@ function createPlayer(player) {
     var fd = new FormData();
 
     fd.append('name', player.name);
-    fd.append('description', player.description);
+    fd.append('surname', player.surname);
     fd.append('image', player.image, 'i.jpg');
 
     var url = '/player';
@@ -58769,7 +58769,7 @@ var PlayerSearch = function (_Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'mdl-card__title mdl-card--expand card-image' },
-                        _react2.default.createElement('img', { src: player.image }),
+                        player.image ? _react2.default.createElement('img', { src: player.image }) : '',
                         _react2.default.createElement(
                             'h2',
                             { className: 'mdl-card__title-text' },
@@ -58832,7 +58832,7 @@ var PlayerSearch = function (_Component) {
                         'Delete'
                     ),
                     '\xA0',
-                    _react2.default.createElement(_Anchor2.default, { name: 'Update', href: 'equipe/update/' + player.id, className: 'mdl-button mdl-js-button mdl-js-ripple-effect' })
+                    _react2.default.createElement(_Anchor2.default, { name: 'Update', href: 'player/update/' + player.id, className: 'mdl-button mdl-js-button mdl-js-ripple-effect' })
                 )
             );
         }

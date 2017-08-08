@@ -34,9 +34,9 @@ $app->group(['middleware' => ['auth']], function($app) {
      */
     $app->get('player', 'PlayersController@all');
     $app->get('player/{id}', 'PlayersController@get');
-    $app->post('player', 'PlayersController@add');
+    $app->post('player', 'PlayersController@addPlayer');
     $app->put('player/{id}', 'PlayersController@put');
-    $app->delete('player/{id}', 'PlayersController@remove');
+    $app->delete('player/{id}', 'PlayersController@removePlayer');
 
     /**
      * Routes for resource user
