@@ -8,12 +8,14 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import { renderField, required } from '../../components/FieldHelper';
 import Cropper from 'react-crop';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 
 class PlayerNew extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {showMessageDialog: false, message:'',image: null,previewImage: null};
+        this.state = {showMessageDialog: false, message:'',image: null,previewImage: null, equipe: {}};
         this.props.fetchEquipes();
     }
 
@@ -68,14 +70,14 @@ class PlayerNew extends Component {
         this.setState({showMessageDialog: true, message:message});
     }
 
+    handleChange(event, index, value){
+        console.log(value)
+        this.setState({equipe:value});
+    }
+
     render(){
 
         const { handleSubmit } = this.props;
-
-
-
-        const eq = this.props.equipes.map(item => <span>{item.name}</span> );
-        console.log(eq)
 
         return (
             <div>
@@ -98,7 +100,6 @@ class PlayerNew extends Component {
                                                style={{"paddingBotton":"2px"}}>
                                             <i className="material-icons">person</i>
                                         </label>
-
 
                                         {this.state.image &&
 
@@ -140,7 +141,17 @@ class PlayerNew extends Component {
                             </div>
                             <div className="mdl-card__actions mdl-card--border">
 
-                                {eq}
+
+                                <div className={`mdl-textfield mdl-js-textfield mdl-textfield--floating-label`}>
+
+                                    <SelectField
+                                        floatingLabelText="Equipe"
+                                        value={this.state.equipe}
+                                        onChange={() => this.handleChange()}>
+                                        {this.props.equipes.map(item => <MenuItem key={item.id} value={item} primaryText={item.name} />)}
+                                    </SelectField>
+                                </div>
+
 
                                 <Field name="name" type="text"
                                        component={renderField} validate={[required]} label="Name"/>
