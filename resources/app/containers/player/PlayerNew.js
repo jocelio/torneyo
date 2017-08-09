@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createPlayer } from './actions/actions_player';
+import { fetchEquipes } from '../equipe/actions/actions_equipe';
 import { reduxForm, Field } from 'redux-form';
 import Anchor from '../../components/Anchor';
 import Dialog from 'material-ui/Dialog';
@@ -13,6 +14,7 @@ class PlayerNew extends Component {
     constructor(props) {
         super(props);
         this.state = {showMessageDialog: false, message:'',image: null,previewImage: null};
+        this.props.fetchEquipes();
     }
 
     formSubmit(player){
@@ -69,6 +71,11 @@ class PlayerNew extends Component {
     render(){
 
         const { handleSubmit } = this.props;
+
+
+
+        const eq = this.props.equipes.map(item => <span>{item.name}</span> );
+        console.log(eq)
 
         return (
             <div>
@@ -132,6 +139,9 @@ class PlayerNew extends Component {
 
                             </div>
                             <div className="mdl-card__actions mdl-card--border">
+
+                                {eq}
+
                                 <Field name="name" type="text"
                                        component={renderField} validate={[required]} label="Name"/>
 
@@ -174,8 +184,20 @@ PlayerNew = reduxForm({
     form:'NewPlayerForm',
 })(PlayerNew);
 
-function mapStateToProps({ playersState }){
-    return { playersState };
+function mapStateToProps(state){
+
+    if(state.equipesState.all){
+        return {
+              playersState: state.playersState
+            , equipes: state.equipesState.all
+        };
+    }
+
+    return {
+          playersState: state.playersState
+        , equipes: []
+    };
+
 }
 
-export default connect(mapStateToProps, { createPlayer })(PlayerNew);
+export default connect(mapStateToProps, { createPlayer, fetchEquipes })(PlayerNew);

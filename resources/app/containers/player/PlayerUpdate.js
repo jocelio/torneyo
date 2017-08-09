@@ -109,14 +109,13 @@ PlayerUpdate = reduxForm({ form:'NewPlayerForm'})(PlayerUpdate);
 function mapStateToProps(state){
     const {player} = state.playersState;
     if(state.playersState.player) {
-        return {
-                    player: state.playersState.player
-                    , initialValues: {
-                            name:player.name
-                          , surname:player.surname
-                          , id:player.id
+        return {player: state.playersState.player
+                    ,initialValues: {
+                        name:player.name
+                       ,surname:player.surname
+                       ,id:player.id
                     }
-        }
+                }
     }
     return { player:{}}
 }
