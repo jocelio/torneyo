@@ -11,7 +11,7 @@ export const SEARCH_EQUIPES = 'SEARCH_PLAYERS';
 export const FILTER_EQUIPES = 'FILTER_PLAYERS';
 
 
-export function fetchEquipes(equipe){
+export function fetchEquipes(){
 
     const url = '/equipe';
 
