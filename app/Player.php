@@ -17,7 +17,7 @@ class Player extends Model {
     // Relationships
     public function equipe()
     {
-        return $this->belongsTo('Equipe','equipe_id');
+        return $this->belongsTo(Equipe::class,'equipe_id');
     }
 
 }

@@ -9,6 +9,12 @@ class PlayersController extends Controller {
 
     use RESTActions;
 
+    public function allPlayers()
+    {
+        $m = self::MODEL;
+        return $this->respond(Response::HTTP_OK, $m::with('equipe')->get());
+    }
+
     public function addPlayer(Request $request){
 
         $m = self::MODEL;

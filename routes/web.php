@@ -32,7 +32,7 @@ $app->group(['middleware' => ['auth']], function($app) {
     /**
      * Routes for resource player
      */
-    $app->get('player', 'PlayersController@all');
+    $app->get('player', 'PlayersController@allPlayers');
     $app->get('player/{id}', 'PlayersController@get');
     $app->post('player', 'PlayersController@addPlayer');
     $app->put('player/{id}', 'PlayersController@put');
