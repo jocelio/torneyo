@@ -163,7 +163,7 @@ class PlayerSearch extends Component {
                         <h2 className="mdl-card__title-text">{player.name}</h2>
                     </div>
                     <div className="mdl-card__supporting-text">
-                        {player.name} {player.surname} - <strong>{player.equipe.name}</strong>
+                        {player.name} {player.surname} - {player.equipe && <strong> {player.equipe.name} </strong>}
                     </div>
                     <div className="mdl-card__actions mdl-card--border">
 

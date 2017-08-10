@@ -58823,10 +58823,12 @@ var PlayerSearch = function (_Component) {
                         ' ',
                         player.surname,
                         ' - ',
-                        _react2.default.createElement(
+                        player.equipe && _react2.default.createElement(
                             'strong',
                             null,
-                            player.equipe.name
+                            ' ',
+                            player.equipe.name,
+                            ' '
                         )
                     ),
                     _react2.default.createElement(
