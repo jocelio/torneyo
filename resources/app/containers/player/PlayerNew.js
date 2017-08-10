@@ -135,13 +135,13 @@ class PlayerNew extends Component {
                                     </div>
                                 </div>
 
-
                             </div>
                             <div className="mdl-card__actions mdl-card--border">
 
                                 <div className="mdl-textfield mdl-js-textfield">
 
-                                    <select className="mdl-textfield__input" onClick={(e) => this.handleChange(e)}>
+                                    <select className="mdl-textfield__input" onClick={(e) => this.handleChange(e)}
+                                    required>
                                         <option > Select </option>
                                         {this.props.equipes.map(item =>
                                             <option  key={item.id} value={item.id}>{item.name}</option>

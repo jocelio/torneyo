@@ -58230,7 +58230,8 @@ var PlayerNew = function (_Component) {
                                     'select',
                                     { className: 'mdl-textfield__input', onClick: function onClick(e) {
                                             return _this4.handleChange(e);
-                                        } },
+                                        },
+                                        required: true },
                                     _react2.default.createElement(
                                         'option',
                                         null,
@@ -58821,8 +58822,12 @@ var PlayerSearch = function (_Component) {
                         player.name,
                         ' ',
                         player.surname,
-                        ' ',
-                        player.equipe_id
+                        ' - ',
+                        _react2.default.createElement(
+                            'strong',
+                            null,
+                            player.equipe.name
+                        )
                     ),
                     _react2.default.createElement(
                         'div',
