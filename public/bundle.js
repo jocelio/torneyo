@@ -58818,7 +58818,11 @@ var PlayerSearch = function (_Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'mdl-card__supporting-text' },
-                        player.surname
+                        player.name,
+                        ' ',
+                        player.surname,
+                        ' ',
+                        player.equipe_id
                     ),
                     _react2.default.createElement(
                         'div',
