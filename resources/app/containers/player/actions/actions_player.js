@@ -71,6 +71,7 @@ export function createPlayer(player){
 
     fd.append('name', player.name);
     fd.append('surname', player.surname);
+    fd.append('equipe_id', player.equipeId);
     fd.append('image', player.image, 'i.jpg');
 
 
