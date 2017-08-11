@@ -8,7 +8,7 @@ class CreateEquipesTable extends Migration
 
     public function up()
     {
-//        Schema::drop('equipes');
+        Schema::drop('equipes');
         Schema::create('equipes', function(Blueprint $table) {
             $table->increments('id');
             $table->string('name');
