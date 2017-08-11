@@ -1,6 +1,5 @@
 node_modules/
 .idea/*
 vendor/
-public/bundle-login.js
 storage/
 /public/uploads/user_files/imgs/*
