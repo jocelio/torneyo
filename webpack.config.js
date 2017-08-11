@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('path'), webpack = require('webpack');
 module.exports = {
     entry: {bundle: './resources/app/', 'bundle-login':'./resources/login/'},
     output: {
@@ -20,6 +20,9 @@ module.exports = {
                 }
             },
             { test: /\.css$/, loader: "style-loader!css-loader" }]
-    }
+    },
+    plugins: [
+        new webpack.EnvironmentPlugin(['NODE_ENV','API_URL'])
+    ]
 }
 
