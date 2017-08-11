@@ -1,2 +1,2 @@
-web: vendor/bin/heroku-php-apache2 public/; npm run build:dev
+web: npm start
 
