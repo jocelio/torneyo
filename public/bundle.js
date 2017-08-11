@@ -10076,7 +10076,7 @@ module.exports = defaults;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var API_URL = exports.API_URL = "http://localhost:8001";
+var API_URL = exports.API_URL = "http://localhost:8001/";
 
 /***/ }),
 /* 115 */
