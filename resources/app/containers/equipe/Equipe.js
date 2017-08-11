@@ -11,6 +11,7 @@ class Equipe extends Component {
 
     render(){
         return (<div>
+            {process.env.API_URL}
                     <MuiThemeProvider>
                         {this.props.children}
                     </MuiThemeProvider>
