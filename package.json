@@ -1,7 +1,10 @@
 {
-  "name": "torneyp-web",
+  "name": "Torneyp Web",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "4.7.2"
+  },
   "dependencies": {
     "antd": "^2.12.5",
     "axios": "^0.16.2",
