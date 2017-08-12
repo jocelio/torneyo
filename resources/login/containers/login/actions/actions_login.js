@@ -50,7 +50,15 @@ export function redirectIn() {
 
 export function keepSession() {
 
-    if(!localStorage.getItem('access_token'))
+    const currentDate = new Date();
+    const  tokenExpireDate = new Date(new Date() + localStorage.getItem('expires_in'));
+    console.log(localStorage.getItem('expires_in'))
+    console.log(currentDate);
+    console.log(tokenExpireDate);
+
+    const isAuthenticated = tokenExpireDate > currentDate ? true : false;
+
+    if(!localStorage.getItem('access_token') || !isAuthenticated)
         window.location.href="/login";
 
     return {
