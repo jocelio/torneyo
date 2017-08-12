@@ -35,5 +35,6 @@
     "eject": "react-scripts eject",
     "build:dev": "webpack --env=dev --progress --profile --colors",
     "build:dist": "webpack --env=prod --progress --profile --colors"
+    
   }
 }
