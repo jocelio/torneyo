@@ -15,6 +15,14 @@ docker run \
     -e MYSQL_DATABASE=torneyo \
     mysql
 ```
+
+## Install Heroku Buildpacks configuration
+```
+    $ heroku buildpacks:clear
+    $ heroku buildpacks:add heroku/php
+    $ heroku buildpacks:add heroku/nodejs
+```
+
 ## License
 
 The Lumen framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)

@@ -29,6 +29,7 @@ class FormLogin extends Component {
 
     render(){
         return (<div className="mdl-layout mdl-js-layout mdl-color--grey-100">
+            {process.env.API_URL}
             <main className="mdl-layout__content">
                 <div className="mdl-card mdl-shadow--6dp">
                     <div className="mdl-card__title mdl-color--primary mdl-color-text--white">
