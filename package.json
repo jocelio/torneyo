@@ -18,7 +18,8 @@
     "react-tap-event-plugin": "^2.0.1",
     "redux": "^3.7.1",
     "redux-form": "^6.0.0-rc.3",
-    "redux-promise": "^0.5.3"
+    "redux-promise": "^0.5.3",
+    "material-ui": "^0.18.7"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
@@ -31,7 +32,7 @@
     "webpack-dev-server": "^2.5.0"
   },
   "scripts": {
-    "postinstall": "npm install",
+    "postinstall": "webpack -p",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
