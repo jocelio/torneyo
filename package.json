@@ -27,14 +27,9 @@
     "webpack-dev-server": "^2.5.0"
   },
   "scripts": {
-    "start": "react-scripts start",
     "postinstall": "webpack -p",
-    "heroku-postbuild": "npm run build:dist",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "build:dev": "webpack --env=dev --progress --profile --colors",
-    "build:dist": "webpack --env=prod --progress --profile --colors"
-    
   }
 }
