@@ -16,7 +16,7 @@ docker run \
     mysql
 ```
 
-## Install Heroku Buildpacks - PHP and Node configuration.
+## Install Heroku Buildpacks - PHP and Node configuration. https://devcenter.heroku.com/articles/using-multiple-buildpacks-for-an-app
 ```
     $ heroku buildpacks:clear
     $ heroku buildpacks:add heroku/php
