@@ -97,11 +97,9 @@ class EquipeSearch extends Component {
 
                     <hr/>
 
-                    <EquipeSearchForm />
+                        <EquipeSearchForm />
 
                     <hr/>
-
-
 
                     {(this.state.view ==='table')?this.tableEquipes():this.listEquipes()}
 

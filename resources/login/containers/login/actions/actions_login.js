@@ -56,13 +56,10 @@ export function keepSession() {
 
     const currentDate = new Date();
     const tokenExpireDate = new Date(timeLogin + expiresIn);
-    console.log(timeLogin);
-    console.log(expiresIn);
-    console.log(timeLogin + expiresIn);
 
-    const isAuthenticated = tokenExpireDate > currentDate ? true : false;
+    const isTokenExpired = tokenExpireDate > currentDate? false: true;
 
-    if(!localStorage.getItem('access_token') || !isAuthenticated)
+    if(!localStorage.getItem('access_token') || isTokenExpired)
         window.location.href="/login";
 
     return {

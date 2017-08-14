@@ -9,9 +9,12 @@ class App extends Component {
     constructor(props){
         super(props);
         injectTapEventPlugin();
-        this.props.keepSession();
+
     }
 
+    componentWillUpdate(){
+        this.props.keepSession();
+    }
 
 
   render() {
