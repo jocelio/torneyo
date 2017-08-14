@@ -8,7 +8,7 @@ export function axiosInstance(){
 
     const token = localStorage.getItem('access_token');
 
-    var instance = axios.create({
+    const instance = axios.create({
         baseURL: API_URL,
         timeout: 1000,
         headers: {'Authorization': `Bearer ${token}`}

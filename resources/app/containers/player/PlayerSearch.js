@@ -42,7 +42,6 @@ class PlayerSearch extends Component {
                 this.showMessage({text:`Something wrong happened, please try again later.`, type:'error'});
             });
 
-        // this.props.fetchEquipes();
     }
 
     handleOpenRemoveDialog(player) {
@@ -125,16 +124,14 @@ class PlayerSearch extends Component {
                         onRequestClose={() => this.handleCloseMessageDialog()}>
                         {this.state.message}
                     </Dialog>
-
                 </div>
-
             </div>
         )
     }
 
 
     listPlayers(){
-        return (<ul> {this.props.players.map((e) => this.renderCards(e))} </ul>)
+        return <ul> {this.props.players.map((e) => this.renderCards(e))} </ul>
     }
 
     tablePlayers(){
