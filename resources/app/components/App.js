@@ -9,7 +9,6 @@ class App extends Component {
     constructor(props){
         super(props);
         injectTapEventPlugin();
-
     }
 
     componentWillUpdate(){
@@ -20,7 +19,6 @@ class App extends Component {
   render() {
 
     return (
-
         <div className="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
             <header className="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
                 <div className="mdl-layout__header-row">

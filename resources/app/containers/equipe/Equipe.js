@@ -10,11 +10,10 @@ class Equipe extends Component {
 
 
     render(){
-        return (<div>
-                    <MuiThemeProvider>
-                        {this.props.children}
-                    </MuiThemeProvider>
-                </div>)
+        return <MuiThemeProvider>
+                    {this.props.children}
+               </MuiThemeProvider>
+
     }
 
 }

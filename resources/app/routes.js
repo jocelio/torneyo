@@ -15,7 +15,7 @@ import PlayerUpdate from './containers/player/PlayerUpdate';
 import PlayerSearch from './containers/player/PlayerSearch';
 
 
-export default (
+export default
     <Route path="/" component={App} title="TorneyoApp">
         <Route path="/home" component={Home}/>
         <Route path="/inbox" component={Inbox}/>
@@ -30,4 +30,3 @@ export default (
             <Route path="update/:id" component={PlayerUpdate}/>
         </Route>
     </Route>
-);
