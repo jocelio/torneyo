@@ -30,6 +30,7 @@ export function storeAuthCredentials(credentials){
 
     localStorage.setItem('access_token', credentials.access_token);
     localStorage.setItem('expires_in', credentials.expires_in);
+    localStorage.setItem('time_login', new Date().getTime());
 
     return {
         type: WRITE_LOCAL_STORAGE,
@@ -50,11 +51,14 @@ export function redirectIn() {
 
 export function keepSession() {
 
+    const timeLogin = parseInt(localStorage.getItem('time_login'));
+    const expiresIn = parseInt(localStorage.getItem('expires_in'));
+
     const currentDate = new Date();
-    const  tokenExpireDate = new Date(new Date() + localStorage.getItem('expires_in'));
-    console.log(localStorage.getItem('expires_in'))
-    console.log(currentDate);
-    console.log(tokenExpireDate);
+    const tokenExpireDate = new Date(timeLogin + expiresIn);
+    console.log(timeLogin);
+    console.log(expiresIn);
+    console.log(timeLogin + expiresIn);
 
     const isAuthenticated = tokenExpireDate > currentDate ? true : false;
 
