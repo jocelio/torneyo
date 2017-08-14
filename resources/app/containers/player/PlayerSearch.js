@@ -196,7 +196,7 @@ class PlayerSearch extends Component {
 
 }
 
-function mapStateToProps( state ){
+const mapStateToProps = state => {
     if(state.playersState.all)
         return {players: state.playersState.all}
    return {players:[]};
