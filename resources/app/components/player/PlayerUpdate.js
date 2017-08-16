@@ -107,17 +107,17 @@ PlayerUpdate.contextTypes = {
 PlayerUpdate = reduxForm({ form:'NewPlayerForm'})(PlayerUpdate);
 
 function mapStateToProps(state){
-    const {player} = state.playersState;
-    if(state.playersState.player) {
-        return {player: state.playersState.player
-                    ,initialValues: {
-                        name:player.name
-                       ,surname:player.surname
-                       ,id:player.id
+    const {player} = state.playersState || {};
+    if(player) {
+        return {player: player
+                     , initialValues: {
+                         name:player.name
+                       , surname:player.surname
+                       , id:player.id
                     }
                 }
     }
-    return { player:{}}
+    return {player}
 }
 
 export default connect(mapStateToProps, {fetchPlayer, updatePlayer})(PlayerUpdate);
