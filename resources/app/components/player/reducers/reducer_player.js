@@ -13,9 +13,7 @@ export default (state = [], action) => {
         case UPDATE_PLAYER:
             return action.payload
         case DELETE_PLAYER:
-            return {all: state.all.filter((i) => {
-                return i.id != action.payload.id
-            })};
+            return {all: state.all.filter(i => i.id != action.payload.id)}
         case SEARCH_PLAYERS:
             return {all:action.payload.data}
         case FILTER_PLAYERS:

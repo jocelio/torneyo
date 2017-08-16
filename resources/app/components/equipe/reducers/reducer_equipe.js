@@ -19,9 +19,7 @@ export default (state = [], action) => {
         case UPDATE_EQUIPE:
             return action.payload
         case DELETE_EQUIPE:
-            return {all: state.all.filter((i) => {
-                return i.id != action.payload.id
-            })};
+            return {all: state.all.filter(i => i.id != action.payload.id)};
         case SEARCH_EQUIPES:
             return {all:action.payload.data}
         case FILTER_EQUIPES:
