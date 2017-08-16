@@ -8,7 +8,6 @@ class Equipe extends Component {
         this.state = {equipe:{}};
     }
 
-
     render(){
         return <MuiThemeProvider>
                     {this.props.children}
