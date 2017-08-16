@@ -1,6 +1,4 @@
-
 import { axiosInstance } from '../../../axiosFactory'
-import {ROOT_URL} from '../../../config/config'
 
 export const FETCH_PLAYERS = 'FETCH_PLAYERS';
 export const FETCH_PLAYER  = 'FETCH_PLAYER';
