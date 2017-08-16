@@ -1,32 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createPlayer } from './actions/actions_player';
-import { fetchEquipes } from '../equipe/actions/actions_equipe';
+import { createEquipe } from './actions/actions_equipe';
 import { reduxForm, Field } from 'redux-form';
-import Anchor from '../../components/Anchor';
+import Anchor from '../../containers/Anchor';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-import { renderField, required } from '../../components/FieldHelper';
+import { renderField, required } from '../../containers/FieldHelper';
 import Cropper from 'react-crop';
 
-class PlayerNew extends Component {
+class EquipeNew extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {showMessageDialog: false, message:'',image: null,previewImage: null, equipeId: null};
-        this.props.fetchEquipes();
+        this.state = {showMessageDialog: false, message:'',image: null,previewImage: null};
     }
 
-    formSubmit(player){
+    formSubmit(equipe){
         this.refs.crop.cropImage().then((img) => {
 
-            Object.assign(player, {image:img, equipeId: this.state.equipeId});
+            Object.assign(equipe, {image:img})
 
-            this.props.createPlayer(player).then(response => {
+            this.props.createEquipe(equipe).then(response => {
 
                 if(response.error) throw response.payload;
 
-                this.setState({previewUrl: null,image: null, showMessageDialog: true, message:`${player.name} created with success.`});
+                this.setState({previewUrl: null,image: null, showMessageDialog: true, message:`${equipe.name} created with success.`});
                 this.props.reset();
 
             }).catch(error => {
@@ -68,11 +66,6 @@ class PlayerNew extends Component {
         this.setState({showMessageDialog: true, message:message});
     }
 
-    handleChange(event){
-        console.log(event.target.value)
-        this.setState({equipeId: event.target.value});
-    }
-
     render(){
 
         const { handleSubmit } = this.props;
@@ -96,15 +89,17 @@ class PlayerNew extends Component {
                                                style={{"display":"none"}}/>
                                         <label htmlFor="file" className="mdl-button mdl-js-button mdl-button--fab mdl-button--colored"
                                                style={{"paddingBotton":"2px"}}>
-                                            <i className="material-icons">person</i>
+                                            <i className="material-icons">verified_user</i>
+                                            <i className="material-icons">fiber_manual_record</i>
                                         </label>
+
 
                                         {this.state.image &&
 
                                             <div  style={{height: 400, width: '30%'}}>
                                                 <Cropper
-                                                    height={231}
-                                                    width={212}
+                                                    height={127}
+                                                    width={230}
                                                     ref='crop'
                                                     image={this.state.image}
                                                     onImageLoaded={() => this.imageLoaded()}/>
@@ -128,40 +123,30 @@ class PlayerNew extends Component {
                                     <div className="mdl-cell mdl-cell--4-col" style={{"marginTop":"38px"}}>
                                         {this.state.previewUrl &&
                                             <div>
-                                                <span>Player Image</span><br/>
+                                                <span>Equipe Image</span><br/>
                                                 <img src={this.state.previewUrl} />
                                             </div>
                                         }
                                     </div>
                                 </div>
 
+
                             </div>
                             <div className="mdl-card__actions mdl-card--border">
-
-                                <div className="mdl-textfield mdl-js-textfield">
-
-                                    <select className="mdl-textfield__input" onClick={(e) => this.handleChange(e)}
-                                    required>
-                                        <option > Select </option>
-                                        {this.props.equipes.map(item =>
-                                            <option  key={item.id} value={item.id}>{item.name}</option>
-                                        )}
-                                    </select>
-
-                                </div>
-
                                 <Field name="name" type="text"
-                                       component={renderField} validate={[required]} label="Name"/>
+                                       component={renderField} validate={[required]} label="Equipe Name"/>
 
-                                <Field name="surname" type="text"
-                                       component={renderField} validate={[required]} label="Surname"/>
+                                <Field name="description" type="text"
+                                       component={renderField} validate={[required]} label="Equipe Description"/>
                             </div>
                             <div className="mdl-card__actions mdl-card--border">
                                 <input type="submit" value="Save" className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
                                        disabled={!this.state.image}/>
-                                <Anchor name="Cancel" href="player" className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"/>
+                                <Anchor name="Cancel" href="equipe" className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"/>
                             </div>
                         </div>
+
+
 
             </form>
                 <Dialog
@@ -188,24 +173,12 @@ class PlayerNew extends Component {
     }
 }
 
-PlayerNew = reduxForm({
-    form:'NewPlayerForm',
-})(PlayerNew);
+EquipeNew = reduxForm({
+    form:'NewEquipeForm',
+})(EquipeNew);
 
-function mapStateToProps(state){
-
-    if(state.equipesState.all){
-        return {
-              playersState: state.playersState
-            , equipes: state.equipesState.all
-        };
-    }
-
-    return {
-          playersState: state.playersState
-        , equipes: []
-    };
-
+function mapStateToProps({ equipesState }){
+    return { equipesState };
 }
 
-export default connect(mapStateToProps, { createPlayer, fetchEquipes })(PlayerNew);
+export default connect(mapStateToProps, { createEquipe })(EquipeNew);

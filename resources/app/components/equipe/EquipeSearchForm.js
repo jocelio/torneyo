@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { searchPlayer, filterPlayer } from './actions/actions_player';
+import { searchEquipes, filterEquipes } from './actions/actions_equipe';
 import { reduxForm, Field } from 'redux-form';
-import { renderField } from '../../components/FieldHelper';
+import { renderField } from '../../containers/FieldHelper';
 
-class PlayerSearchForm extends Component {
+class EquipeSearchForm extends Component {
 
     constructor(props) {
         super(props);
@@ -12,7 +12,7 @@ class PlayerSearchForm extends Component {
     }
 
     formSubmit(props){
-        this.props.searchPlayers(props)
+        this.props.searchEquipes(props)
             .then((response) => {
                 if(response.error) throw response.payload
             }).catch((error) => {
@@ -22,7 +22,7 @@ class PlayerSearchForm extends Component {
 
     handleKeyPress(props){
         const {name , value} = props.target;
-        this.props.filterPlayers(this.props.players, {[name]: value});
+        this.props.filterEquipes(this.props.equipes, {[name]: value});
     }
 
     render(){
@@ -33,11 +33,11 @@ class PlayerSearchForm extends Component {
             <form onSubmit={handleSubmit((props) => this.formSubmit(props))}>
 
                 <Field name="name" type="text" onBlur={()=>{}} onFocus={()=>{}}
-                    component={renderField} label="Name"
+                    component={renderField} label="Equipe Name"
                        onChange={(props) => this.handleKeyPress(props)}/>
 
-                <Field name="surname" type="text" onBlur={()=>{}} onFocus={()=>{}}
-                    component={renderField} label="Surname"
+                <Field name="description" type="text" onBlur={()=>{}} onFocus={()=>{}}
+                    component={renderField} label="Equipe Description"
                        onChange={(props) => this.handleKeyPress(props)}/>
 
                 <br/>
@@ -52,17 +52,17 @@ class PlayerSearchForm extends Component {
 
 }
 
-PlayerSearchForm = reduxForm({ form:'PlayerSearchForm'})(PlayerSearchForm);
+EquipeSearchForm = reduxForm({ form:'SearchForm'})(EquipeSearchForm);
 
 function mapStateToProps(state){
 
-    if(state.playersState.holdPlayers)
-        return {players: state.playersState.holdPlayers}
+    if(state.equipesState.holdEquipes)
+        return {equipes: state.equipesState.holdEquipes}
 
-    if(state.playersState.all)
-        return {players: state.playersState.all}
+    if(state.equipesState.all)
+        return {equipes: state.equipesState.all}
 
-    return {players:[]};
+    return {equipes:[]};
 }
 
-export default connect(mapStateToProps, { searchPlayer, filterPlayer })(PlayerSearchForm);
+export default connect(mapStateToProps, { searchEquipes, filterEquipes })(EquipeSearchForm);

@@ -1,18 +1,18 @@
 import React from 'react';
 import {Route, IndexRoute} from 'react-router';
 
-import App from './components/App';
-import Home from './components/Home';
-import Inbox from './components/Inbox';
-import Equipe from './containers/equipe/Equipe';
-import EquipeNew from './containers/equipe/EquipeNew';
-import EquipeUpdate from './containers/equipe/EquipeUpdate';
-import EquipeSearch from './containers/equipe/EquipeSearch';
+import App from './containers/App';
+import Home from './containers/Home';
+import Inbox from './containers/Inbox';
+import Equipe from './components/equipe/Equipe';
+import EquipeNew from './components/equipe/EquipeNew';
+import EquipeUpdate from './components/equipe/EquipeUpdate';
+import EquipeSearch from './components/equipe/EquipeSearch';
 
-import Player from './containers/player/Player';
-import PlayerNew from './containers/player/PlayerNew';
-import PlayerUpdate from './containers/player/PlayerUpdate';
-import PlayerSearch from './containers/player/PlayerSearch';
+import Player from './components/player/Player';
+import PlayerNew from './components/player/PlayerNew';
+import PlayerUpdate from './components/player/PlayerUpdate';
+import PlayerSearch from './components/player/PlayerSearch';
 
 
 export default

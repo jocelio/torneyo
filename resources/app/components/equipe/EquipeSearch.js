@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchEquipes, deleteEquipe, searchEquipes } from './actions/actions_equipe';
-import Anchor from '../../components/Anchor';
+import Anchor from '../../containers/Anchor';
 import EquipeSearchForm from './EquipeSearchForm';
 import { Link } from 'react-router';
 import Dialog from 'material-ui/Dialog';

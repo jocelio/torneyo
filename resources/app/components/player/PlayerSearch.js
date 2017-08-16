@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPlayers, deletePlayer, searchPlayer } from './actions/actions_player';
-import Anchor from '../../components/Anchor';
+import Anchor from '../../containers/Anchor';
 import PlayerSearchForm from './PlayerSearchForm';
 import { Link } from 'react-router';
 import Dialog from 'material-ui/Dialog';
