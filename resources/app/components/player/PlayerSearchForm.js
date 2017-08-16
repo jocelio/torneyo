@@ -54,7 +54,7 @@ class PlayerSearchForm extends Component {
 
 PlayerSearchForm = reduxForm({ form:'PlayerSearchForm'})(PlayerSearchForm);
 
-function mapStateToProps(state){
+const mapStateToProps = (state) => {
 
     if(state.playersState.holdPlayers)
         return {players: state.playersState.holdPlayers}

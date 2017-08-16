@@ -185,7 +185,6 @@ class PlayerSearch extends Component {
                     &nbsp;
                     <Anchor name="Update" href={`player/update/${player.id}`} className="mdl-button mdl-js-button mdl-js-ripple-effect"/>
 
-
                 </td>
             </tr>
         )

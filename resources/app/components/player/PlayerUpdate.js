@@ -67,7 +67,7 @@ class PlayerUpdate extends Component {
                         <Field name="name" type="text" value="teste"
                             component={renderField} validate={[required]} label="Player Name"/>
 
-                        <Field name="description" type="text"
+                        <Field name="surname" type="text"
                             component={renderField} validate={[required]} label="Player Description"/>
 
                     </div>
