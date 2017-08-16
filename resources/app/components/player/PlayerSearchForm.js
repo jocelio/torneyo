@@ -22,7 +22,7 @@ class PlayerSearchForm extends Component {
 
     handleKeyPress(props){
         const {name , value} = props.target;
-        this.props.filterPlayers(this.props.players, {[name]: value});
+        this.props.filterPlayer(this.props.players, {[name]: value});
     }
 
     render(){
@@ -47,7 +47,7 @@ class PlayerSearchForm extends Component {
     }
 
     componentDidMount(){
-        try{componentHandler.upgradeAllRegistered();}catch (e){}
+        try{componentHandler.upgradeAllRegistered()}catch (e){}
     }
 
 }
@@ -56,8 +56,10 @@ PlayerSearchForm = reduxForm({ form:'PlayerSearchForm'})(PlayerSearchForm);
 
 const mapStateToProps = (state) => {
 
-    if(state.playersState.holdPlayers)
-        return {players: state.playersState.holdPlayers}
+    const {holdPlayers} = state.playersState;
+
+    if(holdPlayers)
+        return {players: holdPlayers}
 
     if(state.playersState.all)
         return {players: state.playersState.all}
