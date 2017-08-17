@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Menu from './Menu';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import { keepSession } from '../../login/containers/login/actions/actions_login';
+import { keepSession } from '../../login/components/login/actions/actions_login';
 
 class App extends Component {
 
