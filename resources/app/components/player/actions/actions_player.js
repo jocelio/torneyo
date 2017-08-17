@@ -1,4 +1,4 @@
-import { axiosInstance } from '../../../axiosFactory'
+import { axiosInstance } from '../../../axios-factory'
 
 export const FETCH_PLAYERS = 'FETCH_PLAYERS';
 export const FETCH_PLAYER  = 'FETCH_PLAYER';

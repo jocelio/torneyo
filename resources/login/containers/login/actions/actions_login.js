@@ -1,4 +1,4 @@
-import { axiosInstance } from '../../../../app/axiosFactory'
+import { axiosInstance } from '../../../../app/axios-factory'
 
 export const LOGIN = 'LOGIN';
 export const WRITE_LOCAL_STORAGE = 'WRITE_LOCALS_TORAGE';
