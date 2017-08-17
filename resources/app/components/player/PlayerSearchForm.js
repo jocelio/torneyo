@@ -56,15 +56,10 @@ PlayerSearchForm = reduxForm({ form:'PlayerSearchForm'})(PlayerSearchForm);
 
 const mapStateToProps = (state) => {
 
-    const {holdPlayers} = state.playersState;
+    const {holdPlayers, all} = state.playersState || {};
 
-    if(holdPlayers)
-        return {players: holdPlayers}
+    return {players: holdPlayers || all}
 
-    if(state.playersState.all)
-        return {players: state.playersState.all}
-
-    return {players:[]};
 }
 
 export default connect(mapStateToProps, { searchPlayer, filterPlayer })(PlayerSearchForm);
