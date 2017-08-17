@@ -193,9 +193,11 @@ class PlayerSearch extends Component {
 }
 
 const mapStateToProps = state => {
-    if(state.playersState.all)
-        return {players: state.playersState.all}
-   return {players:[]};
+
+    const {all} = state.playersState || []
+
+    return {players: all}
+
 }
 
 export default connect(mapStateToProps, { fetchPlayers, deletePlayer, searchPlayer })(PlayerSearch);

@@ -106,18 +106,21 @@ EquipeUpdate.contextTypes = {
 EquipeUpdate = reduxForm({ form:'NewEquipeForm'})(EquipeUpdate);
 
 function mapStateToProps(state){
-    const {equipe} = state.equipesState;
-    if(state.equipesState.equipe) {
+
+    const {equipe} = state.equipesState || null;
+
+    if(equipe) {
         return {
-                    equipe: state.equipesState.equipe
-                    , initialValues: {
-                            name:equipe.name
-                          , description:equipe.description
-                          , id:equipe.id
-                    }
+                equipe: equipe
+                , initialValues: {
+                        name:equipe.name
+                      , description:equipe.description
+                      , id:equipe.id
+                }
         }
     }
-    return { equipe:{}}
+
+    return { equipe }
 }
 
 export default connect(mapStateToProps, {fetchEquipe, updateEquipe })(EquipeUpdate);

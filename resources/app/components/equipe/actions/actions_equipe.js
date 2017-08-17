@@ -44,10 +44,10 @@ export function filterEquipes(equipes, equipe){
 }
 
 export function searchEquipes(equipe){
+
     const query = Object.keys(equipe).map(function(k) {
         return encodeURIComponent(k) + '=' + encodeURIComponent(equipe[k])
     }).join('&')
-
 
     const url = `/equipe/search?${query}`;
     const response = axiosInstance().get(url);
@@ -74,7 +74,6 @@ export function createEquipe(equipe){
     fd.append('description', equipe.description);
     fd.append('image', equipe.image, 'i.jpg');
 
-
     const url = `/equipe`;
     return {
         type: CREATE_EQUIPE,
@@ -84,10 +83,9 @@ export function createEquipe(equipe){
 
 export function deleteEquipe(equipe){
     const url = `/equipe/${equipe.id}`;
-
     return {
         type: DELETE_EQUIPE,
-        payload: {id: equipe.id, response:axiosInstance().delete(url)}
+        payload: {id: equipe.id, response: axiosInstance().delete(url)}
     };
 }
 

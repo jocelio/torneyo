@@ -12,7 +12,7 @@ class PlayerSearchForm extends Component {
     }
 
     formSubmit(props){
-        this.props.searchPlayers(props)
+        this.props.searchPlayer(props)
             .then((response) => {
                 if(response.error) throw response.payload
             }).catch((error) => {

@@ -56,13 +56,10 @@ EquipeSearchForm = reduxForm({ form:'SearchForm'})(EquipeSearchForm);
 
 function mapStateToProps(state){
 
-    if(state.equipesState.holdEquipes)
-        return {equipes: state.equipesState.holdEquipes}
+    const {holdEquipes, all} = state.equipesState || {}
 
-    if(state.equipesState.all)
-        return {equipes: state.equipesState.all}
+    return {equipes: holdEquipes || all}
 
-    return {equipes:[]};
 }
 
 export default connect(mapStateToProps, { searchEquipes, filterEquipes })(EquipeSearchForm);

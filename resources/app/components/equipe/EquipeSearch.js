@@ -195,9 +195,11 @@ class EquipeSearch extends Component {
 }
 
 function mapStateToProps( state ){
-    if(state.equipesState.all)
-        return {equipes: state.equipesState.all}
-   return {equipes:[]};
+
+    const {all} = state.equipesState || {}
+
+    return {equipes: all}
+
 }
 
 export default connect(mapStateToProps, { fetchEquipes, deleteEquipe, searchEquipes })(EquipeSearch);

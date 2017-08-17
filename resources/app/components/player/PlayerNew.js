@@ -194,16 +194,9 @@ PlayerNew = reduxForm({
 
 function mapStateToProps(state){
 
-    if(state.equipesState.all){
-        return {
-              playersState: state.playersState
-            , equipes: state.equipesState.all
-        };
-    }
-
     return {
           playersState: state.playersState
-        , equipes: []
+        , equipes: state.equipesState.all || []
     };
 
 }

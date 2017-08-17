@@ -107,7 +107,7 @@ PlayerUpdate.contextTypes = {
 PlayerUpdate = reduxForm({ form:'NewPlayerForm'})(PlayerUpdate);
 
 function mapStateToProps(state){
-    const {player} = state.playersState || {};
+    const {player} = state.playersState || null;
     if(player) {
         return {player: player
                      , initialValues: {
