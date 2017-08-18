@@ -17,9 +17,10 @@ $app->get('/login', function ()  {
     return view('login', ['name' => 'teste']);
 });
 
-    $app->get('/', function ()  {
-        return view('home');
-    });
+$app->get('/', function ()  {
+    return view('home');
+});
+
 $app->group(['middleware' => ['auth']], function($app) {
 
     $app->get('equipe/search/', 'EquipesController@searchEquipe');
@@ -48,7 +49,6 @@ $app->group(['middleware' => ['auth']], function($app) {
     $app->delete('user/{id}', 'UsersController@remove');
 
 });
-
 
 
 Dusterio\LumenPassport\LumenPassport::routes($app);
