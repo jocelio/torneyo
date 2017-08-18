@@ -41,9 +41,9 @@ $app->group(['middleware' => ['auth']], function($app) {
     /**
      * Routes for resource user
      */
-    $app->get('User', 'UsersController@all');
+    $app->get('user', 'UsersController@all');
     $app->get('user/{id}', 'UsersController@get');
-    $app->post('UserSeeder', 'UsersController@add');
+    $app->post('user', 'UsersController@add');
     $app->put('user/{id}', 'UsersController@put');
     $app->delete('user/{id}', 'UsersController@remove');
 
