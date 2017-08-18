@@ -18,16 +18,16 @@ class FormLogin extends Component {
 
     handleLogin(){
 
-        const {username, password} = this.refs;
+        const {email, password} = this.refs;
 
-        this.props.login({username: username.value, password:password.value}).then(response => {
+        this.props.login({username: email.value, password:password.value}).then(response => {
 
             if(response.error) throw response.data;
 
             this.props.storeAuthCredentials(response.payload.data);
             this.props.redirectIn()
 
-        }).catch(error => {
+        }).catch(() => {
             const message = <span className='error-message'>Wrong e-mail or password.</span>
             this.setState({showMessageDialog: true, message:message});
         });
@@ -49,8 +49,8 @@ class FormLogin extends Component {
 
                             <div className="mdl-textfield mdl-js-textfield">
                                 <input className="mdl-textfield__input" type="text" id="username" name="username"
-                                ref="username"/>
-                                <label className="mdl-textfield__label" htmlFor="username">Username</label>
+                                ref="email"/>
+                                <label className="mdl-textfield__label" htmlFor="email">E-mail</label>
                             </div>
                             <div className="mdl-textfield mdl-js-textfield">
                                 <input className="mdl-textfield__input" type="password" id="userpass" name="password"
