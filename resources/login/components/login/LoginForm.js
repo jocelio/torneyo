@@ -3,11 +3,17 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {login , storeAuthCredentials, redirectIn } from './actions/actions_login';
 import {styles} from '../../../../public/assets/css/login.css';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
 class FormLogin extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {showMessageDialog:false, message:''}
+        injectTapEventPlugin();
     }
 
     handleLogin(){
@@ -22,13 +28,16 @@ class FormLogin extends Component {
             this.props.redirectIn()
 
         }).catch(error => {
-           alert(error);
+            const message = <span className='error-message'>Wrong e-mail or password.</span>
+            this.setState({showMessageDialog: true, message:message});
         });
 
     }
 
     render(){
-        return (<div className="mdl-layout mdl-js-layout mdl-color--grey-100">
+        return (
+            <MuiThemeProvider>
+            <div className="mdl-layout mdl-js-layout mdl-color--grey-100">
 
             <main className="mdl-layout__content">
                 <div className="mdl-card mdl-shadow--6dp">
@@ -55,7 +64,23 @@ class FormLogin extends Component {
                     </div>
                 </div>
             </main>
-        </div>)
+
+            <Dialog
+                title="Message"
+                actions={<FlatButton
+                    label="Close"
+                    primary={true}
+                    keyboardFocused={false}
+                    onClick={() => this.setState({showMessageDialog: false})}
+                />}
+                modal={false}
+                open={this.state.showMessageDialog}
+                onRequestClose={() => this.setState({showMessageDialog: false})}>
+                {this.state.message}
+            </Dialog>
+
+        </div>
+            </MuiThemeProvider> )
     }
 
 }

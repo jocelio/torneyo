@@ -1,5 +1,5 @@
 
-import { axiosInstance } from '../../../axios-factory'
+import { axiosInstance } from '../../../factories/axios-factory'
 import {ROOT_URL} from '../../../config/config'
 
 export const FETCH_EQUIPES = 'FETCH_PLAYERS';
