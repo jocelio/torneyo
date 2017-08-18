@@ -54,7 +54,6 @@ $app->group(['middleware' => ['auth']], function($app) {
 Dusterio\LumenPassport\LumenPassport::routes($app);
 
 
-//Dusterio\LumenPassport\LumenPassport::routes($app, ['prefix' => 'v1/oauth']);
 
 
 
