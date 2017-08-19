@@ -15494,7 +15494,7 @@ module.exports = Cancel;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var API_URL = "http://torneyo.herokuapp.com/";
+var API_URL = "http://localhost:8001";
 exports.API_URL = API_URL;
 
 /***/ }),

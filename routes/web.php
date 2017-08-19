@@ -48,6 +48,7 @@ $app->group(['middleware' => ['auth']], function($app) {
     $app->put('user/{id}', 'UsersController@put');
     $app->delete('user/{id}', 'UsersController@remove');
 
+
 });
 
 

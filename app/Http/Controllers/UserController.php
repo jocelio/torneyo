@@ -20,7 +20,7 @@ class UserController extends BaseController
         if ($request->has('username') && $request->has('password')) {
             $user = new User();
             $user->name ="Jocelio Lima";
-            $user->email ="jocelio27@gmail.com";
+            $user->email ="";
 
             if ($user) {
                 $token=str_random(60);
