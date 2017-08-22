@@ -40,7 +40,7 @@ export function storeAuthCredentials(credentials){
 
 export function redirectIn() {
 
-    window.location.href="/#/"
+    window.location.href="/"
 
     return {
         type: REDIRECT_IN,
