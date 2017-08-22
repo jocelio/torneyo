@@ -55,10 +55,7 @@ class EquipeNew extends Component {
     }
 
     imageLoaded(img) {
-        // if (img.naturalWidth && img.naturalWidth < 262 &&
-        //     img.naturalHeight && img.naturalHeight < 147) {
-        //     this.crop()
-        // }
+       
     }
 
     showMessage({text = '', type ='info'}){
