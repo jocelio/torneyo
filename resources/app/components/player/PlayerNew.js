@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 import { createPlayer } from './actions/actions_player';
 import { fetchEquipes } from '../equipe/actions/actions_equipe';
 import { reduxForm, Field } from 'redux-form';
@@ -143,7 +144,7 @@ class PlayerNew extends Component {
                                     <select className="mdl-textfield__input" onClick={(e) => this.handleChange(e)}
                                     required>
                                         <option > Select </option>
-                                        {this.props.equipes.map(item =>
+                                        { _.map(this.props.equipes, item =>
                                             <option  key={item.id} value={item.id}>{item.name}</option>
                                         )}
                                     </select>
@@ -192,11 +193,11 @@ PlayerNew = reduxForm({
     form:'NewPlayerForm',
 })(PlayerNew);
 
-function mapStateToProps(state){
+const mapStateToProps = state => {
 
     return {
           playersState: state.playersState
-        , equipes: state.equipesState.all || []
+        , equipes: state.equipesState.all
     };
 
 }

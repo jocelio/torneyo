@@ -5,7 +5,6 @@ class Equipe extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {equipe:{}};
     }
 
     render(){

@@ -56144,10 +56144,7 @@ var Equipe = function (_Component) {
     function Equipe(props) {
         _classCallCheck(this, Equipe);
 
-        var _this = _possibleConstructorReturn(this, (Equipe.__proto__ || Object.getPrototypeOf(Equipe)).call(this, props));
-
-        _this.state = { equipe: {} };
-        return _this;
+        return _possibleConstructorReturn(this, (Equipe.__proto__ || Object.getPrototypeOf(Equipe)).call(this, props));
     }
 
     _createClass(Equipe, [{
@@ -57815,6 +57812,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(17);
 
+var _lodash = __webpack_require__(760);
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
 var _actions_player = __webpack_require__(156);
 
 var _actions_equipe = __webpack_require__(94);
@@ -58052,7 +58053,7 @@ var PlayerNew = function (_Component) {
                                         null,
                                         ' Select '
                                     ),
-                                    this.props.equipes.map(function (item) {
+                                    _lodash2.default.map(this.props.equipes, function (item) {
                                         return _react2.default.createElement(
                                             'option',
                                             { key: item.id, value: item.id },
@@ -58112,13 +58113,13 @@ PlayerNew = (0, _reduxForm.reduxForm)({
     form: 'NewPlayerForm'
 })(PlayerNew);
 
-function mapStateToProps(state) {
+var mapStateToProps = function mapStateToProps(state) {
 
     return {
         playersState: state.playersState,
-        equipes: state.equipesState.all || []
+        equipes: state.equipesState.all
     };
-}
+};
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, { createPlayer: _actions_player.createPlayer, fetchEquipes: _actions_equipe.fetchEquipes })(PlayerNew);
 
