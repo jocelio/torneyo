@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 import { fetchEquipes, deleteEquipe, searchEquipes } from './actions/actions_equipe';
 import Anchor from '../../containers/Anchor';
 import EquipeSearchForm from './EquipeSearchForm';
@@ -58,10 +59,9 @@ class EquipeSearch extends Component {
     }
 
     changeView(){
-        if(this.state.view ==='table')
-            this.setState({view:'card'});
-        else
-            this.setState({view:'table'});
+
+        this.setState({view: this.state.view ==='table'?'card':'table'});
+
     }
 
     showMessage({text = '', type ='info'}){
@@ -134,7 +134,7 @@ class EquipeSearch extends Component {
 
 
     listEquipes(){
-        return (<ul> {this.props.equipes.map((e) => this.renderCards(e))} </ul>)
+        return (<ul> { _.map(this.props.equipes, (e) => this.renderCards(e))} </ul>)
     }
 
     tableEquipes(){
@@ -147,7 +147,7 @@ class EquipeSearch extends Component {
                     </tr>
                     </thead>
                 <tbody>
-                    {this.props.equipes.map((e) => this.renderTable(e))}
+                    { _.map(this.props.equipes, (e) => this.renderTable(e))}
                 </tbody>
             </table>)
     }
@@ -194,10 +194,10 @@ class EquipeSearch extends Component {
 
 }
 
-function mapStateToProps( state ){
-    if(state.equipesState.all)
-        return {equipes: state.equipesState.all}
-   return {equipes:[]};
+const mapStateToProps = state => {
+
+   return {equipes: state.equipesState.all}
+
 }
 
 export default connect(mapStateToProps, { fetchEquipes, deleteEquipe, searchEquipes })(EquipeSearch);
