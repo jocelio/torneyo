@@ -47,16 +47,16 @@ class EquipeSearchForm extends Component {
     }
 
     componentDidMount(){
-        try{componentHandler.upgradeAllRegistered();}catch (e){}
+        try{componentHandler.upgradeAllRegistered();} catch (e){}
     }
 
 }
 
 EquipeSearchForm = reduxForm({ form:'SearchForm'})(EquipeSearchForm);
 
-function mapStateToProps(state){
+const mapStateToProps = state => {
 
-    const {holdEquipes, all} = state.equipesState || {}
+    const {holdEquipes, all} = state.equipesState
 
     return {equipes: holdEquipes || all}
 

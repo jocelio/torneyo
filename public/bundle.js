@@ -57731,13 +57731,14 @@ var EquipeSearchForm = function (_Component) {
 
 EquipeSearchForm = (0, _reduxForm.reduxForm)({ form: 'SearchForm' })(EquipeSearchForm);
 
-function mapStateToProps(state) {
-    var _ref = state.equipesState || {},
-        holdEquipes = _ref.holdEquipes,
-        all = _ref.all;
+var mapStateToProps = function mapStateToProps(state) {
+    var _state$equipesState = state.equipesState,
+        holdEquipes = _state$equipesState.holdEquipes,
+        all = _state$equipesState.all;
+
 
     return { equipes: holdEquipes || all };
-}
+};
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, { searchEquipes: _actions_equipe.searchEquipes, filterEquipes: _actions_equipe.filterEquipes })(EquipeSearchForm);
 
