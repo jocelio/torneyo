@@ -1,0 +1,31 @@
+{
+  "name": "TorneyoWebApp",
+  "description": "This app does one little thing, and does it well.",
+  "keywords": [
+    "productivity",
+    "HTML5",
+    "react",
+    "php"
+  ],
+  "success_url": "/",
+  "scripts": {
+    "postdeploy": "npm run build:prod"
+  },
+  "env": {
+    "NODE_ENV": {
+      "description": "Node enviroment.",
+      "generator": "production"
+    },
+    "API_URL": {
+      "description": "Back end api url.",
+      "value": "http://torneyo.herokuapp.com/"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "Performance-M"
+    }
+  },
+  "image": "vendor/bin/heroku-php-apache2"
+}
