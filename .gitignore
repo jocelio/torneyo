@@ -1,7 +1,7 @@
 node_modules/
 .idea/*
 vendor/
-storage/
+storage/logs/
 /public/uploads/user_files/imgs/*
 /public/bundle.js
 /public/bundle-login.js
