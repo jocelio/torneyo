@@ -21,16 +21,14 @@ $app->get('/', function ()  {
     return view('home');
 });
 
+$app->group(['middleware' => ['auth']], function($app) {
+
     $app->get('equipe/search/', 'EquipesController@searchEquipe');
     $app->get('equipe', 'EquipesController@all');
     $app->get('equipe/{id}', 'EquipesController@get');
     $app->post('equipe', 'EquipesController@addEquipe');
     $app->put('equipe/{id}', 'EquipesController@put');
     $app->delete('equipe/{id}', 'EquipesController@removeEquipe');
-
-    
-$app->group(['middleware' => ['auth']], function($app) {
-
 
     /**
      * Routes for resource player
