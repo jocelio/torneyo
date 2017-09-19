@@ -9,10 +9,11 @@ import reducers from '../app/reducers/index';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
+
 ReactDOM.render(
     <Provider store={createStoreWithMiddleware(reducers)}>
         <FormLogin/>
     </Provider>,
-    document.getElementById('login')
+    document.getElementById('body')
 );
 
