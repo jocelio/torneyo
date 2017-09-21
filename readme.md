@@ -1,7 +1,7 @@
 # Torneyo
 
 
-A full stack app built with Lumen React.
+A full stack app built with Lumen and React.
 
 ## Running Mysql with Docker
 ```
