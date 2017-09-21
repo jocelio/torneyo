@@ -29,7 +29,3 @@ docker run \
     php artisan wn:resource task "name;string;required;fillable project_id;integer:unsigned;numeric;fillable,key due;date;;date" --add=timestamps --belongs-to=project
     
 ```
-
-## License
-
-The Lumen framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
