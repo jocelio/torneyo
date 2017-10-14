@@ -2,14 +2,6 @@
   "name": "torneyo-web",
   "version": "0.1.0",
   "private": true,
-  "prod":{
-    "client_id":"12",
-    "client_secret":"nvsDyNBMgtIxRaAna2eaLq2aswuQNeK0BZn0T8e0"
-  },
-  "dev":{
-    "client_id":"2",
-    "client_secret":"bEoyH3MtiBgpLRRgl08wHo2sKra6Me3RuR4IJya0"
-  },
   "engines": {
     "node": "4.7.2",
     "npm": "3.5.2"

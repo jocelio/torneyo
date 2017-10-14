@@ -1,0 +1,10 @@
+{
+"prod":{
+    "client_id":"12",
+    "client_secret":"nvsDyNBMgtIxRaAna2eaLq2aswuQNeK0BZn0T8e0"
+},
+"dev":{
+    "client_id":"2",
+"client_secret":"bEoyH3MtiBgpLRRgl08wHo2sKra6Me3RuR4IJya0"
+}
+}
