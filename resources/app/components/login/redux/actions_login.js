@@ -2,12 +2,23 @@ import { axiosInstance } from '../../../factories/axios-factory'
 import { hashHistory } from 'react-router'
 import moment from 'moment';
 import _ from 'lodash'
-import json from './../../../clients.json';
 
 export const LOGIN = 'LOGIN';
 export const WRITE_LOCAL_STORAGE = 'WRITE_LOCALS_STORAGE';
 export const REDIRECT_IN = 'REDIRECT_IN';
 export const KEEP_SESSION = 'KEEP_SESSION';
+
+const conf = {
+    prod:{
+        client_id:"12",
+        client_secret:"nvsDyNBMgtIxRaAna2eaLq2aswuQNeK0BZn0T8e0"
+    },
+    dev:{
+        client_id:"2",
+        client_secret:"bEoyH3MtiBgpLRRgl08wHo2sKra6Me3RuR4IJya0"
+    }
+}
+
 
 export function login(data){
 
@@ -15,8 +26,8 @@ export function login(data){
 
     const envKey = (process.env.NODE_ENV =="production")?"prod":"dev"
 
-    const { client_id } = json[envKey];
-    const { client_secret } = json[envKey];
+    const { client_id } = conf[envKey];
+    const { client_secret } = conf[envKey];
 
     const formData = {client_secret,client_id,
         grant_type:'password',
@@ -68,6 +79,6 @@ export const isLoggedIn = () => {
 
     const tokenExpireDate = timeLogin.add(parseInt(expiresInTime),'ms');
 
-    return (localStorage.getItem('access_token')) && tokenExpireDate.isBefore(moment());
+    return !_.isNil(localStorage.getItem('access_token')) && tokenExpireDate.isAfter(moment());
 
 }
