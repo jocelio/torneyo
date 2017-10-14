@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import {login , storeAuthCredentials, redirectIn } from './actions/actions_login';
-import {styles} from '../../../../public/assets/css/login.css';
+import {login , storeAuthCredentials, redirectIn } from '../redux/actions_login';
+import { styles } from '../../../../../public/assets/css/login.css';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import injectTapEventPlugin from 'react-tap-event-plugin';
 
 class FormLogin extends Component {
 
     constructor(props) {
         super(props);
         this.state = {showMessageDialog:false, message:''}
-        injectTapEventPlugin();
     }
 
     handleLogin(){
