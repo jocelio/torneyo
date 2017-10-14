@@ -1,5 +1,6 @@
 import React from 'react';
-import {Route, IndexRoute} from 'react-router';
+import {Route, IndexRoute, hashHistory} from 'react-router';
+import { isLoggedIn } from './../components/login/redux/actions_login';
 
 import App from '../containers/App';
 import Home from '../containers/Home';
@@ -14,10 +15,13 @@ import PlayerNew from '../components/player/PlayerNew';
 import PlayerUpdate from '../components/player/PlayerUpdate';
 import PlayerSearch from '../components/player/PlayerSearch';
 
+import LoginForm from '../components/login/components/LoginForm'
+
 
 export default
-    <Route path="/" component={App} title="TorneyoApp">
+    <Route path="/" component={props => protectedRoute(props, App)} title="TorneyoApp">
         <Route path="/home" component={Home}/>
+        <Route path="/login" component={LoginForm}/>
         <Route path="/inbox" component={Inbox}/>
         <Route path="/equipe" component={Equipe}>
             <IndexRoute component={EquipeSearch}/>
@@ -30,3 +34,9 @@ export default
             <Route path="update/:id" component={PlayerUpdate}/>
         </Route>
     </Route>
+
+const protectedRoute = (props, Component, ...rest) => {
+
+    return (isLoggedIn())? <Component {...props} {...rest}/>:<LoginForm {...props} {...rest}/>;
+
+}

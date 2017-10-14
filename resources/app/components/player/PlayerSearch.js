@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import _ from 'lodash'
 import { fetchPlayers, deletePlayer, searchPlayer } from './actions/actions_player';
 import Anchor from '../../containers/Anchor';
 import PlayerSearchForm from './PlayerSearchForm';
@@ -131,7 +132,7 @@ class PlayerSearch extends Component {
 
 
     listPlayers(){
-        return <ul> {this.props.players.map((e) => this.renderCards(e))} </ul>
+        return <ul> {_.map(this.props.players, e => this.renderCards(e))} </ul>
     }
 
     tablePlayers(){
@@ -144,7 +145,7 @@ class PlayerSearch extends Component {
                     </tr>
                     </thead>
                 <tbody>
-                    {this.props.players.map((e) => this.renderTable(e))}
+                    {_.map(this.props.players, e => this.renderTable(e))}
                 </tbody>
             </table>)
     }

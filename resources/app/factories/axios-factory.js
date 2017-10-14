@@ -6,12 +6,22 @@ const {API_URL} = process.env;
 
 export function axiosInstance(){
 
-    const token = localStorage.getItem('access_token');
-    console.log(API_URL)
+    console.log('API_URL',API_URL)
+
     const instance = axios.create({
         baseURL: API_URL,
         timeout: 1000,
-        headers: {'Authorization': `Bearer ${token}`}
+    });
+
+    const token = localStorage.getItem('access_token');
+
+    instance.interceptors.request.use(function (config) {
+        if(token){
+            config.headers = { Authorization: `Bearer ${token}`};
+        }
+        return config;
+    }, function (error) {
+        return Promise.reject(error);
     });
 
     return instance;

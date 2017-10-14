@@ -2,19 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Menu from './Menu';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import { keepSession } from './../components/login/redux/actions_login';
 
 class App extends Component {
 
     constructor(props){
         super(props);
-        injectTapEventPlugin();
+        // injectTapEventPlugin();
     }
-
-    componentWillUpdate(){
-        this.props.keepSession();
-    }
-
 
   render() {
 
@@ -76,5 +70,5 @@ class App extends Component {
 
 }
 
-export default connect(null, {keepSession})(App);
+export default connect(null, null)(App);
 

@@ -1,6 +1,6 @@
 const path = require('path'), webpack = require('webpack');
 module.exports = {
-    entry: {bundle: './resources/app/', 'bundle-login':'./resources/login/'},
+    entry: {bundle: './resources/app/'},
     output: {
         path: path.resolve(__dirname, './public'),
         filename: "[name].js"

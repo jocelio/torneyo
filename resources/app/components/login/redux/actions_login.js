@@ -1,4 +1,7 @@
-import { axiosInstance } from '../../../../app/factories/axios-factory'
+import { axiosInstance } from '../../../factories/axios-factory'
+import { hashHistory } from 'react-router'
+import moment from 'moment'
+import _ from 'lodash'
 
 export const LOGIN = 'LOGIN';
 export const WRITE_LOCAL_STORAGE = 'WRITE_LOCALS_STORAGE';
@@ -40,7 +43,7 @@ export function storeAuthCredentials(credentials){
 
 export function redirectIn() {
 
-    window.location.href="/"
+    hashHistory.push("/home")
 
     return {
         type: REDIRECT_IN,
@@ -49,18 +52,24 @@ export function redirectIn() {
 
 }
 
+export const isLoggedIn = () => {
+
+    // const timeLogin = moment().unix(parseInt(localStorage.getItem('time_login')));
+    // console.log(timeLogin)
+    // const expiresIn = moment().unix(parseInt(localStorage.getItem('expires_in')));
+    //
+    // const currentDate = moment();
+    // const tokenExpireDate = timeLogin.add(expiresIn,'ms');
+    //
+    // return (localStorage.getItem('access_token')) && tokenExpireDate.isAfter(currentDate);
+
+    return !_.isNil(localStorage.getItem('access_token'));
+}
+
 export function keepSession() {
 
-    const timeLogin = parseInt(localStorage.getItem('time_login'));
-    const expiresIn = parseInt(localStorage.getItem('expires_in'));
-
-    const currentDate = new Date();
-    const tokenExpireDate = new Date(timeLogin + expiresIn);
-
-    const isTokenExpired = tokenExpireDate > currentDate? false: true;
-
-    if(!localStorage.getItem('access_token') || isTokenExpired)
-        window.location.href="/login";
+    if(isLoggedIn())
+         hashHistory.push("/login")
 
     return {
         type: KEEP_SESSION,
