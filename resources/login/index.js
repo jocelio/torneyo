@@ -14,6 +14,6 @@ ReactDOM.render(
     <Provider store={createStoreWithMiddleware(reducers)}>
         <FormLogin/>
     </Provider>,
-    document.getElementById('body')
+    document.getElementById('login')
 );
 

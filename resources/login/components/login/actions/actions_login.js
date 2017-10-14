@@ -10,9 +10,9 @@ export function login(data){
     const url = '/oauth/token';
 
     const formData = {
-        client_secret:'m7TmJM9lr26r3lzoMn4CJ1egkQdvk2xGkh2Wge31',
+        client_secret:'bEoyH3MtiBgpLRRgl08wHo2sKra6Me3RuR4IJya0',
         grant_type:'password',
-        client_id:32,
+        client_id:2,
         username: data.username,
         password: data.password
     }

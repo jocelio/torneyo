@@ -2,7 +2,7 @@
  * Created by jocelio on 26/07/17.
  */
 import axios from 'axios';
-import {API_URL} from '../config/config'
+const {API_URL} = process.env;
 
 export function axiosInstance(){
 

@@ -38,7 +38,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "build:prod": "webpack -p --config webpack.config.js",
-    "dev": "API_URL=http://localhost:8001 webpack -w"
+    "dev": "NODE_ENV=dev API_URL=http://localhost:8001 webpack -w",
+    "build:prod": "NODE_ENV=production API_URL=http://torneyo.herokuapp.com webpack -p --config webpack.config.js"
   }
 }

@@ -9,13 +9,7 @@
 
 </head>
 <body>
-<!--<main id="login"></main>-->
-<script>
-    var iDiv = document.createElement('div');
-    iDiv.id = 'login';
-    console.log(document.getElementsByTagName('body')[0])
-    document.getElementsByTagName('body')[0].appendChild(iDiv);
-</script>
+<main id="login"></main>
 <script type="text/javascript" src="bundle-login.js"></script>
 </body>
 </html>
