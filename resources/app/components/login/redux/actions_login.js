@@ -2,6 +2,7 @@ import { axiosInstance } from '../../../factories/axios-factory'
 import { hashHistory } from 'react-router'
 import moment from 'moment'
 import _ from 'lodash'
+import json from './../../../../../package.json';
 
 export const LOGIN = 'LOGIN';
 export const WRITE_LOCAL_STORAGE = 'WRITE_LOCALS_STORAGE';
@@ -12,10 +13,13 @@ export function login(data){
 
     const url = '/oauth/token';
 
-    const formData = {
-        client_secret:'bEoyH3MtiBgpLRRgl08wHo2sKra6Me3RuR4IJya0',
+    const envKey = (process.env.NODE_ENV =="production")?"prod":"dev"
+
+    const { client_id } = json[envKey];
+    const { client_secret } = json[envKey];
+
+    const formData = {client_secret,client_id,
         grant_type:'password',
-        client_id:2,
         username: data.username,
         password: data.password
     }
