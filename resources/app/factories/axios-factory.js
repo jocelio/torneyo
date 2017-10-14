@@ -7,7 +7,7 @@ const {API_URL} = process.env;
 export function axiosInstance(){
 
     const token = localStorage.getItem('access_token');
-
+    console.log(API_URL)
     const instance = axios.create({
         baseURL: API_URL,
         timeout: 1000,
