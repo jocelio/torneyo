@@ -171,7 +171,7 @@ class EquipeNew extends Component {
 }
 
 EquipeNew = reduxForm({
-    reduxForm:'NewEquipeForm',
+    form:'NewEquipeForm',
 })(EquipeNew);
 
 function mapStateToProps({ equipesState }){

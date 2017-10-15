@@ -12,13 +12,6 @@ class UsersController extends Controller {
 
     use RESTActions;
 
-    function getUserLogged(Request $request){
-        return new JsonResponse([
-            'message' => 'authenticated_user',
-            'data' => JWTAuth::parseToken()->authenticate()
-        ]);
-    }
-
     public function all()
     {
         $m = self::MODEL;
@@ -34,7 +27,7 @@ class UsersController extends Controller {
         $imageName = $request->file('image')->getClientOriginalName();
         $imageName = uniqid($request->input('username').'-') . '-' . $imageName;
         $path = 'uploads' . DIRECTORY_SEPARATOR . 'user_files' . DIRECTORY_SEPARATOR . 'imgs' . DIRECTORY_SEPARATOR;
-        $destinationPath = $path;
+        $destinationPath = $path;// public_path($path); // upload path
 
         if(!file_exists($destinationPath))
             mkdir($destinationPath, 0777, true );
@@ -43,8 +36,23 @@ class UsersController extends Controller {
 
         $fields = $request->all();
         $fields['image'] = $destinationPath.$imageName;
+        $fields['password'] = $this->bcrypt($fields['password']);
 
         return $this->respond(Response::HTTP_CREATED, $m::create($fields));
+    }
+
+    private function bcrypt($str){
+        $custo = '08';
+        $salt = 'Cf1f11ePArKlBJomM0F6aJ';
+        return crypt($str, '$2a$' . $custo . '$' . $salt . '$');
+    }
+
+    public function getUser()
+    {
+        return new JsonResponse([
+            'message' => 'authenticated_user',
+            'data' => JWTAuth::parseToken()->authenticate()
+        ]);
     }
 
 

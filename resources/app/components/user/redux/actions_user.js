@@ -91,7 +91,7 @@ export function deleteUser(user){
 }
 
 export function updateUser(user){
-    const url = `/player/${user.id}`;
+    const url = `/user/${user.id}`;
     return {
         type: UPDATE_USER,
         payload: axiosInstance().put(url, user)

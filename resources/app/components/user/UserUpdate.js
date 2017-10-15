@@ -32,7 +32,7 @@ class UserUpdate extends Component {
         this.props.updateUser(user)
             .then((response) => {
                 if(response.error) throw response.payload
-                 this.showMessage({text:`${user.name} updated with success.`, type:'info'});
+                 this.showMessage({text:`${user.username} updated with success.`, type:'info'});
             })
             .catch((error) => {
                 this.showMessage({text:`Something wrong happened, please try again later.`, type:'error'});
@@ -107,20 +107,16 @@ UserUpdate.contextTypes = {
     router: PropTypes.object
 };
 
-UserUpdate = reduxForm({ reduxForm:'NewUserForm'})(UserUpdate);
+UserUpdate = reduxForm({ form:'NewUserForm'})(UserUpdate);
 
 function mapStateToProps(state){
 
     const {user} = state.userState;
 
     if(user) {
-        return {user: user
-                     , initialValues: {
-                         username:user.username
-                       , email:user.email
-                       , id:user.id
-                    }
-                }
+        return {user
+                , initialValues: {username:user.username, email:user.email, id:user.id}
+               }
     }
     return {user}
 }

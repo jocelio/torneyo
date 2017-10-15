@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
     playersState: PlayerReducer,
     loginState: LoginReducer,
     userState: UserReducer,
-    reduxForm: reduxForm
+    form: reduxForm
 });
 
 export default rootReducer;

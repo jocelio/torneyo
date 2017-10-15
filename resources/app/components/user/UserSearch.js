@@ -46,7 +46,7 @@ class UserSearch extends Component {
     }
 
     handleOpenRemoveDialog(user) {
-        this.setState({showRemoveDialog: true, user: user});
+        this.setState({showRemoveDialog: true, user});
     }
 
     handleCloseRemoveDialog(){

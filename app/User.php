@@ -27,7 +27,7 @@ class User extends Model implements Authenticatable
     public static $rules = [
         "username" => "required",
         "email" => "required",
-        'password' => 'required'
+        'password' => 'required',
     ];
 
 }

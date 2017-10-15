@@ -37,7 +37,7 @@ $app->group(['middleware' => ['auth']], function($app) {
     /**
      * Routes for resource user
      */
-    $app->get('logged', 'UsersController@getUserLogged');
+    $app->get('logged', 'UsersController@getUser');
     $app->get('user', 'UsersController@all');
     $app->get('user/{id}', 'UsersController@get');
     $app->post('user', 'UsersController@addUser');

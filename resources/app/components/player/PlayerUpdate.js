@@ -104,7 +104,7 @@ PlayerUpdate.contextTypes = {
     router: PropTypes.object
 };
 
-PlayerUpdate = reduxForm({ reduxForm:'NewPlayerForm'})(PlayerUpdate);
+PlayerUpdate = reduxForm({ form:'NewPlayerForm'})(PlayerUpdate);
 
 function mapStateToProps(state){
     const {player} = state.playersState || null;

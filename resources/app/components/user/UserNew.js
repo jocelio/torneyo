@@ -172,7 +172,7 @@ class UserNew extends Component {
 }
 
 UserNew = reduxForm({
-    reduxForm:'NewUserForm',
+    form:'NewUserForm',
 })(UserNew);
 
 const mapStateToProps = state => {
