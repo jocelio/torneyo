@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createEquipe } from './actions/actions_equipe';
+import { createUser } from './redux/actions_user';
 import { reduxForm, Field } from 'redux-form';
 import Anchor from '../../containers/Anchor';
 import Dialog from 'material-ui/Dialog';
@@ -8,23 +8,23 @@ import FlatButton from 'material-ui/FlatButton';
 import { renderField, required } from '../../containers/FieldHelper';
 import Cropper from 'react-crop';
 
-class EquipeNew extends Component {
+class UserNew extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {showMessageDialog: false, message:'',image: null,previewImage: null};
+        this.state = {showMessageDialog: false, message:'',image: null,previewImage: null, userId: null};
     }
 
-    formSubmit(equipe){
+    formSubmit(user){
         this.refs.crop.cropImage().then((img) => {
 
-            Object.assign(equipe, {image:img})
+            Object.assign(user, {image:img, userId: this.state.userId});
 
-            this.props.createEquipe(equipe).then(response => {
+            this.props.createUser(user).then(response => {
 
                 if(response.error) throw response.payload;
 
-                this.setState({previewUrl: null,image: null, showMessageDialog: true, message:`${equipe.name} created with success.`});
+                this.setState({previewUrl: null,image: null, showMessageDialog: true, message:`${user.username} created with success.`});
                 this.props.reset();
 
             }).catch(error => {
@@ -55,7 +55,10 @@ class EquipeNew extends Component {
     }
 
     imageLoaded(img) {
-       
+        // if (img.naturalWidth && img.naturalWidth < 262 &&
+        //     img.naturalHeight && img.naturalHeight < 147) {
+        //     this.crop()
+        // }
     }
 
     showMessage({text = '', type ='info'}){
@@ -71,7 +74,6 @@ class EquipeNew extends Component {
             <div>
             <form onSubmit={handleSubmit((props) => this.formSubmit(props))}>
 
-
                         <div className="mdl-card mdl-shadow--2dp large ">
                             <div className="mdl-card__title">
                                 <h2 className="mdl-card__title-text">{this.props.title}</h2>
@@ -86,17 +88,15 @@ class EquipeNew extends Component {
                                                style={{"display":"none"}}/>
                                         <label htmlFor="file" className="mdl-button mdl-js-button mdl-button--fab mdl-button--colored"
                                                style={{"paddingBotton":"2px"}}>
-                                            <i className="material-icons">verified_user</i>
-                                            <i className="material-icons">fiber_manual_record</i>
+                                            <i className="material-icons">person</i>
                                         </label>
-
 
                                         {this.state.image &&
 
                                             <div  style={{height: 400, width: '30%'}}>
                                                 <Cropper
-                                                    height={127}
-                                                    width={230}
+                                                    height={231}
+                                                    width={212}
                                                     ref='crop'
                                                     image={this.state.image}
                                                     onImageLoaded={() => this.imageLoaded()}/>
@@ -120,30 +120,31 @@ class EquipeNew extends Component {
                                     <div className="mdl-cell mdl-cell--4-col" style={{"marginTop":"38px"}}>
                                         {this.state.previewUrl &&
                                             <div>
-                                                <span>Equipe Image</span><br/>
+                                                <span>Player Image</span><br/>
                                                 <img src={this.state.previewUrl} />
                                             </div>
                                         }
                                     </div>
                                 </div>
 
-
                             </div>
                             <div className="mdl-card__actions mdl-card--border">
-                                <Field name="name" type="text"
-                                       component={renderField} validate={[required]} label="Equipe Name"/>
 
-                                <Field name="description" type="text"
-                                       component={renderField} validate={[required]} label="Equipe Description"/>
+                                <Field name="username" type="text"
+                                       component={renderField} validate={[required]} label="Username"/>
+
+                                <Field name="email" type="text"
+                                       component={renderField} validate={[required]} label="E-mail"/>
+
+                                <Field name="password" type="password"
+                                       component={renderField} validate={[required]} label="Senha"/>
                             </div>
                             <div className="mdl-card__actions mdl-card--border">
                                 <input type="submit" value="Save" className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
                                        disabled={!this.state.image}/>
-                                <Anchor name="Cancel" href="equipe" className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"/>
+                                <Anchor name="Cancel" href="user" className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"/>
                             </div>
                         </div>
-
-
 
             </form>
                 <Dialog
@@ -170,12 +171,12 @@ class EquipeNew extends Component {
     }
 }
 
-EquipeNew = reduxForm({
-    reduxForm:'NewEquipeForm',
-})(EquipeNew);
+UserNew = reduxForm({
+    reduxForm:'NewUserForm',
+})(UserNew);
 
-function mapStateToProps({ equipesState }){
-    return { equipesState };
+const mapStateToProps = state => {
+    return state
 }
 
-export default connect(mapStateToProps, { createEquipe })(EquipeNew);
+export default connect(mapStateToProps, { createUser })(UserNew);

@@ -15,6 +15,11 @@ import PlayerNew from '../components/player/PlayerNew';
 import PlayerUpdate from '../components/player/PlayerUpdate';
 import PlayerSearch from '../components/player/PlayerSearch';
 
+import User from '../components/user/User';
+import UserNew from '../components/user/UserNew';
+import UserUpdate from '../components/user/UserUpdate';
+import UserSearch from '../components/user/UserSearch';
+
 import LoginForm from '../components/login/components/LoginForm'
 
 
@@ -32,6 +37,11 @@ export default
             <IndexRoute component={PlayerSearch}/>
             <Route path="new" component={PlayerNew}/>
             <Route path="update/:id" component={PlayerUpdate}/>
+        </Route>
+        <Route path="/user" component={User}>
+            <IndexRoute component={UserSearch}/>
+            <Route path="new" component={UserNew}/>
+            <Route path="update/:id" component={UserUpdate}/>
         </Route>
     </Route>
 

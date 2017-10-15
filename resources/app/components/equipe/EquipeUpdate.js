@@ -103,7 +103,7 @@ EquipeUpdate.contextTypes = {
     router: PropTypes.object
 };
 
-EquipeUpdate = reduxForm({ form:'NewEquipeForm'})(EquipeUpdate);
+EquipeUpdate = reduxForm({ reduxForm:'NewEquipeForm'})(EquipeUpdate);
 
 function mapStateToProps(state){
 

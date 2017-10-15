@@ -1,13 +1,13 @@
 import { axiosInstance } from '../../../factories/axios-factory'
 
 
-export const FETCH_EQUIPES = 'FETCH_PLAYERS';
-export const FETCH_EQUIPE  = 'FETCH_PLAYER';
-export const CREATE_EQUIPE = 'CREATE_PLAYER';
-export const DELETE_EQUIPE = 'DELETE_PLAYER';
-export const UPDATE_EQUIPE = 'UPDATE_PLAYER';
-export const SEARCH_EQUIPES = 'SEARCH_PLAYERS';
-export const FILTER_EQUIPES = 'FILTER_PLAYERS';
+export const FETCH_EQUIPES = 'FETCH_USERS';
+export const FETCH_EQUIPE  = 'FETCH_USERS';
+export const CREATE_EQUIPE = 'CREATE_USER';
+export const DELETE_EQUIPE = 'DELETE_USER';
+export const UPDATE_EQUIPE = 'UPDATE_USER';
+export const SEARCH_EQUIPES = 'SEARCH_USER';
+export const FILTER_EQUIPES = 'FILTER_USER';
 
 
 export function fetchEquipes(){

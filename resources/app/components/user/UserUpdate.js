@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchPlayer, updatePlayer } from './actions/actions_player';
+import { fetchUser, updateUser } from './redux/actions_user';
 import { reduxForm, Field } from 'redux-form';
 import PropTypes from 'prop-types';
 import Anchor from '../../containers/Anchor';
@@ -8,7 +8,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import { renderField, required } from '../../containers/FieldHelper';
 
-class PlayerUpdate extends Component {
+class UserUpdate extends Component {
 
     constructor(props) {
         super(props);
@@ -19,7 +19,7 @@ class PlayerUpdate extends Component {
 
         this.showMessage({text:`Loading...`, type:'info'});
 
-        this.props.fetchPlayer(this.props.params.id).then(response =>{
+        this.props.fetchUser(this.props.params.id).then(response =>{
             if(response.error) throw response.payload
             this.setState({showMessageDialog: false})
         }).catch((error) => {
@@ -28,11 +28,11 @@ class PlayerUpdate extends Component {
 
     }
 
-    formSubmit(player){
-        this.props.updatePlayer(player)
+    formSubmit(user){
+        this.props.updateUser(user)
             .then((response) => {
                 if(response.error) throw response.payload
-                 this.showMessage({text:`${player.name} updated with success.`, type:'info'});
+                 this.showMessage({text:`${user.name} updated with success.`, type:'info'});
             })
             .catch((error) => {
                 this.showMessage({text:`Something wrong happened, please try again later.`, type:'error'});
@@ -49,7 +49,7 @@ class PlayerUpdate extends Component {
 
     render(){
 
-        if(!this.props.player){
+        if(!this.props.user){
             return <div>Loading...</div>
         }
 
@@ -64,16 +64,19 @@ class PlayerUpdate extends Component {
                     </div>
                     <div className="mdl-card__supporting-text">
 
-                        <Field name="name" type="text" value="teste"
-                            component={renderField} validate={[required]} label="Player Name"/>
+                        <Field name="username" type="text"
+                            component={renderField} validate={[required]} label="Username"/>
 
-                        <Field name="surname" type="text"
-                            component={renderField} validate={[required]} label="Player Description"/>
+                        <Field name="email" type="text"
+                            component={renderField} validate={[required]} label="E-mail"/>
+
+                        <Field name="password" type="password"
+                               component={renderField} validate={[required]} label="Sova Senha"/>
 
                     </div>
                     <div className="mdl-card__actions mdl-card--border">
                         <input type="submit" value="Update" className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"/>
-                        <Anchor name="Cancel" href="player" className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"/>
+                        <Anchor name="Cancel" href="user" className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"/>
                     </div>
                 </div>
             </form>
@@ -100,24 +103,26 @@ class PlayerUpdate extends Component {
 }
 
 
-PlayerUpdate.contextTypes = {
+UserUpdate.contextTypes = {
     router: PropTypes.object
 };
 
-PlayerUpdate = reduxForm({ reduxForm:'NewPlayerForm'})(PlayerUpdate);
+UserUpdate = reduxForm({ reduxForm:'NewUserForm'})(UserUpdate);
 
 function mapStateToProps(state){
-    const {player} = state.playersState || null;
-    if(player) {
-        return {player: player
+
+    const {user} = state.userState;
+
+    if(user) {
+        return {user: user
                      , initialValues: {
-                         name:player.name
-                       , surname:player.surname
-                       , id:player.id
+                         username:user.username
+                       , email:user.email
+                       , id:user.id
                     }
                 }
     }
-    return {player}
+    return {user}
 }
 
-export default connect(mapStateToProps, {fetchPlayer, updatePlayer})(PlayerUpdate);
+export default connect(mapStateToProps, {fetchUser, updateUser})(UserUpdate);

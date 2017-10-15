@@ -1,12 +1,13 @@
 import { axiosInstance } from '../../../factories/axios-factory'
+import _ from 'lodash'
 
-export const FETCH_PLAYERS = 'FETCH_PLAYERS';
-export const FETCH_PLAYER  = 'FETCH_PLAYER';
-export const CREATE_PLAYER = 'CREATE_PLAYER';
-export const DELETE_PLAYER = 'DELETE_PLAYER';
-export const UPDATE_PLAYER = 'UPDATE_PLAYER';
-export const SEARCH_PLAYERS = 'SEARCH_PLAYERS';
-export const FILTER_PLAYERS = 'FILTER_PLAYERS';
+export const FETCH_PLAYERS = 'FETCH_USERS';
+export const FETCH_PLAYER  = 'FETCH_USERS';
+export const CREATE_PLAYER = 'CREATE_USER';
+export const DELETE_PLAYER = 'DELETE_USER';
+export const UPDATE_PLAYER = 'UPDATE_USER';
+export const SEARCH_PLAYERS = 'SEARCH_USER';
+export const FILTER_PLAYERS = 'FILTER_USER';
 
 export function fetchPlayers(){
 
@@ -27,7 +28,7 @@ export function filterPlayer(players, player){
         return {type: FILTER_PLAYERS, payload: {filteredPlayer:players, holdPlayer:players}};
     }
 
-    const filteredPlayer = players.filter((e) => {
+    const filteredPlayer = _.filter(players, e => {
         if(name)
             return (new RegExp(name.toUpperCase())).test(e.name.toUpperCase());
         if(description)

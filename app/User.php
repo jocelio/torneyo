@@ -20,7 +20,9 @@ class User extends Model implements Authenticatable
 //"password":"secret"
 //}
 
-    protected $fillable = ["username", "email","password"];
+    protected $fillable = ["username", "email","password",'image'];
+
+    protected $guarded = ['password'];
 
     public static $rules = [
         "username" => "required",

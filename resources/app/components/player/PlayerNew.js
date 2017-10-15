@@ -190,7 +190,7 @@ class PlayerNew extends Component {
 }
 
 PlayerNew = reduxForm({
-    form:'NewPlayerForm',
+    reduxForm:'NewPlayerForm',
 })(PlayerNew);
 
 const mapStateToProps = state => {

@@ -12,11 +12,6 @@
 */
 
 
-
-$app->get('/login', function ()  {
-    return view('login', ['name' => 'teste']);
-});
-
 $app->get('/', function ()  {
     return view('home');
 });
@@ -42,9 +37,10 @@ $app->group(['middleware' => ['auth']], function($app) {
     /**
      * Routes for resource user
      */
+    $app->get('logged', 'UsersController@getUserLogged');
     $app->get('user', 'UsersController@all');
     $app->get('user/{id}', 'UsersController@get');
-    $app->post('user', 'UsersController@add');
+    $app->post('user', 'UsersController@addUser');
     $app->put('user/{id}', 'UsersController@put');
     $app->delete('user/{id}', 'UsersController@remove');
 
